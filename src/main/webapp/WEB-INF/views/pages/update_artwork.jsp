@@ -11,18 +11,19 @@
 <body>
 
 <form:form method="post" modelAttribute="artwork" enctype="multipart/form-data">
-<h3>작품등록 페이지</h3>
+<h3>작품수정 페이지</h3>
 <label>작품 카테고리 : </label>
 <form:select path="artworkCategory" style="width:170px; text-align:center;">
 		<option value="unknown">--선택--</option>
 		<form:options items="${categoryProvicerList}"/>
 </form:select>
 <br>
-<label>작품이름 : </label><form:input path="artworkName"/>
+<label>작품이름 : </label><form:input path="artworkName" value="${artworkCommand.artworkName}"/>
 <br>
-<label>작품소개 : </label><form:input path="description"/>
+<label>작품소개 : </label><form:input path="description" value="${artworkCommand.description}"/>
 <br>
 <label>작품이미지 : </label>
+<img alt="artwork_img" src="/artwork_img/${artworkCommand.artworkImg}" style="width: 300px; height: 300px;"><br>
 <input type="file" name="imgFile"/>
 <br>
 <input type="submit" value="작품추가">

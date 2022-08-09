@@ -5,6 +5,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.medici.arang.board.artist.dao.ArtworkDao;
+import com.medici.arang.board.artist.service.ArtworkServiceImpl;
+
 
 
 @Configuration
@@ -26,6 +29,16 @@ public class DataSourceConfig {
 	@Bean
 	public JdbcTemplate jdbcTemplate() {
 		return new JdbcTemplate(dataSource());
+	}
+	
+	@Bean
+	public ArtworkDao artworkDao() {
+		return new ArtworkDao(dataSource());
+	}
+	
+	@Bean
+	public ArtworkServiceImpl artworkServiceImpl() {
+		return new ArtworkServiceImpl();
 	}
 	
 }
