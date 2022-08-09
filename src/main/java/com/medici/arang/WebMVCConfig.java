@@ -1,4 +1,4 @@
-package com.medici.arang.common;
+package com.medici.arang;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
