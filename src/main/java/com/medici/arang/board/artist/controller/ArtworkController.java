@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -98,16 +99,16 @@ public class ArtworkController {
 		artwork.setArtistId(101);
 		
 		artworkService.addArtwork(artwork);
-		return "pages/add_artwork";
+		return "pages/test";
 	}
 	
 	
 	// 작품수정 Form
 	@GetMapping("/pages/update_artwork")
-	public String updateArtworkForm(Model model) {
+	public String updateArtworkForm(@RequestParam("id") long id,Model model) {
 		model.addAttribute("artwork", new ArtworkCommand());
 		String email = "test@naver.com";
-		long id = 1002;
+		
 		ArtworkCommand artworkCommand = artworkService.findArtwork(email, id);
 		
 		model.addAttribute("artworkCommand", artworkCommand);
@@ -152,12 +153,44 @@ public class ArtworkController {
 		model.addAttribute("imgName", imgName);
 		
 		artwork.setArtistId(101);
-		artworkService.updateMenuItem(artwork);
+		artworkService.updateArtwork(artwork);
 		
 		return "pages/update_artwork";
 	}
 	
-	// 작품삭제 Form
+	// 작품조회 Form
+	@GetMapping("/pages/find_artwork")
+	public String findArtworkForm(HttpServletRequest request) {
+		long artistId = 101;
+		List<ArtworkCommand> findArtworkList = artworkService.findArtworkList(artistId);
+		request.setAttribute("findArtworkList", findArtworkList);
+		return "pages/find_artwork";
+	}
+	
+	
+	// 작품삭제 기능
+	@PostMapping("/pages/find_artwork")
+	public String deleteArtwork(HttpServletRequest request) {
+		String StringId = request.getParameter("id");
+		long id = Long.parseLong(StringId);
+		artworkService.deleteArtwork(id);
+		long artistId = 101;
+		List<ArtworkCommand> findArtworkList = artworkService.findArtworkList(artistId);
+		request.setAttribute("findArtworkList", findArtworkList);
+		return "pages/find_artwork";
+	}
+	
+	
+	// 작품전체 조회 Form ( 일반유저페이지 )
+	@GetMapping("/pages/all_find_artwork")
+	public String allFindArtworkForm(HttpServletRequest request) {
+		List<ArtworkCommand> findArtworkList = artworkService.allFindArtwork();
+		request.setAttribute("findArtworkList", findArtworkList);
+		return "pages/all_find_artwork";
+	}
+	
+	
+	
 	
 	
 }
