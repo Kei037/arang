@@ -89,10 +89,6 @@ public class ArtworkController {
 		
 		artwork.setArtworkImg(uniqueName+fileExtension);
 		String imgName = artwork.getArtworkImg();
-		System.out.println(imgName);
-		System.out.println(artwork.getArtworkCategory());
-		System.out.println(artwork.getArtworkName());
-		System.out.println(artwork.getDescription());
 		model.addAttribute("imgName", imgName);
 
 		// 아티스트ID값을 외래키로 쓰지만 현재 ID값이 없어 임의값 입력
@@ -190,7 +186,17 @@ public class ArtworkController {
 	}
 	
 	
+	//	test
+	@GetMapping("/artist_board/artist_main")
+	public String test() {
+		return "artist_board/artist_main";
+	}
 	
+	//	test2
+	@GetMapping("/artist_board/artist_depth")
+	public String test2() {
+		return "/artist_board/artist_depth";
+	}
 	
 	
 }

@@ -1,0 +1,355 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap');
+
+body {
+  background-color: #EAE9E9;
+}
+
+#wrap {
+  position: relative;
+  width: 1320px;
+  height: 100vh;
+  margin: 0 auto;
+}
+#header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #eae9e9;
+  border-bottom: 1px solid #ededed;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+  height: 50px;
+  margin-bottom: 10px;
+}
+#header .inner {
+  position: relative;
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
+  display: table;
+}
+
+#top-logo {
+  position: fixed;
+  float: left;
+  font-size: 40px;
+  padding-bottom: 10px;
+}
+#top-logo a {
+  font-family: 'Bebas Neue', cursive;
+  font-weight: normal;
+  line-height: 50px;
+  top: 0;
+}
+
+
+#top-nav {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-weight: 500;
+  z-index: 500;
+  position: relative;
+  height: 50px;
+  float: right;
+}
+#top-nav ul {
+  float: left;
+}
+#top-nav ul li {
+  position: relative;
+  float: left;
+  margin-left: 50px;
+}
+#top-nav ul.side_menu li {
+  margin-left: 15px;
+}
+#top-nav ul li:first-child {
+  margin-left: 0;
+}
+#top-nav a {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  line-height: 50px;
+}
+
+#top-nav a:hover {
+  color: tomato;
+}
+
+#top-nav ul.center_menu {
+  margin-right: 250px;
+}
+#top-nav ul.side_menu img {
+  padding-top: 17px;
+  padding-right: -50px;
+  height: 18px;
+}
+
+.side_menu a:hover {
+  color: tomato;
+}
+
+.sub-menu {
+  position: absolute;
+  border: 1px solid tomato;
+  visibility: hidden;
+  top: calc(100% - 3px);
+  opacity: 0;
+  transition: .3s;
+}
+.sub-menu li {
+  width: 100%;
+  margin: 0;
+  background: #ededed;
+  box-sizing: border-box;
+  padding: 0 10px;
+  min-width: 150px;
+  transition: .3s;
+}
+.sub-menu li a {
+  height: 40px;
+  line-height: 40px;
+}
+.sub-menu li:hover {
+  background-color: tomato;
+}
+.sub-menu li a:hover {
+  color: #ededed;
+}
+
+main {
+  min-height: calc(100vh - 50px + 80px + 51px));
+}
+
+/* 해드라인 */
+.headline_artworks {
+  text-align: center;
+  margin-top: 170px;
+}
+
+.headline_artworks h3 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+h4 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 23px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+#sub-nav ul {
+  display: flex;
+  justify-content: center;
+}
+#sub-nav ul li {
+  margin: 0 15px;
+}
+#sub-nav ul li a {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  line-height: 50px;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: .5s;
+  font-weight: 300;
+}
+#sub-nav ul li a:hover {
+  color: tomato;
+}
+
+
+
+/* 아티스트상세페이지 */
+button {
+  font-size: 11px;
+  border: none;
+  background-color: tomato;
+  color: white;
+  margin-bottom: 20px;
+  margin-top: 22px;
+}
+
+.flex-row {
+  flex-direction: row !important;
+}
+.d-flex {
+  display: flex !important;
+}
+
+.col {
+  background-color: #f5f5f5;
+}
+
+.col-1 {
+  margin-right: 8px;
+}
+
+.col-2 {
+  margin-left: 8px;
+}
+
+.container {
+  padding-top: 90px;
+  margin: 0 auto;
+}
+
+.container .detail_wrapper {
+  justify-content: space-between;
+}
+
+/* 왼쪽 */
+.container .side_block {
+  width: 170px;
+}
+
+.container .side_block .artist_info {
+  padding-bottom: 70px;
+  text-align: center;
+}
+
+.artist_info .artist_avatar img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 7px gray;
+}
+
+.artist_info h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 25px;
+
+}
+
+.artist_info .e_name {
+  font-size: 15px;
+  margin-bottom: 5px;
+
+}
+
+.artist_info .born {
+  font-size: 15px;
+  margin-bottom: 30px;
+
+}
+
+/* 가운데 */
+.content_block {
+  width: 900px;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+.content_block .review {
+  font-size: 14px;
+  text-align: justify;
+  margin-bottom: 30px;
+}
+
+.content_block .review h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.content_block .review p {
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.content_block .review p img {
+  width: 100%;
+}
+
+/* 오른쪽 */
+.side_block .a_list {
+  margin-bottom: 70px;
+  padding: 55px 0 10px;
+  border-bottom: 1px solid darkgray;
+  text-align: center;
+}
+
+.side_block .a_list h3, .side_block .a_banner h3 {
+  font-size: 17px;
+  margin-bottom: 25px;
+}
+
+.side_block .a_list ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.side_block .a_list ul li {
+  margin-bottom: 5px;
+}
+.side_block .a_list ul li:nth-child(1) {
+  margin-right: 15px;
+}
+
+.side_block .a_list ul li a {
+  font-size: 14px;
+}
+
+.side_block .a_list ul li a:hover {
+  color: tomato;
+}
+
+.side_block .a_banner {
+  text-align: center;
+}
+
+.a_banner img {
+  vertical-align: middle;
+  width: 170px;
+}
+
+/* 아트워크 */
+.product {
+  margin-bottom: 200px;
+}
+
+.product h4 {
+  color: #333;
+  display: inline-block;
+  font-weight: 500;
+  font-size: 27px;
+  margin-bottom: 20px;
+}
+
+.product2 {
+  width: 960px;
+}
+
+.slick_trak {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item {
+  margin-bottom: 15px;
+  display: inline-block;
+
+}
+.item .artwork {
+  width: 250px;
+  height: 250px;
+}
+
+figcaption {
+  color: #333;
+  font-size: 14px;
+}
+figcaption h5 {
+  font-size: 14px;
+  margin-bottom: 8px;
+}

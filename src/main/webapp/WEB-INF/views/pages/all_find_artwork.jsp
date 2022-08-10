@@ -10,6 +10,16 @@
 </head>
 <body>
 <h3>전체 작품조회 페이지</h3>
+<label>Category</label>
+<br>
+<a href="" class="category">서양화</a>
+<a href="" class="category">동양화</a>
+<a href="" class="category">유화</a>
+<a href="" class="category">조각</a>
+<a href="" class="category">설치미술</a>
+<a href="" class="category">미디어아트</a>
+<a href="" class="category">사진</a>
+<br>
 <c:forEach var="findArtwork" items="${findArtworkList}">
 ----------------------------------------------------------------------<br>
 <label>작품 카테고리 : </label>${findArtwork.artworkCategory}
@@ -20,13 +30,7 @@
 <br>
 <label>작품이미지 : </label>
 <img alt="artwork_img" src="/artwork_img/${findArtwork.artworkImg}" style="width: 300px; height: 300px;">
-<br>
 
-<form action="find_artwork" method="post">
-    <input type="hidden" name="id" value="${findArtwork.wid}"/>
-	<input type="submit" value="삭제하기"/>
-</form>
-<a href="update_artwork?id=${findArtwork.wid}">메뉴변경</a>
 <br>
 </c:forEach>
 
