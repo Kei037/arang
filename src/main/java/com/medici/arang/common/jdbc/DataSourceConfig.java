@@ -4,9 +4,15 @@ import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import com.medici.arang.board.artist.dao.ArtworkDao;
 import com.medici.arang.board.artist.service.ArtworkServiceImpl;
+import com.medici.arang.user.dao.ArtistDao;
+import com.medici.arang.user.dao.GalleristDao;
+import com.medici.arang.user.service.ArtistServiceImpl;
+import com.medici.arang.user.service.GalleristServiceImpl;
 
 
 
@@ -32,6 +38,13 @@ public class DataSourceConfig {
 	}
 	
 	@Bean
+	public PlatformTransactionManager transactionManager() {
+		DataSourceTransactionManager txManager = new DataSourceTransactionManager();
+		txManager.setDataSource(dataSource());
+		return txManager;
+	}
+	
+	@Bean
 	public ArtworkDao artworkDao() {
 		return new ArtworkDao(dataSource());
 	}
@@ -41,4 +54,25 @@ public class DataSourceConfig {
 		return new ArtworkServiceImpl();
 	}
 	
+	@Bean
+	public ArtistDao artistDao() {
+		return new ArtistDao(dataSource());
+	}
+	
+	@Bean
+	public ArtistServiceImpl artistService() {
+		return new ArtistServiceImpl();
+	}
+	
+	@Bean
+	public GalleristDao galleristDao() {
+		return new GalleristDao(dataSource());
+	}
+	
+	@Bean
+	public GalleristServiceImpl galleristService() {
+		return new GalleristServiceImpl();
+	}
+	
+
 }

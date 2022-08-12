@@ -90,190 +90,32 @@
             <div class="grid_wrapper">
               <h5 class="sub_title">Artists<small>176</small></h5>
               <div class="row artist_list">
+              <c:forEach var="artist" items="${artistList}">
                 <div class="col artist_item">
                   <div class="artist_info d-flex flex-row">
                     <div class="artist_avatar">
-                      <a href="#"><img src="/upload_img/artist/rahee/rahee.jpg" alt="윤라희jpg"></a>
+                      <a href="/arang/artist_board/artist_depth"><img src="${artist.imgPath}" alt="artist_img"></a>
                     </div>
                     <div class="artist_text">
                       <div class="first">
-                        <span>윤라희</span>
+                        <span>${artist.name}</span>
                         <span class="futuraM">/ Yoon, Ra Hee</span>
                       </div>
                       <div class="last d-flex flex-row">
-                        <div>날 것 그대로의 본질에 우연적 효과를 불어넣다.</div>
+                        <div>날 것 그대로의 본질에 우연적 S효과를 불어넣다.</div>
                       </div>
                     </div>
                   </div>
                   <div class="banner_wrap">
                     <a href="#">
                       <div class="artwork_banner">
-                        <img class="artwork" src="/upload_img/artist/rahee/윤라희-오브제1_s02.jpg" alt="오브제1">
+                        <img class="artwork" src="/upload_img/artist/rahee/윤라희-오브제1_s02.jpg" alt="artwork_img">
                       </div>
                     </a>
                   </div>
                 </div>
-                <div class="col artist_item">
-                  <div class="artist_info d-flex flex-row">
-                    <div class="artist_avatar">
-                      <a href="#"><img src="/upload_img/artist/rahee/rahee.jpg" alt="윤라희jpg"></a>
-                    </div>
-                    <div class="artist_text">
-                      <div class="first">
-                        <span>윤라희</span>
-                        <span class="futuraM">/ Yoon, Ra Hee</span>
-                      </div>
-                      <div class="last d-flex flex-row">
-                        <div>날 것 그대로의 본질에 우연적 효과를 불어넣다.</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="banner_wrap">
-                    <a href="#">
-                      <div class="artwork_banner">
-                        <img class="artwork" src="/upload_img/artist/rahee/윤라희-오브제1_s02.jpg" alt="오브제1">
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div class="col artist_item last">
-                  <div class="artist_info d-flex flex-row">
-                    <div class="artist_avatar">
-                      <a href="#"><img src="/upload_img/artist/rahee/rahee.jpg" alt="윤라희jpg"></a>
-                    </div>
-                    <div class="artist_text">
-                      <div class="first">
-                        <span>윤라희</span>
-                        <span class="futuraM">/ Yoon, Ra Hee</span>
-                      </div>
-                      <div class="last d-flex flex-row">
-                        <div>날 것 그대로의 본질에 우연적 효과를 불어넣다.</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="banner_wrap">
-                    <a href="#">
-                      <div class="artwork_banner">
-                        <img class="artwork" src="/upload_img/artist/rahee/윤라희-오브제1_s02.jpg" alt="오브제1">
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div class="col artist_item">
-                  <div class="artist_info d-flex flex-row">
-                    <div class="artist_avatar">
-                      <a href="#"><img src="/upload_img/artist/rahee/rahee.jpg" alt="윤라희jpg"></a>
-                    </div>
-                    <div class="artist_text">
-                      <div class="first">
-                        <span>윤라희</span>
-                        <span class="futuraM">/ Yoon, Ra Hee</span>
-                      </div>
-                      <div class="last d-flex flex-row">
-                        <div>날 것 그대로의 본질에 우연적 효과를 불어넣다.</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="banner_wrap">
-                    <a href="#">
-                      <div class="artwork_banner">
-                        <img class="artwork" src="/upload_img/artist/rahee/윤라희-오브제1_s02.jpg" alt="오브제1">
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div class="col artist_item">
-                  <div class="artist_info d-flex flex-row">
-                    <div class="artist_avatar">
-                      <a href="#"><img src="/upload_img/artist/rahee/rahee.jpg" alt="윤라희jpg"></a>
-                    </div>
-                    <div class="artist_text">
-                      <div class="first">
-                        <span>윤라희</span>
-                        <span class="futuraM">/ Yoon, Ra Hee</span>
-                      </div>
-                      <div class="last d-flex flex-row">
-                        <div>날 것 그대로의 본질에 우연적 효과를 불어넣다.</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="banner_wrap">
-                    <a href="#">
-                      <div class="artwork_banner">
-                        <img class="artwork" src="/upload_img/artist/rahee/윤라희-오브제1_s02.jpg" alt="오브제1">
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div class="col artist_item last">
-                  <div class="artist_info d-flex flex-row">
-                    <div class="artist_avatar">
-                      <a href="#"><img src="/upload_img/artist/rahee/rahee.jpg" alt="윤라희jpg"></a>
-                    </div>
-                    <div class="artist_text">
-                      <div class="first">
-                        <span>윤라희</span>
-                        <span class="futuraM">/ Yoon, Ra Hee</span>
-                      </div>
-                      <div class="last d-flex flex-row">
-                        <div>날 것 그대로의 본질에 우연적 효과를 불어넣다.</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="banner_wrap">
-                    <a href="#">
-                      <div class="artwork_banner">
-                        <img class="artwork" src="/upload_img/artist/rahee/윤라희-오브제1_s02.jpg" alt="오브제1">
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div class="col artist_item">
-                  <div class="artist_info d-flex flex-row">
-                    <div class="artist_avatar">
-                      <a href="#"><img src="/upload_img/artist/rahee/rahee.jpg" alt="윤라희jpg"></a>
-                    </div>
-                    <div class="artist_text">
-                      <div class="first">
-                        <span>윤라희</span>
-                        <span class="futuraM">/ Yoon, Ra Hee</span>
-                      </div>
-                      <div class="last d-flex flex-row">
-                        <div>날 것 그대로의 본질에 우연적 효과를 불어넣다.</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="banner_wrap">
-                    <a href="#">
-                      <div class="artwork_banner">
-                        <img class="artwork" src="/upload_img/artist/rahee/윤라희-오브제1_s02.jpg" alt="오브제1">
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div class="col artist_item">
-                  <div class="artist_info d-flex flex-row">
-                    <div class="artist_avatar">
-                      <a href="#"><img src="/upload_img/artist/rahee/rahee.jpg" alt="윤라희jpg"></a>
-                    </div>
-                    <div class="artist_text">
-                      <div class="first">
-                        <span>윤라희</span>
-                        <span class="futuraM">/ Yoon, Ra Hee</span>
-                      </div>
-                      <div class="last d-flex flex-row">
-                        <div>날 것 그대로의 본질에 우연적 효과를 불어넣다.</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="banner_wrap">
-                    <a href="#">
-                      <div class="artwork_banner">
-                        <img class="artwork" src="/upload_img/artist/rahee/윤라희-오브제1_s02.jpg" alt="오브제1">
-                      </div>
-                    </a>
-                  </div>
-                </div>
+               </c:forEach>
+                
                 <div class="col artist_item last">
                   <div class="artist_info d-flex flex-row">
                     <div class="artist_avatar">
@@ -333,6 +175,16 @@
     <!-- 작가 -->
 
   </div>
+  <c:forEach var="artistL" items="${artistList}">
+  <c:forEach var="arkworkL" items="${artworkList}">
+  	<c:if test="${artistL.aid eq artworkL.wid}">
+  		<li class="page_item">
+         <a class="page_link" href="#">7</a>
+        </li>
+  	</c:if>
+  </c:forEach>
+  </c:forEach>
+  
 </body>
 
 </html>

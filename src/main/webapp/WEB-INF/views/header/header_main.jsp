@@ -12,12 +12,10 @@
 <script type="text/javascript" src="<c:url value ='/resources/js/jquery.js'/>"></script>
 </head>
 <body>
-
-
-    <header id="header">
-      <div class="inner">
-        <!-- 로고 -->
-        <h1 id="top-logo">
+<header id="header">
+	<div class="inner">
+		<!-- 로고 -->
+		<h1 id="top-logo">
           <a href="/arang/main">ARANG</a>
         </h1>
         <!-- 메인메뉴 -->
@@ -31,30 +29,13 @@
           </ul>
           <ul class="side_menu">
             <li><a href="./find/find.html"><img src="<c:url value ='/resources/img/artist/icon/find.png'/>" alt="find"></a></li>
-            <li><a href="./mypage/mypage.html"><img src="<c:url value ='/resources/img/artist/icon/mypage.png'/>" alt="mypage"></a></li>
+            <li><a href="/arang/pages/add_artwork"><img src="<c:url value ='/resources/img/artist/icon/mypage.png'/>" alt="mypage"></a></li>
             <li><a href="./like/like.html"><img src="<c:url value ='/resources/img/artist/icon/like.png'/>" alt="like"></a></li>
             <li><a href="./cart/cart.html"><img src="<c:url value ='/resources/img/artist/icon/cart.png'/>" alt="cart"></a></li>
             <li><a href="/arang/login">Login</a></li>
           </ul>
         </nav>
-      </div>
-    </header>
-
-    <div class="headline_artworks">
-      <h3>ARTISTS</h3>
-      <nav id="sub-nav">
-        <ul>
-          <li><a href="./artists/all.html">All</a></li>
-          <li><a href="./artists/Sculptor.html">Sculptor</a></li>
-          <li><a href="./artists/Painter.html">Painter</a></li>
-          <li><a href="./artists/OrientalPainter.html">OrientalPainter</a></li>
-          <li><a href="./artists/DrawingArtist.html">DrawingArtist</a></li>
-          <li><a href="./artists/Illustator.html">Illustator</a></li>
-          <li><a href="./artists/DigitalArtist.html">DigitalArtist</a></li>
-          <li><a href="./artists/Photographer.html">Photographer</a></li>
-        </ul>
-      </nav>
-    </div>
-
+	</div>
+</header>
 </body>
 </html>

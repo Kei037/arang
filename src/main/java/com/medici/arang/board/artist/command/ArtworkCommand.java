@@ -10,10 +10,13 @@ import lombok.Setter;
 public class ArtworkCommand {
 	private long wid;
 	private long artistId;
-	private String artworkName;
-	private String artworkImg;
+	private String name;
+	private String genre;
+	private String technique;
+	private String size;
+	private String publicationDate;
 	private String description;
-	private String artworkCategory;
+	private String imgPath;
 	
 	public ArtworkCommand() {
 		super();

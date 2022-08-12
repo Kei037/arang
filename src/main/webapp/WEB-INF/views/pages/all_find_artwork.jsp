@@ -12,26 +12,32 @@
 <h3>전체 작품조회 페이지</h3>
 <label>Category</label>
 <br>
-<a href="" class="category">서양화</a>
-<a href="" class="category">동양화</a>
-<a href="" class="category">유화</a>
-<a href="" class="category">조각</a>
-<a href="" class="category">설치미술</a>
-<a href="" class="category">미디어아트</a>
-<a href="" class="category">사진</a>
+<a href="" class="category">Sulptor</a>
+<a href="" class="category">Painter</a>
+<a href="" class="category">OrientalPainter</a>
+<a href="" class="category">DrawingArtist</a>
+<a href="" class="category">Illustator</a>
+<a href="" class="category">DigitalArtist</a>
+<a href="" class="category">Photographer</a>
 <br>
 <c:forEach var="findArtwork" items="${findArtworkList}">
 ----------------------------------------------------------------------<br>
-<label>작품 카테고리 : </label>${findArtwork.artworkCategory}
+<label>작품 카테고리 : </label>${findArtwork.genre}
 <br>
-<label>작품이름 : </label>${findArtwork.artworkName}
+<label>작품이름 : </label>${findArtwork.name}
 <br>
 <label>작품소개 : </label>${findArtwork.description}
 <br>
-<label>작품이미지 : </label>
-<img alt="artwork_img" src="/artwork_img/${findArtwork.artworkImg}" style="width: 300px; height: 300px;">
-
+<label>작품 사이즈 : </label>${findArtwork.size}
 <br>
+<label>제작년도 : </label>${findArtwork.publicationDate}
+<br>
+<label>기법 : </label>${findArtwork.technique}
+<br>
+<label>작품이미지 : </label>
+<img alt="artwork_img" src="${findArtwork.imgPath}" style="width: 300px; height: 300px;">
+<br>
+
 </c:forEach>
 
 </body>

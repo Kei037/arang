@@ -12,14 +12,14 @@
 <h3>내 작품조회 페이지</h3>
 <c:forEach var="findArtwork" items="${findArtworkList}">
 ----------------------------------------------------------------------<br>
-<label>작품 카테고리 : </label>${findArtwork.artworkCategory}
+<label>작품 카테고리 : </label>${findArtwork.genre}
 <br>
-<label>작품이름 : </label>${findArtwork.artworkName}
+<label>작품이름 : </label>${findArtwork.name}
 <br>
 <label>작품소개 : </label>${findArtwork.description}
 <br>
 <label>작품이미지 : </label>
-<img alt="artwork_img" src="/artwork_img/${findArtwork.artworkImg}" style="width: 300px; height: 300px;">
+<img alt="artwork_img" src="/artwork_img/${findArtwork.imgPath}" style="width: 300px; height: 300px;">
 <br>
 
 <form action="find_artwork" method="post">

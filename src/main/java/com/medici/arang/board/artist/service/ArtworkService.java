@@ -7,8 +7,8 @@ import com.medici.arang.board.artist.command.ArtworkCommand;
 public interface ArtworkService {
 	
 	void addArtwork(ArtworkCommand artworkCommand);
-	ArtworkCommand findArtwork(String email, long id);
+	ArtworkCommand findArtwork(long id);
 	void updateArtwork(ArtworkCommand artwork);
 	void deleteArtwork(long id);
-	List<ArtworkCommand> findArtworkList(long artistId);
+	List<ArtworkCommand> allfindArtwork(long artistId);
 }

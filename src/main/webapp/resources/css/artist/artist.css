@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-
 /* 이달의 작가 */
 button {
   font-size: 11px;
@@ -40,7 +39,7 @@ button {
   font-family: 'Bebas Neue', cursive;
   font-size: 27px;
   font-weight: 500;
-  color: orange;
+  color: #333;
   margin-bottom: 15px;
 }
 
@@ -105,7 +104,13 @@ small {
   font-size: 15px;
 }
 
-.container .artist_item.last {
+.container .artist_item {
+  margin-right: 16px;
+  margin-bottom: 16px;
+}
+
+
+.container .artist_item:last-child {
   margin-right: 0px;
 }
 
@@ -129,10 +134,6 @@ small {
   padding-top: 8px;
 }
 
-.container .artist_item {
-  margin-right: 16px;
-  margin-bottom: 16px;
-}
 
 
 /* 페이지네이션 */

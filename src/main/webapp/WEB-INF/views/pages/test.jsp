@@ -9,14 +9,14 @@
 <link rel="stylesheet" type="text/css" href="<c:url value ='/resources/css/default.css'/>"/>
 </head>
 <body>
-<label>작품 카테고리 : </label>${artwork.artworkCategory}
+<label>작품 카테고리 : </label>${artwork.genre}
 <br>
-<label>작품이름 : </label>${artwork.artworkName}
+<label>작품이름 : </label>${artwork.name}
 <br>
 <label>작품소개 : </label>${artwork.description}
 <br>
 <label>작품이미지 : </label>
-<img alt="artwork_img" src="/artwork_img/${artwork.artworkImg}" style="width: 300px; height: 300px;">
+<img alt="artwork_img" src="${artwork.imgPath}" style="width: 300px; height: 300px;">
 <br>
 </body>
 </html>
