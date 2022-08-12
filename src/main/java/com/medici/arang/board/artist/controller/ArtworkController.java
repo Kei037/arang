@@ -210,25 +210,27 @@ public class ArtworkController {
 		List<ArtistCommand> artistList = artistservice.getAllArtist();
 		List<ArtworkCommand> arkworkList = artworkService.allFindArtwork();
 		
-		/*
+		
+		
 		for (ArtistCommand artist : artistList) {
 			String email = artist.getEmail();
 			System.out.println(email);
 			artistservice.findAllArtistkByEmail(email);
 			
-			
 			List<ArtistPageCommand> artistPageCommand = artistservice.findAllArtistkByEmail(email);
 			for (ArtistPageCommand test : artistPageCommand) {
-				long id = findId();
+				long id = findId();  // 1
 				List<ArtworkCommand> artwork = artworkService.findArtworkByArtist(id);
-				System.out.println(artwork);
+				System.out.println(artwork);  // 작품 artworkCommand 배열 2개
 				test.setArtworkCommand(artwork);
-				List<ArtistPageCommand> result = null;
-				result.add(test);
-				System.out.println(result);
+				System.out.println("결과값 = " + test.getArtworkCommand());
+				System.out.println(test.getClass());
+				ArrayList<ArtistPageCommand> result;
+		//		result.add(test);
+				model.addAttribute("test", test);
 			}
 		}
-		*/
+		
 		model.addAttribute("artworkList", arkworkList);
 		model.addAttribute("artistList", artistList);
 		return "artist_board/artist_main";
