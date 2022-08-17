@@ -61,7 +61,7 @@ public class AddArtistController {
 		String uniqueName = uuids[0];
 		System.out.println("생성된 고유문자열" + uniqueName);
 		System.out.println("확장자명" + fileExtension);
-		String forderName = artistCommand.getName();
+		String forderName = artistCommand.getName_eng();
 		
 		String path = SAVE_DIR + "artist\\" + forderName; //폴더 경로
 		File Folder = new File(path);

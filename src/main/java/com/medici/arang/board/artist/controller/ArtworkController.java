@@ -3,6 +3,7 @@ package com.medici.arang.board.artist.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.medici.arang.board.artist.command.ArtworkCommand;
+import com.medici.arang.board.artist.command.FindArtistInfoCommand;
 import com.medici.arang.board.artist.service.ArtworkServiceImpl;
 import com.medici.arang.user.command.ArtistCommand;
 import com.medici.arang.user.command.ArtistPageCommand;
@@ -105,8 +107,8 @@ public class ArtworkController {
 			e.printStackTrace();
 		}
 		
-		artwork.setImgPath(PATH_DIR+"\\artwork\\"+uniqueName+fileExtension);
-		String imgName = artwork.getImgPath();
+		artwork.setArtworkImgPath(PATH_DIR+"\\artwork\\"+uniqueName+fileExtension);
+		String imgName = artwork.getArtworkImgPath();
 		model.addAttribute("imgName", imgName);
 
 		// 아티스트ID값을 외래키로 쓰지만 현재 ID값이 없어 임의값 입력
@@ -161,8 +163,8 @@ public class ArtworkController {
 			e.printStackTrace();
 		}
 		
-		artwork.setImgPath(PATH_DIR+uniqueName+fileExtension);
-		String imgName = artwork.getImgPath();
+		artwork.setArtworkImgPath(PATH_DIR+uniqueName+fileExtension);
+		String imgName = artwork.getArtworkImgPath();
 		System.out.println(imgName);
 		model.addAttribute("imgName", imgName);
 		
@@ -204,61 +206,10 @@ public class ArtworkController {
 	}
 	
 	
-	//	test
-	@GetMapping("/artist_board/artist_main")
-	public String findArtistForm(Model model) {
-		List<ArtistCommand> artistList = artistservice.getAllArtist();
-		List<ArtworkCommand> arkworkList = artworkService.allFindArtwork();
-		
-		
-		
-		for (ArtistCommand artist : artistList) {
-			String email = artist.getEmail();
-			System.out.println(email);
-			artistservice.findAllArtistkByEmail(email);
-			
-			List<ArtistPageCommand> artistPageCommand = artistservice.findAllArtistkByEmail(email);
-			for (ArtistPageCommand test : artistPageCommand) {
-				long id = findId();  // 1
-				List<ArtworkCommand> artwork = artworkService.findArtworkByArtist(id);
-				System.out.println(artwork);  // 작품 artworkCommand 배열 2개
-				test.setArtworkCommand(artwork);
-				System.out.println("결과값 = " + test.getArtworkCommand());
-				System.out.println(test.getClass());
-				ArrayList<ArtistPageCommand> result;
-		//		result.add(test);
-				model.addAttribute("test", test);
-			}
-		}
-		
-		model.addAttribute("artworkList", arkworkList);
-		model.addAttribute("artistList", artistList);
-		return "artist_board/artist_main";
-	}
 	
-	public long findId() {
-		long id;
-		List<ArtistCommand> artistList = artistservice.getAllArtist();
-		for (ArtistCommand artist : artistList) {
-			String email = artist.getEmail();
-			System.out.println(email);
-			artistservice.findAllArtistkByEmail(email);
-			
-			List<ArtistPageCommand> artistPageCommand = artistservice.findAllArtistkByEmail(email);
-			for (ArtistPageCommand test : artistPageCommand) {
-				id = test.getAid();
-				System.out.println(id);
-				return id;
-			}
-		}
-		return 777;
-	}
+
 	
-	//	test2
-	@GetMapping("/artist_board/artist_depth")
-	public String artistInfoForm() {
-		return "/artist_board/artist_depth";
-	}
+	
 	
 	
 }

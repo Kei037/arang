@@ -30,11 +30,16 @@
             <li><a href="./notice/notice.html">Notice</a></li>
           </ul>
           <ul class="side_menu">
-            <li><a href="./find/find.html"><img src="<c:url value ='/resources/img/artist/icon/find.png'/>" alt="find"></a></li>
-            <li><a href="./mypage/mypage.html"><img src="<c:url value ='/resources/img/artist/icon/mypage.png'/>" alt="mypage"></a></li>
-            <li><a href="./like/like.html"><img src="<c:url value ='/resources/img/artist/icon/like.png'/>" alt="like"></a></li>
-            <li><a href="./cart/cart.html"><img src="<c:url value ='/resources/img/artist/icon/cart.png'/>" alt="cart"></a></li>
-            <li><a href="/arang/login">Login</a></li>
+            <li><a href="./find/find.html"><img src="<c:url value ='/resources/img/icon/find.png'/>" alt="find"></a></li>
+            <li><a href="/arang/pages/add_artwork"><img src="<c:url value ='/resources/img/icon/mypage.png'/>" alt="mypage"></a></li>
+            <li><a href="/arang/mypage/add_artist_info"><img src="<c:url value ='/resources/img/icon/like.png'/>" alt="like"></a></li>
+            <li><a href="./cart/cart.html"><img src="<c:url value ='/resources/img/icon/cart.png'/>" alt="cart"></a></li>
+            <c:if test="${email == null}">
+            	<li><a href="/arang/login">Login</a></li>
+            </c:if>
+            <c:if test="${email != null}">
+            	<li><a href="/arang/user/logout">logout</a></li>
+            </c:if>
           </ul>
         </nav>
       </div>

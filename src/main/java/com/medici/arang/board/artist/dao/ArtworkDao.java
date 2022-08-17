@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.medici.arang.board.artist.command.ArtworkCommand;
-import com.medici.arang.user.command.ArtistPageCommand;
 
 @Repository("artworkDao")
 public class ArtworkDao {
@@ -23,19 +22,19 @@ public class ArtworkDao {
 	
 	public void addArtwork(ArtworkCommand artworkCommand) {
 		String sql = "INSERT INTO Artwork (artistId, name, genre, technique,"
-				+ "size, publicationDate, description, imgPath) "
+				+ "size, publicationDate, description, artworkImgPath) "
 				+ "VALUES (?, ?, ?, ?, ?, ? ,? ,?)";
 		System.out.println("성공!!");
 		jdbcTemplate.update(sql, artworkCommand.getArtistId(), 
 				artworkCommand.getName(), artworkCommand.getGenre(),
 				artworkCommand.getTechnique(), artworkCommand.getSize(), 
 				artworkCommand.getPublicationDate(), artworkCommand.getDescription(), 
-				artworkCommand.getImgPath());
+				artworkCommand.getArtworkImgPath());
 	}
 	
 	
 	public List<ArtworkCommand> allfindArtwork(long artistId) {
-		String sql = "SELECT * FROM Artist WHERE artistId = ?";
+		String sql = "SELECT * FROM Artwork WHERE artistId = ?";
 		
 		return jdbcTemplate.query(sql, new RowMapper<ArtworkCommand>() {
 			
@@ -44,7 +43,7 @@ public class ArtworkDao {
 						rs.getLong("artistId"), rs.getString("name"), 
 						rs.getString("genre"), rs.getString("technique"), 
 						rs.getString("size"), rs.getString("publicationDate"),
-						rs.getString("description"), rs.getString("imgPath"));
+						rs.getString("description"), rs.getString("artworkImgPath"));
 				return artworkCommand;
 			}
 		}, artistId);
@@ -71,11 +70,11 @@ public class ArtworkDao {
 	public void updateArtwork(ArtworkCommand artwork) {
 		String sql = "UPDATE Artwork SET artistId = ?, name = ?, "
 				+ "genre = ?, technique = ?, size = ?, publicationDate = ? "
-				+ "description = ?, imgPath = ? WHERE wid = ?";
+				+ "description = ?, artworkImgPath = ? WHERE wid = ?";
 		jdbcTemplate.update(sql, artwork.getArtistId(),	artwork.getName(), 
 				artwork.getGenre(), artwork.getTechnique(), artwork.getSize(), 
 				artwork.getPublicationDate(), artwork.getDescription(), 
-				artwork.getImgPath(), artwork.getWid());
+				artwork.getArtworkImgPath(), artwork.getWid());
 	}
 	
 	public void deleteArtwork(long id) {
@@ -93,7 +92,7 @@ public class ArtworkDao {
 						rs.getLong("artistId"), rs.getString("name"), 
 						rs.getString("genre"), rs.getString("technique"), 
 						rs.getString("size"), rs.getString("publicationDate"), 
-						rs.getString("description"), rs.getString("imgPath"));
+						rs.getString("description"), rs.getString("artworkImgPath"));
 				return artworkCommand;
 			}
 		});
@@ -110,9 +109,11 @@ public class ArtworkDao {
 						rs.getLong("artistId"), rs.getString("name"), 
 						rs.getString("genre"), rs.getString("technique"), 
 						rs.getString("size"), rs.getString("publicationDate"), 
-						rs.getString("description"), rs.getString("imgPath"));
+						rs.getString("description"), rs.getString("artworkImgPath"));
 				return artworkCommand;
 			}
 		}, id);
 	}
+	
+	
 }

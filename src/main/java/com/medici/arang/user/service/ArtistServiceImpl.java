@@ -33,7 +33,7 @@ public class ArtistServiceImpl implements ArtistService {
 		return artistDao.getArtistByEmail(email);
 	}
 	
-	public List<ArtistPageCommand> findAllArtistkByEmail(String email) {
-		return artistDao.findAllArtistkByEmail(email);
+	public List<ArtistPageCommand> findAllArtistkByEmail() {
+		return artistDao.findAllArtistkByEmail();
 	}
 }

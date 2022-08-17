@@ -20,7 +20,9 @@
 	</form:select><br>
 	<label>비밀번호 : </label><form:input path="passwd" type="password" required="required"/>
 	<br>	
-	<label>성함 : </label><form:input path="name" required="required"/>
+	<label>성함 : </label><form:input path="name_kor" required="required"/>
+	<br>
+	<label>영어이름 : </label><form:input path="name_eng" required="required"/>
 	<br>
 	<label>주민등록번호 : </label><form:input path="ssn" required="required"/>
 	<br>

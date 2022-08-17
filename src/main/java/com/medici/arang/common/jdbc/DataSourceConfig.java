@@ -7,7 +7,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import com.medici.arang.board.artist.dao.ArtistInfoDao;
 import com.medici.arang.board.artist.dao.ArtworkDao;
+import com.medici.arang.board.artist.service.ArtistInfoServiceImpl;
 import com.medici.arang.board.artist.service.ArtworkServiceImpl;
 import com.medici.arang.user.dao.ArtistDao;
 import com.medici.arang.user.dao.GalleristDao;
@@ -74,5 +76,14 @@ public class DataSourceConfig {
 		return new GalleristServiceImpl();
 	}
 	
+	@Bean
+	public ArtistInfoDao artistInfoDao() {
+		return new ArtistInfoDao(dataSource());
+	}
+	
+	@Bean
+	public ArtistInfoServiceImpl artistInfoService() {
+		return new ArtistInfoServiceImpl();
+	}
 
 }

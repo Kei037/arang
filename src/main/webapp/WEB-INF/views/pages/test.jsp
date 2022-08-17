@@ -16,7 +16,7 @@
 <label>작품소개 : </label>${artwork.description}
 <br>
 <label>작품이미지 : </label>
-<img alt="artwork_img" src="${artwork.imgPath}" style="width: 300px; height: 300px;">
+<img alt="artwork_img" src="${artwork.artworkImgPath}" style="width: 300px; height: 300px;">
 <br>
 </body>
 </html>

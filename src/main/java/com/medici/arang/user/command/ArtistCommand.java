@@ -20,7 +20,8 @@ public class ArtistCommand {
 	private String phone2;
 	private String phone3;
 	private String ssn;
-	private String name;
+	private String name_kor;
+	private String name_eng;
 	private int age;
 	private String genre;
 	private String career;

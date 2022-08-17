@@ -35,7 +35,7 @@
 <label>기법 : </label>${findArtwork.technique}
 <br>
 <label>작품이미지 : </label>
-<img alt="artwork_img" src="${findArtwork.imgPath}" style="width: 300px; height: 300px;">
+<img alt="artwork_img" src="${findArtwork.artworkImgPath}" style="width: 300px; height: 300px;">
 <br>
 
 </c:forEach>

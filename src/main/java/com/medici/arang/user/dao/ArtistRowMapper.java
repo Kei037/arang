@@ -19,7 +19,8 @@ public class ArtistRowMapper implements RowMapper<ArtistCommand> {
 		artistCommand.setAid(rs.getLong("aid"));
 		artistCommand.setEmail(rs.getString("email"));
 		artistCommand.setPasswd(rs.getString("passwd"));
-		artistCommand.setName(rs.getString("name"));
+		artistCommand.setName_kor(rs.getString("name_kor"));
+		artistCommand.setName_eng(rs.getString("name_eng"));
 		artistCommand.setSsn(rs.getString("ssn"));
 		artistCommand.setPhone(rs.getString("phone"));
 		artistCommand.setGenre(rs.getString("genre"));

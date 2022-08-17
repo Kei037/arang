@@ -8,19 +8,35 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/fake_resources/css/default/normalize.css"/>
   <link rel="stylesheet" type="text/css" href="/fake_resources/css/default/default.css"/>
-  <link rel="stylesheet" type="text/css" href="/fake_resources/css/artist/artist.css"/>
+  <link rel="stylesheet" type="text/css" href="/fake_resources/css/join/join.css"/>
   <script type="text/javascript" src="/fake_resources/js/jquery.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/header/header_main.jsp"/>
-<div id="login-wrap" style="
-	margin-top: 100px;
-	display: flex;
-  	flex-wrap: wrap;
-  	justify-content: center;">
-<a href="/arang/user/add_artist" style="margin-right: 40px;">작가 회원가입</a>
-<br>
-<a href="/arang/user/add_gallerist">갤러리 회원가입</a>
-</div>
+
+<div class="container">
+      <div class="artwork_simul">
+        <div id="join_wrapper">
+          <div id="artist_join">
+            <div class="inner">
+              <img src="/fake_resources/img/icon/artist_join.png" alt="artist_join">
+              <p class="title">I'm an Artist</p>
+              <div class="btn_group">
+                <a href="/arang/user/add_artist"><button class="btn1">아티스트 가입</button></a>
+              </div>
+            </div>
+          </div>
+          <div id="gallerist_join">
+            <div class="inner">
+              <img src="<c:url value ='/resources/img/icon/gallerist_join.png'/>" alt="gallerist_join">
+              <p class="title">I'm a Gallerist</p>
+              <div class="btn_group">
+                <a href="/arang/user/add_gallerist"><button class="btn1">갤러리스트 가입</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </body>
 </html>

@@ -16,7 +16,7 @@ public class ArtworkCommand {
 	private String size;
 	private String publicationDate;
 	private String description;
-	private String imgPath;
+	private String artworkImgPath;
 	
 	public ArtworkCommand() {
 		super();

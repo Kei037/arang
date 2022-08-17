@@ -11,6 +11,8 @@
   <link rel="stylesheet" type="text/css" href="/fake_resources/css/default/normalize.css"/>
   <link rel="stylesheet" type="text/css" href="/fake_resources/css/default/default.css"/>
   <link rel="stylesheet" type="text/css" href="/fake_resources/css/artist/artist.css"/>
+  <link rel="stylesheet" type="text/css" href="/fake_resources/css/swiper/swiper.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
   <script type="text/javascript" src="/fake_resources/js/jquery.js"></script>
   <script type="text/javascript" src="/fake_resources/js/slidebanner.js"></script>
 </head>
@@ -25,64 +27,41 @@
           <div class="sub_page_top">
             <h5 class="sub_title">Artist of the month</h5>
             <div class="row">
-              <div class="col col-1">
+            
+            
+            <c:forEach var="artistL" items="${artistList1}">
+            <div class="col_wrap"> 
+  			<div class="col col-1 swiper mySwiper">
                 <div class="artist_info d-flex flex-row">
                   <div class="artist_avatar">
-                    <a href="#"><img src="/upload_img/artist/rahee/rahee.jpg" alt="윤라희jpg"></a>
+                    <a href="/arang/artist_board/artist_depth?id=${artistL.aid}"><img src="${artistL.imgPath}" ></a>
                   </div>
                   <div class="artist_text">
                     <div class="first">
-                      <span>윤라희</span>
-                      <span class="futuraM">/ Yoon, Ra Hee</span>
-                      <button><span class="futuraM">Sculptor</span></button>
+                      <span>${artistL.name_kor}</span>
+                      <span class="futuraM">${artistL.name_eng}</span>
+                      <span class="genre_tag">${artistL.genre}</span>
                     </div>
-                    <div class="last d-flex flex-row">
-                      <div>날 것 그대로의 본질에 우연적 효과를 불어넣다.</div>
-                      <div>Korea, 1984</div>
+                    <div class="second d-flex flex-row">
+                      <div>${artistL.title}</div>
+                      <button class="like"><img src="../resources/img/icon/like.png" alt="like"></button>
                     </div>
                   </div>
                 </div>
-                <div class="row artwork_wrap">
-                  <div class="col">
-                    <a href="#"><img class="artwork" src="/upload_img/artist/rahee/윤라희-오브제1_s02.jpg" alt="오브제1"></a>
+                <div class="row artwork_wrap swiper-wrapper">
+  				<c:forEach var="artworkL" items="${artworkList}">
+  				<c:if test="${artistL.aid == artworkL.artistId}">
+                  <div class="col swiper-slide">
+                    <a href="#"><img class="artwork small" src="${artworkL.artworkImgPath}"></a>
                   </div>
-                  <div class="col">
-                    <a href="#"><img class="artwork" src="/upload_img/artist/rahee/윤라희-오브제2_s01_fub8Yrj.jpg" alt="오브제2"></a>
-                  </div>
-                  <div class="col">
-                    <a href="#"><img class="artwork" src="/upload_img/artist/rahee/윤라희-오브제3_s01_gpLUosS.jpg" alt="오브제3"></a>
-                  </div>
+  				</c:if>
+  				</c:forEach>
                 </div>
+              	</div>
+              
               </div>
-              <div class="col col-2">
-                <div class="artist_info d-flex flex-row">
-                  <div class="artist_avatar">
-                    <a href="#"><img src="/upload_img/artist/rahee/rahee.jpg" alt="윤라희jpg"></a>
-                  </div>
-                  <div class="artist_text">
-                    <div class="first">
-                      <span>윤라희</span>
-                      <span class="futuraM">/ Yoon, Ra Hee</span>
-                      <button><span class="futuraM">Sculptor</span></button>
-                    </div>
-                    <div class="last d-flex flex-row">
-                      <div>날 것 그대로의 본질에 우연적 효과를 불어넣다.</div>
-                      <div>Korea, 1984</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row artwork_wrap">
-                  <div class="col">
-                    <a href="#"><img class="artwork" src="/upload_img/artist/rahee/윤라희-오브제1_s02.jpg" alt="오브제1"></a>
-                  </div>
-                  <div class="col">
-                    <a href="#"><img class="artwork" src="/upload_img/artist/rahee/윤라희-오브제2_s01_fub8Yrj.jpg" alt="오브제2"></a>
-                  </div>
-                  <div class="col">
-                    <a href="#"><img class="artwork" src="/upload_img/artist/rahee/윤라희-오브제3_s01_gpLUosS.jpg" alt="오브제3"></a>
-                  </div>
-                </div>
-              </div>
+  			</c:forEach>
+             
             </div>
           </div>
           <!-- 아티스트 -->
@@ -90,43 +69,19 @@
             <div class="grid_wrapper">
               <h5 class="sub_title">Artists<small>176</small></h5>
               <div class="row artist_list">
-              <c:forEach var="artist" items="${artistList}">
+              
+                <c:forEach var="arkworkPage" items="${arkworPagekList}">
                 <div class="col artist_item">
                   <div class="artist_info d-flex flex-row">
                     <div class="artist_avatar">
-                      <a href="/arang/artist_board/artist_depth"><img src="${artist.imgPath}" alt="artist_img"></a>
+                      <a href="/arang/artist_board/artist_depth?id=${arkworkPage.aid}"><img src="${arkworkPage.imgPath}"></a>
                     </div>
                     <div class="artist_text">
                       <div class="first">
-                        <span>${artist.name}</span>
-                        <span class="futuraM">/ Yoon, Ra Hee</span>
+                        <span>${arkworkPage.name_kor}</span>
+                        <span class="genre_tag">${artworkPage.genre}</span>
                       </div>
-                      <div class="last d-flex flex-row">
-                        <div>날 것 그대로의 본질에 우연적 S효과를 불어넣다.</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="banner_wrap">
-                    <a href="#">
-                      <div class="artwork_banner">
-                        <img class="artwork" src="/upload_img/artist/rahee/윤라희-오브제1_s02.jpg" alt="artwork_img">
-                      </div>
-                    </a>
-                  </div>
-                </div>
-               </c:forEach>
-                
-                <div class="col artist_item last">
-                  <div class="artist_info d-flex flex-row">
-                    <div class="artist_avatar">
-                      <a href="#"><img src="/upload_img/artist/rahee/rahee.jpg" alt="윤라희jpg"></a>
-                    </div>
-                    <div class="artist_text">
-                      <div class="first">
-                        <span>윤라희</span>
-                        <span class="futuraM">/ Yoon, Ra Hee</span>
-                      </div>
-                      <div class="last d-flex flex-row">
+                      <div class="second d-flex flex-row">
                         <div>날 것 그대로의 본질에 우연적 효과를 불어넣다.</div>
                       </div>
                     </div>
@@ -134,11 +89,12 @@
                   <div class="banner_wrap">
                     <a href="#">
                       <div class="artwork_banner">
-                        <img class="artwork" src="/upload_img/artist/rahee/윤라희-오브제1_s02.jpg" alt="오브제1">
+  							<img class="artwork" src="${arkworkPage.artworkImgPath}">
                       </div>
                     </a>
                   </div>
                 </div>
+                </c:forEach>
               </div>
               <div class="toolbox">
                 <ul class="pagination">
@@ -175,16 +131,29 @@
     <!-- 작가 -->
 
   </div>
-  <c:forEach var="artistL" items="${artistList}">
-  <c:forEach var="arkworkL" items="${artworkList}">
-  	<c:if test="${artistL.aid eq artworkL.wid}">
-  		<li class="page_item">
-         <a class="page_link" href="#">7</a>
-        </li>
-  	</c:if>
-  </c:forEach>
-  </c:forEach>
   
+  <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+    	autoplay: {
+    		  delay: 5000,
+    		  disableOnInteraction: false,
+    		},
+        slidesPerView: 3,
+        spaceBetween: 0,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
 </body>
 
 </html>

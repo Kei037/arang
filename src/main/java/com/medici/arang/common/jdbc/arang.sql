@@ -1,10 +1,11 @@
 !DROP TABLE Artist;
-!DELETE FROM Artwork WHERE aid = 2;
+!DELETE FROM Artist WHERE aid = 2;
 CREATE TABLE Artist(
   aid			BIGINT			PRIMARY KEY AUTO_INCREMENT,
   email			VARCHAR(30)		NOT NULL,
   passwd		VARCHAR(20)		NOT NULL,
-  name			VARCHAR(20)		NOT NULL,
+  name_kor		VARCHAR(20)		NOT NULL,
+  name_eng		VARCHAR(20)		NOT NULL,
   ssn			VARCHAR(20)		NOT NULL,
   phone			VARCHAR(13)		NOT NULL,
   genre			VARCHAR(20)		NOT NULL,
@@ -24,21 +25,22 @@ CREATE TABLE Artwork (
 	size				VARCHAR(40)		NOT NULL,
 	publicationDate		VARCHAR(40)		NOT NULL,
 	description			VARCHAR(255)	NOT NULL,
-	imgPath				VARCHAR(60)		NOT NULL,
+	artworkImgPath		VARCHAR(60)		NOT NULL,
 	regDate				TIMESTAMP		NOT NULL	DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT Artwork_artistId_FK
 		FOREIGN KEY(artistId) REFERENCES Artist(aid)
 )AUTO_INCREMENT = 1001;
 
+SELECT * FROM Artwork GROUP BY artistId;
 
 SELECT * FROM Artwork;
 
 !DROP TABLE Artwork;
 
-SELECT * FROM Artwork WHERE artistId = 1;
+SELECT DISTINCT FROM Artwork WHERE artistId = 1;
 
-SELECT a.name, a.genre, a.imgPath, b.imgPath FROM Artwork a INNER JOIN Artist b 
-ON a.artistId = b.aid WHERE b.email = 'test@naver.com';
+SELECT a.name, a.genre, a.imgPath, b.imgPath, a.aid FROM Artist a INNER JOIN artwork b 
+ON b.artistId = a.aid GROUP BY b.artistId;
 
 INSERT INTO Artwork (artistId, name, genre, technique, size, publicationDate, 
 description, imgPath) VALUES (1001, '조조의 그림', 'painter', '심혈을 기울인 기법', 
@@ -49,14 +51,33 @@ CREATE TABLE ArtistInfo (
 	bid 				BIGINT			PRIMARY KEY AUTO_INCREMENT,
 	artistId			BIGINT			NOT NULL,
 	title				VARCHAR(40)		NOT NULL,
-	description			VARCHAR(30)		NOT NULL,
-	imgPath				VARCHAR(40)		NOT NULL,
+	description			VARCHAR(1000)	NOT NULL,
+	infoImgPath			VARCHAR(40)		NOT NULL,
 	regDate				TIMESTAMP		NOT NULL	DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT ArtistInfo_artistId_FK
 		FOREIGN KEY(artistId) REFERENCES Artist(aid)
 )AUTO_INCREMENT = 2001;
 
+SELECT * FROM ArtistInfo;
+
 !DROP TABLE ArtistInfo;
+
+SELECT a.name_kor, a.ssn, a.imgPath, b.title, b.description, b.infoImgPath 
+FROM ArtistInfo b LEFT JOIN Artist a ON a.aid = b.artistId WHERE a.aid = 1;
+
+
+CREATE TABLE ArtworkInfo (
+	cid 				BIGINT			PRIMARY KEY AUTO_INCREMENT,
+	artworkId			BIGINT			NOT NULL,
+	mainTitle			VARCHAR(40)		NOT NULL,
+	subTitle			VARCHAR(50)		NOT NULL,
+	infoImgPath			VARCHAR(200)	NOT NULL,
+	regDate				TIMESTAMP		NOT NULL	DEFAULT CURRENT_TIMESTAMP,
+	CONSTRAINT ArtworkInfo_artworkId_FK
+		FOREIGN KEY(artworkId) REFERENCES Artwork(wid)
+)AUTO_INCREMENT = 3001;
+
+SELECT * FROM ArtworkInfo;
 
 !DROP TABLE Gallerist;
 CREATE TABLE Gallerist(
