@@ -162,7 +162,7 @@ public class ArtistInfoController {
 			page = Integer.parseInt(request.getParameter("page"));			
 		}
 		//페이징
-		Pageable pageable = PageRequest.of(page, 3, Sort.Direction.DESC, "aid");
+		Pageable pageable = PageRequest.of(page, 2, Sort.Direction.DESC, "aid");
 		Page<ArtistPageCommand> artistPagingList = artistservice.findAllPage(pageable);
 		
 		// ajax, 컨트롤러 처리 해야함

@@ -21,7 +21,6 @@
 <body>
 <div id="wrap">
   <jsp:include page="/WEB-INF/views/header/header.jsp"/>
-  	<button href="#" class="testBtn">테스트버튼</button>
     <!-- 이달의 작가 -->
     <div id="artist">
       <form id="artist_form">
@@ -54,7 +53,9 @@
   				<c:forEach var="artworkL" items="${artworkList}">
   				<c:if test="${artistL.aid == artworkL.artistId}">
                   <div class="col swiper-slide">
-                    <a href="/arang/artwork_board/artwork_info?id=${artistL.aid}&wid=${artworkL.wid}"><img class="artwork small" src="${artworkL.artworkImgPath}"></a>
+                    <a href="/arang/artwork_board/artwork_info?id=${artistL.aid}&wid=${artworkL.wid}">
+                    	<img class="artwork small" src="${artworkL.artworkImgPath}">
+                    </a>
                   </div>
   				</c:if>
   				</c:forEach>

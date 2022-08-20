@@ -162,3 +162,4 @@ SELECT a.galleristEmail, a.galleryName_kor, a.galleryName_eng, a.address,
 a.galleryEmail, a.galleryPhone, a.since, a.area, a.openClose, a.galleryImgPath,
 b.description, b.infoImgPath FROM GalleryInfo b LEFT JOIN Gallery a 
 ON a.code = b.galleryCode;
+

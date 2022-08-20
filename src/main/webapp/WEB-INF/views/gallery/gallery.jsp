@@ -42,13 +42,13 @@
         <div class="container">
           <div class="sub_page_context">
             <div class="grid_wrapper">
-              <h5 class="sub_title">Gallerys<small>76</small></h5>
+              <h5 class="sub_title">Gallerys<small>${galleryCount}</small></h5>
               <div class="row artist_list">
-              <c:forEach var="gallery" items="${galleryList}">
+              <c:forEach var="gallery" items="${galleryPagingList.content}">
                 <div class="col artist_item">
                   <div class="artist_info d-flex flex-row">
                     <div class="artist_avatar">
-                      <a href="../html_gallery/gallery_focus.html">
+                      <a href="/arang/gallery/gallery_focus?code=${gallery.code}">
                       	<img src="${gallery.galleryImgPath}">
                       </a>
                     </div>
@@ -64,7 +64,7 @@
                   <div class="banner_wrap">
                     <a href="#">
                       <div class="artwork_banner">
-                        <a href="../html_gallery/gallery_focus.html">
+                        <a href="/arang/gallery/gallery_focus?code=${gallery.code}">
                         	<img src="${gallery.infoImgPath}" alt="2">
                         </a>
                       </div>
@@ -72,33 +72,47 @@
                   </div>
                 </div>
               </c:forEach>
+                </div>
                 
-              </div>
+                
+              <!-- ===================== 페이징 처리 부분 ========================== -->
               <div class="toolbox">
-                <ul class="pagination">
-                  <li class="page_item disabled">
-                    <a class="page_link_btn" href="#"><i class="go_left"><<</i></a>
-                  </li>
-                  <li class="page_item">
-                    <a class="page_link" href="#">1</a>
-                  </li>
-                  <li class="page_item">
-                    <a class="page_link" href="#">2</a>
-                  </li>
-                  <li class="page_item">
-                    <a class="page_link" href="#">3</a>
-                  </li>
-                  <li class="page_item">
-                    <a class="page_link" href="#">...</a>
-                  </li>
-                  <li class="page_item">
-                    <a class="page_link" href="#">7</a>
-                  </li>
-                  <li class="page_item disabled">
-                    <a class="page_link_btn" href="#"><i class="go_right">>></i></a>
-                  </li>
-                </ul>
-              </div>
+      <ul class="pagination">
+         <!-- 시작 -->
+         <c:choose>
+            <c:when test="${galleryPagingList.first}"></c:when>
+            <c:otherwise>
+               <li class="page_item"><a class="page_link" href="<c:url value='/gallery/gallery?page=0'/>">처음</a></li>
+					<li class="page_item"><a class="page_link" href="<c:url value='/gallery/gallery?page=${galleryPagingList.number-1}'/>">&larr;</a></li>
+            </c:otherwise>
+         </c:choose>
+         <!-- 페이지 그룹 -->
+         <c:forEach begin="${startBlockPage}" end="${endBlockPage}" var="i">
+            <c:choose>
+               <c:when test="${galleryPagingList.pageable.pageNumber+1 == i}">
+                  <li class="page_item disabled"><a class="page_link pick_num" href="<c:url value='/gallery/gallery?page=${i-1}'/>">${i}</a></li>
+               </c:when>
+               <c:otherwise>
+                  <li class="page_item"><a class="page_link" href="<c:url value='/gallery/gallery?page=${i-1}'/>">${i}</a></li>
+               </c:otherwise>
+            </c:choose>
+         </c:forEach>
+         <!-- 끝 -->
+         <c:choose>
+            <c:when test="${galleryPagingList.last}"></c:when>
+            <c:otherwise>
+               <li class="page_item"><a class="page_link" href="<c:url value='/gallery/gallery?page=${galleryPagingList.number+1}'/>">&rarr;</a></li>
+					<li class="page_item"><a class="page_link" href="<c:url value='/agallery/gallery?page=${galleryPagingList.totalPages-1}'/>">마지막</a></li>
+            </c:otherwise>
+         </c:choose>
+      </ul>
+   </div>
+   
+              
+              
+              <!-- ===================== 페이징 처리 부분 ========================== -->
+              
+              
             </div>
           </div>
 

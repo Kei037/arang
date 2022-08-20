@@ -80,10 +80,10 @@
           <section>
             <div class="a_title">
               <div class="first">
-                물성을 살려 단순함을 끌어내는 것
+                ${artworkInfo.mainTitle }
               </div>
               <div class="second">
-                날 것 그대로의 본질에 우연적 효과를 불어넣다.
+                ${artworkInfo.subTitle }
               </div>
             </div>
             <div class="a_artwork">

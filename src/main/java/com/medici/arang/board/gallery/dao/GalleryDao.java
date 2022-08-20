@@ -62,6 +62,13 @@ public class GalleryDao {
 		return jdbcTemplate.queryForObject(sql, new GalleryRowMapper(), num);
 	}
 	
+	public long getGalleryCount() {
+		String sql = "SELECT count(*) FROM Gallery";
+		return jdbcTemplate.queryForObject(sql, Long.class);
+	}
+
+	
+	
 	
 	//모든 등록 갤러리찾기
 	public List<GalleryCommand> findAllGalleryInfo(){
