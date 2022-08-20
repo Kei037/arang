@@ -66,6 +66,23 @@ public class ArtworkDao {
 		}, id);
 	}
 	
+	public ArtworkCommand findArtworkByImg(String imgName) {
+		String sql = "SELECT * FROM Artwork WHERE artworkImgPath = ?";
+		
+		return jdbcTemplate.queryForObject(sql, new RowMapper<ArtworkCommand>() {
+			
+			public ArtworkCommand mapRow(ResultSet rs, int rowNum) throws SQLException {
+				ArtworkCommand artworkCommand = new ArtworkCommand(rs.getLong("wid"), 
+						rs.getLong("artistId"), rs.getString("name"), 
+						rs.getString("genre"), rs.getString("technique"), 
+						rs.getString("size"), rs.getString("publicationDate"),
+						rs.getString("description"), rs.getString("artworkImgPath"));
+				return artworkCommand;
+			}
+		}, imgName);
+	}
+	
+	
 
 	public void updateArtwork(ArtworkCommand artwork) {
 		String sql = "UPDATE Artwork SET artistId = ?, name = ?, "

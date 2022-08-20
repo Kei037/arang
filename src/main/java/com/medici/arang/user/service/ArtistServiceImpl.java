@@ -3,6 +3,8 @@ package com.medici.arang.user.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.medici.arang.user.command.ArtistCommand;
 import com.medici.arang.user.command.ArtistPageCommand;
@@ -35,5 +37,18 @@ public class ArtistServiceImpl implements ArtistService {
 	
 	public List<ArtistPageCommand> findAllArtistkByEmail() {
 		return artistDao.findAllArtistkByEmail();
+	}
+
+	@Override
+	public Page<ArtistPageCommand> findAllPage(Pageable pageable) {
+		return artistDao.findAllPage(pageable);
+	}
+	
+	public Page<ArtistPageCommand> findPageByGenre(Pageable pageable, String ctg){
+		return artistDao.findPageByGenre(pageable, ctg);
+	}
+	
+	public List<ArtistPageCommand> findAllArtistkByGenre(String ctg) {
+		return artistDao.findAllArtistkByGenre(ctg);
 	}
 }

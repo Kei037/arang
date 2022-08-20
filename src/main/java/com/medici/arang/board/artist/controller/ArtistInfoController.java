@@ -9,19 +9,28 @@ import java.util.UUID;
 
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.medici.arang.board.artist.command.ArtistInfoCommand;
 import com.medici.arang.board.artist.command.ArtworkCommand;
+import com.medici.arang.board.artist.command.CategoryCommand;
 import com.medici.arang.board.artist.command.FindArtistInfoCommand;
 import com.medici.arang.board.artist.service.ArtistInfoServiceImpl;
 import com.medici.arang.board.artist.service.ArtworkServiceImpl;
@@ -146,18 +155,93 @@ public class ArtistInfoController {
 	
 //	아티스트 page Form
 	@GetMapping("/artist_board/artist_main")
-	public String findArtistForm(Model model) {
-		List<ArtistCommand> artistList = artistservice.getAllArtist();
+	public String findArtistForm(Model model, HttpServletRequest request) {
+		//page 요청 검사
+		int page = 0;
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));			
+		}
+		//페이징
+		Pageable pageable = PageRequest.of(page, 3, Sort.Direction.DESC, "aid");
+		Page<ArtistPageCommand> artistPagingList = artistservice.findAllPage(pageable);
+		
+		// ajax, 컨트롤러 처리 해야함
+		
+		//현재페이지
+		int pageNumber = artistPagingList.getPageable().getPageNumber();
+		//총 페이지수
+		int totalPages = artistPagingList.getTotalPages();
+		//블럭의 수
+		int pageBlock = 5;
+		//현재 페이지가 7이라면 1*5+1=6
+		int startBlockPage = ((pageNumber)/pageBlock)*pageBlock+1;
+		//6+5-1=10. 6,7,8,9,10해서 10.
+		int endBlockPage = startBlockPage+pageBlock-1;
+		endBlockPage= totalPages<endBlockPage? totalPages:endBlockPage;
+		
+		
 		List<ArtworkCommand> arkworkList = artworkService.allFindArtwork();
-		List<ArtistPageCommand> arkworPagekList = artistservice.findAllArtistkByEmail();
-		System.out.println(arkworPagekList);
+		List<ArtistPageCommand> artworkPageList = artistservice.findAllArtistkByEmail();
 		List<FindArtistInfoCommand> artistList1 = artistInfoService.findArtist();
+		long artistCount = artistInfoService.getArtistCount();
 		
 		model.addAttribute("artistList1", artistList1);
-		model.addAttribute("arkworPagekList", arkworPagekList);
 		model.addAttribute("artworkList", arkworkList);
-		model.addAttribute("artistList", artistList);
+		model.addAttribute("artworkPageList", artworkPageList);
+		model.addAttribute("artistCount", artistCount);
+		
+		//페이징 영역
+		model.addAttribute("startBlockPage", startBlockPage);
+		model.addAttribute("endBlockPage", endBlockPage);
+		model.addAttribute("artistPagingList", artistPagingList);
 		return "artist_board/artist_main";
+	}
+	
+	@ResponseBody
+//	@PostMapping("/clickCategory")
+	@RequestMapping(value = "/clickCategory", produces = "application/text; charset=utf8")
+	public String clickCategoryBtn(@RequestBody CategoryCommand ctg, 
+						HttpServletRequest request, HttpServletResponse response,
+						Model model) {
+		
+		response.setCharacterEncoding("UTF-8");
+		System.out.println("ajax 테스트 성공");
+		System.out.println(ctg.getCategoryValue());
+		String ctgValue = ctg.getCategoryValue();
+		//page 요청 검사
+		int page = 0;
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));			
+		}
+		//페이징
+		Pageable pageable = PageRequest.of(page, 1, Sort.Direction.DESC, "aid");
+		Page<ArtistPageCommand> genrePagingList = 
+				artistservice.findPageByGenre(pageable, ctgValue);
+		
+		//현재페이지
+		int pageNumber = genrePagingList.getPageable().getPageNumber();
+		//총 페이지수
+		int totalPages = genrePagingList.getTotalPages();
+		//블럭의 수
+		int pageBlock = 5;
+		//현재 페이지가 7이라면 1*5+1=6
+		int startBlockPage = ((pageNumber)/pageBlock)*pageBlock+1;
+		//6+5-1=10. 6,7,8,9,10해서 10.
+		int endBlockPage = startBlockPage+pageBlock-1;
+		endBlockPage= totalPages<endBlockPage? totalPages:endBlockPage;
+		
+		//페이징 영역
+		model.addAttribute("startBlockPage", startBlockPage);
+		model.addAttribute("endBlockPage", endBlockPage);
+		model.addAttribute("genrePagingList", genrePagingList);
+		
+		
+		List<ArtistPageCommand> artworkPageList = 
+				artistservice.findAllArtistkByGenre(ctgValue);
+		
+		model.addAttribute("artworkPageList", artworkPageList);
+		
+		return "artist_board/artist_main_ctg";
 	}
 	
 	

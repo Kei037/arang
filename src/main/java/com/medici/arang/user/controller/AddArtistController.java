@@ -96,10 +96,31 @@ public class AddArtistController {
 		System.out.println(imgName);
 				
 		String email = artistCommand.getEmail1()+"@"+artistCommand.getEmail2();
-		String phone = artistCommand.getPhone1()+"-"+artistCommand.getPhone2()
-		+"-"+artistCommand.getPhone3();
 		artistCommand.setEmail(email);
-		artistCommand.setPhone(phone);
+		
+		
+		String[] genreList = request.getParameterValues("selectGenre");
+		String resultGenre = "";
+		for (String genre : genreList) {
+			resultGenre += genre;
+			resultGenre += ";";
+			artistCommand.setGenre(resultGenre);
+		}
+		System.out.println(artistCommand.getGenre());
+		
+		
+		String[] careerList = request.getParameterValues("inputCareer");
+		String resultCareer = "";
+		for (String career : careerList) {
+			if( career != null ) {
+				resultCareer += career;
+				resultCareer += ";";
+				artistCommand.setCareer(resultCareer);				
+			}
+		}
+		
+		System.out.println(artistCommand.getCareer());
+		
 		model.addAttribute("imgName", imgName);
 		artistService.addArtist(artistCommand);
 		

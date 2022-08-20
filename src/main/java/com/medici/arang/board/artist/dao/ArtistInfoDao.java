@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.medici.arang.board.artist.command.ArtistInfoCommand;
 import com.medici.arang.board.artist.command.FindArtistInfoCommand;
 
-@Repository("artworkInfoDao")
+@Repository("artistInfoDao")
 public class ArtistInfoDao {
 	
 	private JdbcTemplate jdbcTemplate;
@@ -62,5 +62,10 @@ public class ArtistInfoDao {
 				return artistInfo;
 			}
 		});
+	}
+	
+	public long getArtistCount() {
+		String sql = "SELECT count(*) FROM ArtistInfo";
+		return jdbcTemplate.queryForObject(sql, Long.class);
 	}
 }

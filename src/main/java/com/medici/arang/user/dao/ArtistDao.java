@@ -62,9 +62,10 @@ public class ArtistDao {
 	
 	public List<ArtistPageCommand> findAllArtistkByEmail() {
 		String sql = "SELECT a.name_kor, a.name_eng, a.genre, a.imgPath, "
-				+ "b.artworkImgPath, a.aid "
+				+ "b.artworkImgPath, a.aid, b.wid, c.title "
 				+ "FROM Artist a INNER JOIN artwork b "
-				+ "ON b.artistId = a.aid GROUP BY b.artistId";
+				+ "ON b.artistId = a.aid JOIN ArtistInfo c ON a.aid = c.artistId "
+				+ "GROUP BY b.artistId";
 		
 		return jdbcTemplate.query(sql, new RowMapper<ArtistPageCommand>() {
 			
@@ -73,31 +74,99 @@ public class ArtistDao {
 				ArtistPageCommand artist = new ArtistPageCommand(
 						rs.getString("name_kor"), rs.getString("name_eng"), 
 						rs.getString("genre"), rs.getString("imgPath"), 
-						rs.getString("artworkImgPath"), rs.getLong("aid"));
+						rs.getString("artworkImgPath"), rs.getLong("aid"),
+						rs.getLong("wid"), rs.getString("title"));
 				return artist;
 			}
 		});
 	}
 	
-	
-	
-	
-	
-	
-	public Page<ArtistCommand> findAll(Pageable pageable) {
-		Order order = pageable.getSort().isEmpty() ? Order.by("aid") : pageable.getSort().toList().get(0);
-		
-		String sql = "SELECT * FROM Artist ORDER BY " + order.getProperty()
-				+ " " + order.getDirection().name()
+	// 페이징 부분
+	public Page<ArtistPageCommand> findAllPage(Pageable pageable){
+		Order order = pageable.getSort().isEmpty()
+				? Order.by("aid")
+				: pageable.getSort().toList().get(0);
+		String sql = "SELECT a.name_kor, a.name_eng, a.genre, a.imgPath, "
+				+ "b.artworkImgPath, a.aid, b.wid, c.title FROM Artist a "
+				+ "INNER JOIN artwork b ON b.artistId = a.aid JOIN ArtistInfo c "
+				+ "ON a.aid = c.artistId GROUP BY b.artistId"
+				+ " ORDER BY " + order.getProperty() + " " + order.getDirection().name()
+				//MY SQL
 				+ " LIMIT " + pageable.getPageSize()
 				+ " OFFSET " + pageable.getOffset();
+		return new PageImpl<ArtistPageCommand>(
+				jdbcTemplate.query(sql, new RowMapper<ArtistPageCommand>() {
+					@Override
+					public ArtistPageCommand mapRow(ResultSet rs, int rowNum) throws SQLException {
+						ArtistPageCommand artist = new ArtistPageCommand(
+								rs.getString("name_kor"), rs.getString("name_eng"), 
+								rs.getString("genre"), rs.getString("imgPath"), 
+								rs.getString("artworkImgPath"), rs.getLong("aid"),
+								rs.getLong("wid"), rs.getString("title"));
+						return artist;
+					}
+				}),
+				pageable, getCount());
+		}
+	
+	
+	
+	public List<ArtistPageCommand> findAllArtistkByGenre(String ctg) {
+		String sql = "SELECT a.name_kor, a.name_eng, a.genre, a.imgPath, "
+				+ "b.artworkImgPath, a.aid, b.wid, c.title "
+				+ "FROM Artist a INNER JOIN artwork b "
+				+ "ON b.artistId = a.aid JOIN ArtistInfo c ON a.aid = c.artistId "
+				+ "WHERE a.genre = ? GROUP BY b.artistId";
 		
-		return new PageImpl<ArtistCommand>
-		(jdbcTemplate.query(sql, new ArtistRowMapper()), pageable, count());
+		return jdbcTemplate.query(sql, new RowMapper<ArtistPageCommand>() {
+			
+			@Override
+			public ArtistPageCommand mapRow(ResultSet rs, int rowNum) throws SQLException {
+				ArtistPageCommand artist = new ArtistPageCommand(
+						rs.getString("name_kor"), rs.getString("name_eng"), 
+						rs.getString("genre"), rs.getString("imgPath"), 
+						rs.getString("artworkImgPath"), rs.getLong("aid"),
+						rs.getLong("wid"), rs.getString("title"));
+				return artist;
+			}
+		}, ctg);
 	}
 	
-	public long count() {
+	
+	
+	
+	public Page<ArtistPageCommand> findPageByGenre(Pageable pageable, String ctg){
+		Order order = pageable.getSort().isEmpty()
+				? Order.by("aid")
+				: pageable.getSort().toList().get(0);
+		String sql = "SELECT a.name_kor, a.name_eng, a.genre, a.imgPath, "
+				+ "b.artworkImgPath, a.aid, b.wid, c.title "
+				+ "FROM Artist a INNER JOIN artwork b "
+				+ "ON b.artistId = a.aid JOIN ArtistInfo c ON a.aid = c.artistId "
+				+ "WHERE a.genre = ? GROUP BY b.artistId"
+				+ " ORDER BY " + order.getProperty() + " " + order.getDirection().name()
+				//MY SQL
+				+ " LIMIT " + pageable.getPageSize()
+				+ " OFFSET " + pageable.getOffset();
+		return new PageImpl<ArtistPageCommand>(
+				jdbcTemplate.query(sql, new RowMapper<ArtistPageCommand>() {
+					@Override
+					public ArtistPageCommand mapRow(ResultSet rs, int rowNum) throws SQLException {
+						ArtistPageCommand artist = new ArtistPageCommand(
+								rs.getString("name_kor"), rs.getString("name_eng"), 
+								rs.getString("genre"), rs.getString("imgPath"), 
+								rs.getString("artworkImgPath"), rs.getLong("aid"),
+								rs.getLong("wid"), rs.getString("title"));
+						return artist;
+					}
+				}, ctg),
+				pageable,
+				getCount());
+		}
+	
+	
+	public long getCount() {
 		String sql = "SELECT count(*) FROM Artist";
-		return jdbcTemplate.queryForObject(sql, long.class);
+		return jdbcTemplate.queryForObject(sql, Long.class);
 	}
 }

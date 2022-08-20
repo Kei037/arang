@@ -24,4 +24,8 @@ public class ArtistInfoServiceImpl {
 	public List<FindArtistInfoCommand> findArtist() {
 		return artistInfoDao.findArtist();
 	}
+	
+	public long getArtistCount() {
+		return artistInfoDao.getArtistCount();
+	}
 }

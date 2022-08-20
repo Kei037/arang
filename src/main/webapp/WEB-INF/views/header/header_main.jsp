@@ -22,13 +22,13 @@
         <nav id="top-nav">
           <ul class="center_menu">
             <li><a href="/arang/artist_board/artist_main">Artists</a></li>
-            <li><a href="./gallerys/gallerys.html">Gallerys</a></li>
+            <li><a href="/arang/gallery/gallery">Gallerys</a></li>
             <li><a href="./exhibitions/exhibitions.html">Exhibitions</a></li>
             <li><a href="./storage/storage.html">Storage</a></li>
             <li><a href="./notice/notice.html">Notice</a></li>
           </ul>
           <ul class="side_menu">
-            <li><a href="./find/find.html"><img src="<c:url value ='/resources/img/icon/find.png'/>" alt="find"></a></li>
+            <li><a href="/arang/gallery/gallery_upload"><img src="<c:url value ='/resources/img/icon/find.png'/>" alt="find"></a></li>
             <li><a href="/arang/pages/add_artwork"><img src="<c:url value ='/resources/img/icon/mypage.png'/>" alt="mypage"></a></li>
             <li><a href="/arang/mypage/add_artist_info"><img src="<c:url value ='/resources/img/icon/like.png'/>" alt="like"></a></li>
             <li><a href="./cart/cart.html"><img src="<c:url value ='/resources/img/icon/cart.png'/>" alt="cart"></a></li>

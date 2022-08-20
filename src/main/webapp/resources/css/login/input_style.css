@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-
 /* 로그인 */
 #input_wrap {
   max-width: 310px;
@@ -85,6 +84,17 @@ input.small {
 
 input.tiny {
   width: 100px;
+}
+
+/* select.box */
+select.box {
+  width: 150px;
+  padding: 9px;
+  border: none;
+  box-sizing: border-box;
+  -o-appearance: none;
+  -moz-appearance: none;
+  outline: none;
 }
 
 /* input table */

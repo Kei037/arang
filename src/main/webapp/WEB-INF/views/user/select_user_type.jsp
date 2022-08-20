@@ -31,7 +31,7 @@
               <img src="<c:url value ='/resources/img/icon/gallerist_join.png'/>" alt="gallerist_join">
               <p class="title">I'm a Gallerist</p>
               <div class="btn_group">
-                <a href="/arang/user/add_gallerist"><button class="btn1">갤러리스트 가입</button></a>
+                <a href="/arang/gallery/join_gallerist"><button class="btn1">갤러리스트 가입</button></a>
               </div>
             </div>
           </div>

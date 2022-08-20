@@ -15,11 +15,13 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
   <script type="text/javascript" src="/fake_resources/js/jquery.js"></script>
   <script type="text/javascript" src="/fake_resources/js/slidebanner.js"></script>
+  
 </head>
 
 <body>
 <div id="wrap">
   <jsp:include page="/WEB-INF/views/header/header.jsp"/>
+  	<button href="#" class="testBtn">테스트버튼</button>
     <!-- 이달의 작가 -->
     <div id="artist">
       <form id="artist_form">
@@ -29,7 +31,7 @@
             <div class="row">
             
             
-            <c:forEach var="artistL" items="${artistList1}">
+            <c:forEach var="artistL" items="${artistList1}" begin="0" end="1">
             <div class="col_wrap"> 
   			<div class="col col-1 swiper mySwiper">
                 <div class="artist_info d-flex flex-row">
@@ -52,7 +54,7 @@
   				<c:forEach var="artworkL" items="${artworkList}">
   				<c:if test="${artistL.aid == artworkL.artistId}">
                   <div class="col swiper-slide">
-                    <a href="#"><img class="artwork small" src="${artworkL.artworkImgPath}"></a>
+                    <a href="/arang/artwork_board/artwork_info?id=${artistL.aid}&wid=${artworkL.wid}"><img class="artwork small" src="${artworkL.artworkImgPath}"></a>
                   </div>
   				</c:if>
   				</c:forEach>
@@ -67,18 +69,18 @@
           <!-- 아티스트 -->
           <div class="sub_page_context">
             <div class="grid_wrapper">
-              <h5 class="sub_title">Artists<small>176</small></h5>
+              <h5 class="sub_title">Artists<small>${artistCount}</small></h5>
               <div class="row artist_list">
               
-                <c:forEach var="arkworkPage" items="${arkworPagekList}">
-                <div class="col artist_item">
+                <c:forEach var="artworkPage" items="${artistPagingList.content}">
+                <div class="col artist_item ${artworkPage.genre}">
                   <div class="artist_info d-flex flex-row">
                     <div class="artist_avatar">
-                      <a href="/arang/artist_board/artist_depth?id=${arkworkPage.aid}"><img src="${arkworkPage.imgPath}"></a>
+                      <a href="/arang/artist_board/artist_depth?id=${artworkPage.aid}"><img src="${artworkPage.imgPath}"></a>
                     </div>
                     <div class="artist_text">
                       <div class="first">
-                        <span>${arkworkPage.name_kor}</span>
+                        <span>${artworkPage.name_kor}</span>
                         <span class="genre_tag">${artworkPage.genre}</span>
                       </div>
                       <div class="second d-flex flex-row">
@@ -87,40 +89,51 @@
                     </div>
                   </div>
                   <div class="banner_wrap">
-                    <a href="#">
+                    <a href="/arang/artwork_board/artwork_info?id=${artworkPage.aid}&wid=${artworkPage.wid}">
                       <div class="artwork_banner">
-  							<img class="artwork" src="${arkworkPage.artworkImgPath}">
+  							<img class="artwork" src="${artworkPage.artworkImgPath}">
                       </div>
                     </a>
                   </div>
                 </div>
                 </c:forEach>
               </div>
+              <!-- ===================== 페이징 처리 부분 ========================== -->
               <div class="toolbox">
-                <ul class="pagination">
-                  <li class="page_item disabled">
-                    <a class="page_link_btn" href="#"><i class="go_left"><<</i></a>
-                  </li>
-                  <li class="page_item">
-                    <a class="page_link" href="#">1</a>
-                  </li>
-                  <li class="page_item">
-                    <a class="page_link" href="#">2</a>
-                  </li>
-                  <li class="page_item">
-                    <a class="page_link" href="#">3</a>
-                  </li>
-                  <li class="page_item">
-                    <a class="page_link" href="#">...</a>
-                  </li>
-                  <li class="page_item">
-                    <a class="page_link" href="#">7</a>
-                  </li>
-                  <li class="page_item disabled">
-                    <a class="page_link_btn" href="#"><i class="go_right">>></i></a>
-                  </li>
-                </ul>
-              </div>
+      <ul class="pagination">
+         <!-- 시작 -->
+         <c:choose>
+            <c:when test="${artistPagingList.first}"></c:when>
+            <c:otherwise>
+               <li class="page_item"><a class="page_link" href="<c:url value='/artist_board/artist_main?page=0'/>">처음</a></li>
+					<li class="page_item"><a class="page_link" href="<c:url value='/artist_board/artist_main?page=${artistPagingList.number-1}'/>">&larr;</a></li>
+            </c:otherwise>
+         </c:choose>
+         <!-- 페이지 그룹 -->
+         <c:forEach begin="${startBlockPage}" end="${endBlockPage}" var="i">
+            <c:choose>
+               <c:when test="${artistPagingList.pageable.pageNumber+1 == i}">
+                  <li class="page_item disabled"><a class="page_link pick_num" href="<c:url value='/artist_board/artist_main?page=${i-1}'/>">${i}</a></li>
+               </c:when>
+               <c:otherwise>
+                  <li class="page_item"><a class="page_link" href="<c:url value='/artist_board/artist_main?page=${i-1}'/>">${i}</a></li>
+               </c:otherwise>
+            </c:choose>
+         </c:forEach>
+         <!-- 끝 -->
+         <c:choose>
+            <c:when test="${artistPagingList.last}"></c:when>
+            <c:otherwise>
+               <li class="page_item"><a class="page_link" href="<c:url value='/artist_board/artist_main?page=${artistPagingList.number+1}'/>">&rarr;</a></li>
+					<li class="page_item"><a class="page_link" href="<c:url value='/artist_board/artist_main?page=${artistPagingList.totalPages-1}'/>">마지막</a></li>
+            </c:otherwise>
+         </c:choose>
+      </ul>
+   </div>
+   
+              
+              
+              <!-- ===================== 페이징 처리 부분 ========================== -->
             </div>
           </div>
 
@@ -153,6 +166,11 @@
           prevEl: ".swiper-button-prev",
         },
       });
+      
+      
+      
+      
+      
     </script>
 </body>
 

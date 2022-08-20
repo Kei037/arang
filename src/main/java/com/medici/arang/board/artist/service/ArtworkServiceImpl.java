@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.medici.arang.board.artist.command.ArtworkCommand;
+import com.medici.arang.board.artist.command.ArtworkInfoCommand;
 import com.medici.arang.board.artist.dao.ArtworkDao;
 import com.medici.arang.user.command.ArtistPageCommand;
 
@@ -46,4 +47,8 @@ public class ArtworkServiceImpl implements ArtworkService {
 		return artworkDao.findArtworkByArtist(id);
 	}
 	
+	public ArtworkCommand findArtworkByImg(String imgName) {
+		return artworkDao.findArtworkByImg(imgName);
+	}
+
 }

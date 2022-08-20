@@ -9,8 +9,14 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import com.medici.arang.board.artist.dao.ArtistInfoDao;
 import com.medici.arang.board.artist.dao.ArtworkDao;
+import com.medici.arang.board.artist.dao.ArtworkInfoDao;
 import com.medici.arang.board.artist.service.ArtistInfoServiceImpl;
+import com.medici.arang.board.artist.service.ArtworkInfoServiceImpl;
 import com.medici.arang.board.artist.service.ArtworkServiceImpl;
+import com.medici.arang.board.gallery.dao.GalleryDao;
+import com.medici.arang.board.gallery.dao.GalleryInfoDao;
+import com.medici.arang.board.gallery.service.GalleryInfoServiceImpl;
+import com.medici.arang.board.gallery.service.GalleryServiceImpl;
 import com.medici.arang.user.dao.ArtistDao;
 import com.medici.arang.user.dao.GalleristDao;
 import com.medici.arang.user.service.ArtistServiceImpl;
@@ -67,6 +73,26 @@ public class DataSourceConfig {
 	}
 	
 	@Bean
+	public ArtistInfoDao artistInfoDao() {
+		return new ArtistInfoDao(dataSource());
+	}
+	
+	@Bean
+	public ArtistInfoServiceImpl artistInfoService() {
+		return new ArtistInfoServiceImpl();
+	}
+	
+	@Bean
+	public ArtworkInfoDao artworkInfoDao() {
+		return new ArtworkInfoDao(dataSource());
+	}
+	
+	@Bean
+	public ArtworkInfoServiceImpl artworkInfoService() {
+		return new ArtworkInfoServiceImpl();
+	}
+	
+	@Bean
 	public GalleristDao galleristDao() {
 		return new GalleristDao(dataSource());
 	}
@@ -77,13 +103,23 @@ public class DataSourceConfig {
 	}
 	
 	@Bean
-	public ArtistInfoDao artistInfoDao() {
-		return new ArtistInfoDao(dataSource());
+	public GalleryDao galleryDao() {
+		return new GalleryDao(dataSource());
+	}
+
+	@Bean
+	public GalleryServiceImpl galleryServiceImpl() {
+		return new GalleryServiceImpl();
 	}
 	
 	@Bean
-	public ArtistInfoServiceImpl artistInfoService() {
-		return new ArtistInfoServiceImpl();
+	public GalleryInfoDao galleryInfoDao() {
+		return new GalleryInfoDao(dataSource());
+	}
+	
+	@Bean
+	public GalleryInfoServiceImpl galleryInfoServiceImpl() {
+		return new GalleryInfoServiceImpl();
 	}
 
 }

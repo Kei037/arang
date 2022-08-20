@@ -51,8 +51,9 @@
                     <div class="slick_trak swiper-wrapper">
                     <c:forEach var="artwork" items="${artworkList}">
                       <div class="item swiper-slide">
-                          <div class="artwork_wrap">
-                            <a href="#"><img class="artwork" src="${artwork.artworkImgPath}"></a>
+                          <div class="artwork_wrap" style="margin: text-align: center;">
+                            <a href="/arang/artwork_board/artwork_info?id=${artwork.artistId}&wid=${artwork.wid}">
+                            <img class="artwork" src="${artwork.artworkImgPath}"></a>
                           </div>
                         <figcaption>
                           <h5>${artwork.name}</h5>
@@ -100,7 +101,8 @@
     		  disableOnInteraction: false,
     		},
         slidesPerView: 3,
-        spaceBetween: 30,
+        spaceBetween: 10,
+        slidesOffsetBefore: 23,
         pagination: {
           el: ".swiper-pagination",
           clickable: true,

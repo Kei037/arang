@@ -14,6 +14,8 @@ public class ArtistPageCommand {
 	private String imgPath;
 	private String artworkImgPath;
 	private long aid;
+	private long wid;
+	private String title;
 	
 	public ArtistPageCommand() {
 		super();
