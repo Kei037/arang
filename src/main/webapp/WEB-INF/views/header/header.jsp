@@ -31,7 +31,7 @@
           </ul>
           <ul class="side_menu">
             <li><a href="/arang/gallery/gallery_upload"><img src="<c:url value ='/resources/img/icon/find.png'/>" alt="find"></a></li>
-            <li><a href="/arang/pages/add_artwork"><img src="<c:url value ='/resources/img/icon/mypage.png'/>" alt="mypage"></a></li>
+            <li><a href="/arang/mypage/mypage_artist"><img src="<c:url value ='/resources/img/icon/mypage.png'/>" alt="mypage"></a></li>
             <li><a href="/arang/mypage/add_artist_info"><img src="<c:url value ='/resources/img/icon/like.png'/>" alt="like"></a></li>
             <li><a href="./cart/cart.html"><img src="<c:url value ='/resources/img/icon/cart.png'/>" alt="cart"></a></li>
             <c:if test="${email == null}">

@@ -81,6 +81,16 @@ public class ArtistDao {
 		});
 	}
 	
+	// 아티스트 업데이트
+	public void updateArtist(ArtistCommand artist) {
+		String sql = "UPDATE Artist SET passwd=?, phone=? WHERE email = ?";
+		
+		jdbcTemplate.update(sql, artist.getPasswd(), artist.getPhone(), 
+				artist.getAid());
+	}
+	
+	
+	
 	// 페이징 부분
 	public Page<ArtistPageCommand> findAllPage(Pageable pageable){
 		Order order = pageable.getSort().isEmpty()

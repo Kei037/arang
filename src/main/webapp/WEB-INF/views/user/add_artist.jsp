@@ -116,7 +116,8 @@
           <tr>
             <td>
           		<div id="box">
-         		   <input name="inputCareer" type="text" class="big" placeholder="경력"> <input type="button" value="추가" onclick="add_textbox()">
+         		   <input name="inputCareer" type="text" class="big" placeholder="경력">
+         		   <input type="button" value="추가" onclick="add_textbox()">
         		</div>
           	</td>
           </tr>

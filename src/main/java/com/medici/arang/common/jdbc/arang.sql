@@ -1,5 +1,5 @@
 !DROP TABLE Artist;
-!DELETE FROM Artist WHERE aid = 2;
+!DELETE FROM Artist WHERE aid = 4;
 CREATE TABLE Artist(
   aid			BIGINT			PRIMARY KEY AUTO_INCREMENT,
   email			VARCHAR(30)		NOT NULL,
@@ -15,6 +15,9 @@ CREATE TABLE Artist(
 )AUTO_INCREMENT = 1;
 
 SELECT * FROM Artist;
+
+
+UPDATE Artist SET passwd = 1234, name_kor='세가' WHERE aid = 1;
 
 CREATE TABLE Artwork (
 	wid 				BIGINT			PRIMARY KEY AUTO_INCREMENT,

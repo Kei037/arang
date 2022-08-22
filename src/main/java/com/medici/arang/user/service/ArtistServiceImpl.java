@@ -51,4 +51,8 @@ public class ArtistServiceImpl implements ArtistService {
 	public List<ArtistPageCommand> findAllArtistkByGenre(String ctg) {
 		return artistDao.findAllArtistkByGenre(ctg);
 	}
+	
+	public void updateArtist(ArtistCommand artist) {
+		artistDao.updateArtist(artist);
+	}
 }

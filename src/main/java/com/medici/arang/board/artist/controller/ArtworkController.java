@@ -62,6 +62,7 @@ public class ArtworkController {
 		}
 		String loginEmail1 = (String) session.getAttribute("email");
 		ArtistCommand artist = artistservice.getArtistByEmail(loginEmail1);
+		System.out.println("여기까지 실행됨2");
 		FindArtistInfoCommand artistInfo = artistInfoService.findArtistInfo(artist.getAid());
 		model.addAttribute("artist", artistInfo);
 		model.addAttribute("artwork", new ArtworkCommand());

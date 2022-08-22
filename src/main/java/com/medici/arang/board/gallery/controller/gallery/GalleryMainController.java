@@ -35,10 +35,8 @@ public class GalleryMainController {
 		for (GalleryPageCommand galleryCommand : galleryList) {
 			String a = galleryCommand.getInfoImgPath();
 			String[] b =  a.split(";");
-			System.out.println(b[0]);
 			String c = b[0];
 			galleryCommand.setInfoImgPath(c);
-			System.out.println(galleryCommand.getInfoImgPath());
 		}
 		
 		long galleryCount = galleryService.getGalleryCount();
@@ -71,10 +69,8 @@ public class GalleryMainController {
 		for (GalleryPageCommand galleryCommand : galleryPagingList) {
 			String a = galleryCommand.getInfoImgPath();
 			String[] b =  a.split(";");
-			System.out.println(b[0]);
 			String c = b[0];
 			galleryCommand.setInfoImgPath(c);
-			System.out.println(galleryCommand.getInfoImgPath());
 		}
 		
 		

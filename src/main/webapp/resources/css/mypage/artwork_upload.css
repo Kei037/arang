@@ -1,7 +1,5 @@
 @charset "UTF-8";
 
-@charset "UTF-8";
-
 /* 등록양식 input */
 input {
   padding: 5px;
@@ -25,15 +23,6 @@ input:focus {
 
 .artwork_info .info .info_block input{
   width: 255px;
-}
-
-/* 셀렉트 */
-.info_block .last .box {
-  width: 265px;
-  padding: 5px;
-  border: none;
-  outline: none;
-  background-color: #f5f5f5;
 }
 
 textarea {
