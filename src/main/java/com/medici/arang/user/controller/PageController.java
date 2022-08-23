@@ -46,6 +46,11 @@ public class PageController {
 				return "alert";
 			}
 		}
+		if( artistService.isValidUser(email, passwd) ) {
+			session.setAttribute("artistLogin", "artistLogin");
+		}else if ( galleristService.isValidUser(email, passwd) ) {
+			session.setAttribute("galleristLogin", "galleristLogin");
+		}
 		session.setAttribute("email", email);
 		//성공시 갈곳
 		return "main";

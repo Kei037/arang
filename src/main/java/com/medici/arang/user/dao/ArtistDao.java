@@ -60,6 +60,28 @@ public class ArtistDao {
 		return jdbcTemplate.queryForObject(sql, new ArtistRowMapper(), email);
 	}
 	
+	public ArtistPageCommand findArtistkById(long id) {
+		String sql = "SELECT a.name_kor, a.name_eng, a.genre, a.imgPath, "
+				+ "b.artworkImgPath, a.aid, b.wid, c.title "
+				+ "FROM Artist a INNER JOIN artwork b "
+				+ "ON b.artistId = a.aid JOIN ArtistInfo c ON a.aid = c.artistId "
+				+ "WHERE a.aid = ? GROUP BY b.artistId";
+		
+		return jdbcTemplate.queryForObject(sql, new RowMapper<ArtistPageCommand>() {
+			
+			@Override
+			public ArtistPageCommand mapRow(ResultSet rs, int rowNum) throws SQLException {
+				ArtistPageCommand artist = new ArtistPageCommand(
+						rs.getString("name_kor"), rs.getString("name_eng"), 
+						rs.getString("genre"), rs.getString("imgPath"), 
+						rs.getString("artworkImgPath"), rs.getLong("aid"),
+						rs.getLong("wid"), rs.getString("title"));
+				return artist;
+			}
+		}, id);
+	}
+	
+	
 	public List<ArtistPageCommand> findAllArtistkByEmail() {
 		String sql = "SELECT a.name_kor, a.name_eng, a.genre, a.imgPath, "
 				+ "b.artworkImgPath, a.aid, b.wid, c.title "
@@ -83,10 +105,10 @@ public class ArtistDao {
 	
 	// 아티스트 업데이트
 	public void updateArtist(ArtistCommand artist) {
-		String sql = "UPDATE Artist SET passwd=?, phone=? WHERE email = ?";
+		String sql = "UPDATE Artist SET passwd=?, phone=?, imgPath=? WHERE email = ?";
 		
 		jdbcTemplate.update(sql, artist.getPasswd(), artist.getPhone(), 
-				artist.getAid());
+				artist.getImgPath(), artist.getEmail());
 	}
 	
 	

@@ -1,7 +1,10 @@
 package com.medici.arang.board.gallery.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.medici.arang.board.contact.command.FindContactCommend;
 import com.medici.arang.board.gallery.command.GalleryCommand;
 import com.medici.arang.board.gallery.dao.GalleryDao;
 
@@ -22,6 +25,13 @@ public class GalleryServiceImpl implements GalleryService{
 	public long getGalleryCount() {
 		return galleryDao.getGalleryCount();
 	}
+	
+	public GalleryCommand findGalleryByEmail(String email) {
+		return galleryDao.findGalleryByEmail(email);
+	}
+	
+
+	
 	/*
 	@Override
 	public void updateGallery(GalleryCommand galleryCommand, long gallery_code) {

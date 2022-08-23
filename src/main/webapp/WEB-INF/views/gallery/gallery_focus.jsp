@@ -101,8 +101,11 @@
                       </div>
                       <div class="button_wrap">
                         <div class="btn_group">
-                          <a href="#"><button class="btn1">Contacting</button></a>
+                        <form action="gallery_focus" method="post">
+                          <a href="#"><button class="btn1" type="submit">Contacting</button></a>
+                          <input type="hidden" name="galleryCode" value="${galleryCommand.code}" />
                           <button class="like"><img src="../resources/img/icon/like.png" alt="like"></button>
+                        </form>
                           <p>76</p>
                         </div>
                       </div>

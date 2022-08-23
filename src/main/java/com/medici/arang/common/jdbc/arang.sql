@@ -166,3 +166,33 @@ a.galleryEmail, a.galleryPhone, a.since, a.area, a.openClose, a.galleryImgPath,
 b.description, b.infoImgPath FROM GalleryInfo b LEFT JOIN Gallery a 
 ON a.code = b.galleryCode;
 
+
+
+
+
+!DROP TABLE Contact;
+CREATE TABLE Contact(
+	contactId			BIGINT			PRIMARY KEY  AUTO_INCREMENT,
+	galleryCode			BIGINT			NOT NULL,
+	artistId			BIGINT			NOT NULL,
+	comment				VARCHAR(500)	NULL,
+	exhibitionDate		VARCHAR(15)		NULL,
+	accept				VARCHAR(3)		NULL DEFAULT 'U',
+	regDate				TIMESTAMP		NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	CONSTRAINT Contact_galleryCode 
+		FOREIGN KEY (galleryCode) REFERENCES Gallery(code),
+	CONSTRAINT Contact_artistId 
+		FOREIGN KEY (artistId) REFERENCES Artist(aid)
+)AUTO_INCREMENT = 101;
+
+SELECT * FROM Contact;
+
+INSERT INTO Contact (galleryCode, artistId) VALUES (3, 11);
+
+SELECT * FROM Contact WHERE galleryCode = 1;
+
+SELECT a.accept, a.regDate, b.name_kor, b.genre, b.imgPath, c.artworkImgPath
+FROM Contact a LEFT JOIN Artist b 
+ON b.aid = a.artistId JOIN Artwork c ON a.artistId = c.artistId
+WHERE a.galleryCode = 1 GROUP BY a.contactId;
+

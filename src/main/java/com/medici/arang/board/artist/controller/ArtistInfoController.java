@@ -197,17 +197,9 @@ public class ArtistInfoController {
 		return "artist_board/artist_main";
 	}
 	
-	@ResponseBody
-//	@PostMapping("/clickCategory")
-	@RequestMapping(value = "/clickCategory", produces = "application/text; charset=utf8")
-	public String clickCategoryBtn(@RequestBody CategoryCommand ctg, 
-						HttpServletRequest request, HttpServletResponse response,
-						Model model) {
-		
-		response.setCharacterEncoding("UTF-8");
-		System.out.println("ajax 테스트 성공");
-		System.out.println(ctg.getCategoryValue());
-		String ctgValue = ctg.getCategoryValue();
+	/*
+	@GetMapping("/artist_board/artist_main")
+	public String findArtistByGenre(Model model, HttpServletRequest request) {
 		//page 요청 검사
 		int page = 0;
 		if(request.getParameter("page") != null) {
@@ -240,8 +232,26 @@ public class ArtistInfoController {
 				artistservice.findAllArtistkByGenre(ctgValue);
 		
 		model.addAttribute("artworkPageList", artworkPageList);
+		return "artist_board/artist_main";
+	}
+	*/
+	
+	
+	@ResponseBody
+//	@PostMapping("/clickCategory")
+	@RequestMapping(value = "/clickCategory", produces = "application/text; charset=utf8")
+	public String clickCategoryBtn(@RequestBody CategoryCommand ctg, 
+						HttpServletRequest request, HttpServletResponse response,
+						Model model) {
 		
-		return "artist_board/artist_main_ctg";
+		response.setCharacterEncoding("UTF-8");
+		System.out.println("ajax 테스트 성공");
+		System.out.println(ctg.getCategoryValue());
+		String ctgValue = ctg.getCategoryValue();
+		//page 요청 검사
+		
+		
+		return "artist_main_ctg";
 	}
 	
 	

@@ -39,7 +39,6 @@ public class GalleryInfoDao {
 				+ "FROM GalleryInfo b LEFT JOIN Gallery a "
 				+ "ON a.code = b.galleryCode";
 		return jdbcTemplate.query(sql, new RowMapper<GalleryPageCommand>() {
-			
 			public GalleryPageCommand mapRow(ResultSet rs, int rowNum) throws SQLException {
 				GalleryPageCommand artistInfo = new GalleryPageCommand(
 						rs.getLong("code"), rs.getString("galleristEmail"),
@@ -114,7 +113,6 @@ public class GalleryInfoDao {
 		String sql = "SELECT count(*) FROM Gallery";
 		return jdbcTemplate.queryForObject(sql, Long.class);
 	}
-	
 	
 	
 	

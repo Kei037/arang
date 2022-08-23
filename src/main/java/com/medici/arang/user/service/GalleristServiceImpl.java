@@ -23,4 +23,11 @@ public class GalleristServiceImpl implements GalleristService{
 		return galleristDao.isValidUser(email, passwd);
 	}
 	
+	public GalleristCommend findMyGallerist(String email) {
+		return galleristDao.findMyGallerist(email);
+	}
+	
+	public void updateGalleristByEmail(GalleristCommend gallerist) {
+		galleristDao.updateGalleristByEmail(gallerist);
+	}
 }

@@ -55,4 +55,8 @@ public class ArtistServiceImpl implements ArtistService {
 	public void updateArtist(ArtistCommand artist) {
 		artistDao.updateArtist(artist);
 	}
+	
+	public ArtistPageCommand findArtistkById(long id) {
+		return artistDao.findArtistkById(id);
+	}
 }

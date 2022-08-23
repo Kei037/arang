@@ -26,6 +26,10 @@ public class GalleryInfoServiceImpl {
 	public GalleryPageCommand findGalleryByID(long code) {
 		return galleryInfoDao.findGalleryByID(code);
 	}
+	
+
+	
+	
 	//페이징 처리
 	public Page<GalleryPageCommand> allFindGalleryPage(Pageable pageable) {
 		return galleryInfoDao.allFindGalleryPage(pageable);
