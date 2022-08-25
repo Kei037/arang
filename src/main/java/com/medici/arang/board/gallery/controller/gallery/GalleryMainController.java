@@ -62,7 +62,7 @@ public class GalleryMainController {
 			page = Integer.parseInt(request.getParameter("page"));			
 		}
 		//페이징
-		Pageable pageable = PageRequest.of(page, 1, Sort.Direction.DESC, "code");
+		Pageable pageable = PageRequest.of(page, 2, Sort.Direction.DESC, "code");
 		Page<GalleryPageCommand> galleryPagingList = 
 				galleryInfoService.allFindGalleryPage(pageable);
 		

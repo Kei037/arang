@@ -68,9 +68,11 @@
                 </div>
                 <div class="button_wrap">
                   <div class="btn_group">
-                    <a href="#"><button class="btn1">Contacting</button></a>
-                    <button class="like"><img src="../resources/img/icon/like.png" alt="like"></button>
-                    <p>76</p>
+                    <form action="testbtn" method="get">
+                      <input type="hidden" id="aid" name="artistId" value="${artistInfo.aid}" />
+                      <button id="contactBtn" class="btn1" type="submit">Contacting</button>
+                      <button class="like"><img src="../resources/img/icon/like.png" alt="like"></button>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -104,7 +106,7 @@
                     <c:forEach var="artwork" items="${artworkList}">
                       <div class="item swiper-slide">
                         <div class="artwork_wrap">
-                          <a href="/arang/artwork_board/artwork_info?id=${artwork.wid}">
+                          <a href="/arang/artwork_board/artwork_info?id=${artwork.artistId}&wid=${artwork.wid}">
                             <img class="artwork" src="${artwork.artworkImgPath}"></a>
                         </div>
                       <figcaption>
@@ -145,6 +147,17 @@
           prevEl: ".swiper-button-prev",
         },
       });
+      
+      
+      
+      $("#contactBtn").click(function() {
+		var aid = $("#aid").val();
+		var wid = $("#wid").val();
+		console.log(aid);
+		console.log(wid);
+	})
+      
+      
     </script>
 </body>
 </html>

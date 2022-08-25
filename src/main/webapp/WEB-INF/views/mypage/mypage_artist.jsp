@@ -116,6 +116,7 @@
         </div>
       </div>
       <div class="btn2_group">
+      	<a href="/arang/mypage/mypage_request_list2"><button class="btn2">신청한 아티스트 목록</button></a>
         <a href="/arang/mypage/mypage_artist_modify"><button class="btn2">내 정보 수정</button></a>
       	<a href="/arang/mypage/add_artist_info"><button class="btn2">내 아티스트정보 입력하기</button></a>
         <a href="/arang/pages/add_artwork"><button class="btn2">작품 등록</button></a>

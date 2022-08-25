@@ -101,11 +101,20 @@ public class AddArtistController {
 		
 		String[] genreList = request.getParameterValues("selectGenre");
 		String resultGenre = "";
-		for (String genre : genreList) {
-			resultGenre += genre;
-			resultGenre += ";";
-			artistCommand.setGenre(resultGenre);
+		if ( genreList.length > 1 ) {
+			for (String genre : genreList) {
+				resultGenre += genre;
+				resultGenre += ";";
+				artistCommand.setGenre(resultGenre);
+			}
+			
+		}else if ( genreList.length == 1 ) {
+			for (String genre : genreList) {
+				resultGenre += genre;
+				artistCommand.setGenre(resultGenre);
+			}
 		}
+		
 		System.out.println(artistCommand.getGenre());
 		
 		

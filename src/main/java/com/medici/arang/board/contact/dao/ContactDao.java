@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.medici.arang.board.contact.command.ContactCommand;
 import com.medici.arang.board.contact.command.FindContactCommend;
+import com.medici.arang.board.contact.command.FindContactGalleryCommand;
 import com.medici.arang.user.command.ArtistPageCommand;
 
 @Repository
@@ -29,6 +30,19 @@ public class ContactDao {
 				contactCommand.getArtistId());
 	}
 	
+	public void contactArtist(ContactCommand contactCommand) {
+		String sql = "INSERT INTO Contact (galleryCode, artistId, comment, "
+				+ "exhibitionTitle, startDate, endDate) "
+				+ "VALUES(?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sql, contactCommand.getGalleryCode(), 
+				contactCommand.getArtistId(), contactCommand.getComment(),
+				contactCommand.getExhibitionTitle(), contactCommand.getStartDate(),
+				contactCommand.getEndDate());
+	}
+	
+	
+	
+	
 	public List<ContactCommand> findContactList(long code) {
 		String sql = "SELECT * FROM Contact WHERE galleryCode = ?";
 		
@@ -37,7 +51,8 @@ public class ContactDao {
 				ContactCommand contactCommand = new ContactCommand(
 						rs.getLong("contactId"), rs.getLong("galleryCode"), 
 						rs.getLong("artistId"), rs.getString("comment"), 
-						rs.getString("exhibitionDate"), rs.getString("accept"),
+						rs.getString("exhibitionTitle"), rs.getString("startDate"),
+						rs.getString("endDate"), rs.getString("accept"),
 						rs.getDate("regDate"));
 				return contactCommand;
 			}
@@ -54,7 +69,7 @@ public class ContactDao {
 	
 	public List<FindContactCommend> findArtistkById(long id) {
 		String sql = "SELECT a.contactId, a.accept, a.regDate, b.name_kor, b.genre, "
-				+ "b.imgPath, c.name FROM Contact a LEFT JOIN Artist b "
+				+ "b.imgPath, c.name, a.artistId FROM Contact a LEFT JOIN Artist b "
 				+ "ON b.aid = a.artistId JOIN Artwork c "
 				+ "ON a.artistId = c.artistId "
 				+ "WHERE a.galleryCode = ? GROUP BY a.contactId";
@@ -65,8 +80,30 @@ public class ContactDao {
 				FindContactCommend artist = new FindContactCommend(rs.getLong("contactId"),
 						rs.getString("accept"), rs.getDate("regDate"),
 						rs.getString("name_kor"), rs.getString("genre"),
-						rs.getString("imgPath"), rs.getString("name"));
+						rs.getString("imgPath"), rs.getString("name"),
+						rs.getLong("artistId"));
 				return artist;
+			}
+		}, id);
+	}
+	
+	public List<FindContactGalleryCommand> findGalleryByEmail(long id) {
+		String sql = "SELECT a.contactId, a.accept, a.regDate, b.galleryName_eng, "
+				+ "b.galleryImgPath, a.startDate, a.endDate, a.exhibitionTitle, "
+				+ "a.comment, a.galleryCode FROM Contact a LEFT JOIN Gallery b "
+				+ "ON b.code = a.galleryCode WHERE a.artistId = ? "
+				+ "GROUP BY a.contactId";
+		
+		return jdbcTemplate.query(sql, new RowMapper<FindContactGalleryCommand>() {
+
+			public FindContactGalleryCommand mapRow(ResultSet rs, int rowNum) throws SQLException {
+				FindContactGalleryCommand gallery = new FindContactGalleryCommand(
+						rs.getLong("contactId"), rs.getString("accept"), 
+						rs.getDate("regDate"), rs.getString("galleryName_eng"),
+						rs.getString("galleryImgPath"), rs.getString("startDate"),
+						rs.getString("endDate"), rs.getString("exhibitionTitle"),
+						rs.getString("comment"), rs.getLong("galleryCode"));
+				return gallery;
 			}
 		}, id);
 	}

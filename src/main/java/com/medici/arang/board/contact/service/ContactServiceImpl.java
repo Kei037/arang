@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.medici.arang.board.contact.command.ContactCommand;
 import com.medici.arang.board.contact.command.FindContactCommend;
+import com.medici.arang.board.contact.command.FindContactGalleryCommand;
 import com.medici.arang.board.contact.dao.ContactDao;
 
 public class ContactServiceImpl {
@@ -26,5 +27,13 @@ public class ContactServiceImpl {
 	}
 	public void acceptTpye(String accept, long id) {
 		contactDao.acceptTpye(accept, id);
+	}
+	
+	public void contactArtist(ContactCommand contactCommand) {
+		contactDao.contactArtist(contactCommand);
+	}
+	
+	public List<FindContactGalleryCommand> findGalleryByEmail(long id) {
+		return contactDao.findGalleryByEmail(id);
 	}
 }

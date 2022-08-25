@@ -28,6 +28,9 @@
                     <strong>장르</strong>
                     </td>
                     <td>
+                    <strong>프로필</strong>
+                    </td>
+                    <td>
                     <strong>신청인</strong>
                     </td>
                     <td>
@@ -46,6 +49,11 @@
                   <c:forEach var="contact" items="${contactList}">
                   <tr>
                     <td>${contact.genre }</td>
+                    <td>
+                    <a href="/arang/artist_board/artist_depth?id=${artworkPage.aid}">
+                    <img src="${contact.imgPath}" style="width: 100px; height:100px;">
+                    </a>
+                    </td>
                     <td>${contact.name_kor }</td>
                     <td>${contact.name }</td>
                     <td>${contact.regDate}</td>

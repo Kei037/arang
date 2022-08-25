@@ -65,7 +65,6 @@ const remove = (obj) => {
             </div>
             <div class="content_block">
               <div class="review">
-                <h2>ARARIO GALLERY</h2>
                 <p><textarea class="textarea_box" placeholder="갤러리 소개" cols="43" rows="7" name="description"></textarea></p>
                 <p><br></p>
                 <p>

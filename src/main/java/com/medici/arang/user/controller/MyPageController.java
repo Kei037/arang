@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.medici.arang.board.contact.command.ContactCommand;
 import com.medici.arang.board.contact.command.FindContactCommend;
+import com.medici.arang.board.contact.command.FindContactGalleryCommand;
 import com.medici.arang.board.contact.service.ContactServiceImpl;
 import com.medici.arang.board.gallery.command.GalleryCommand;
 import com.medici.arang.board.gallery.service.GalleryService;
@@ -26,6 +27,7 @@ import com.medici.arang.board.gallery.service.GalleryServiceImpl;
 import com.medici.arang.user.command.ArtistCommand;
 import com.medici.arang.user.command.ArtistPageCommand;
 import com.medici.arang.user.command.GalleristCommend;
+import com.medici.arang.user.service.ArtistService;
 import com.medici.arang.user.service.ArtistServiceImpl;
 import com.medici.arang.user.service.GalleristServiceImpl;
 
@@ -43,6 +45,7 @@ public class MyPageController {
 	
 	@Autowired
 	GalleryServiceImpl galleryService;
+	
 	
 	@GetMapping("/mypage/mypage_artist")
 	public String artistMypageForm(HttpServletRequest request) {
@@ -305,4 +308,41 @@ public class MyPageController {
 		return "redirect:/mypage/mypage_request_list";
 	}
 	
+	
+	@GetMapping("/mypage/mypage_request_list2")
+	public String requestPageForm2(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String email = (String)session.getAttribute("email");
+		ArtistCommand artist = artistService.getArtistByEmail(email);
+		
+		List<FindContactGalleryCommand> contactList = 
+				contactService.findGalleryByEmail(artist.getAid());
+		
+		request.setAttribute("contactList", contactList);
+		return "mypage/mypage_request_list2";
+		
+	}
+	
+	
+	@PostMapping("/mypage/yesga")
+	public String acceptBtnga(HttpServletRequest request) {
+		String yesBtn = request.getParameter("yesBtn");
+		long id = Long.parseLong(request.getParameter("contactId"));
+		System.out.println(yesBtn);
+		
+		contactService.acceptTpye(yesBtn, id);
+		
+		return "redirect:/mypage/mypage_request_list2";
+	}
+	
+	@PostMapping("/mypage/nodga")
+	public String notBtnga(HttpServletRequest request) {
+		String noBtn = request.getParameter("noBtn");
+		long id = Long.parseLong(request.getParameter("contactId"));
+		System.out.println(noBtn);
+		
+		contactService.acceptTpye(noBtn, id);
+		
+		return "redirect:/mypage/mypage_request_list2";
+	}
 }

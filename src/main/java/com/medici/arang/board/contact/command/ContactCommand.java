@@ -14,7 +14,9 @@ public class ContactCommand {
 	private long galleryCode;
 	private long artistId;
 	private String comment;
-	private String exhibitionDate;
+	private String exhibitionTitle;
+	private String startDate;
+	private String endDate;
 	private String accept;
 	private Date regDate;
 	

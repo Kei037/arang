@@ -92,12 +92,6 @@ const remove = (obj) => {
                     </div>
                   </div>
                 </div>
-                <div class="button_wrap">
-                  <div class="btn_group">
-                    <button class="btn1">Contacting</button>
-                    <button class="like"><img src="../resources/img/icon/like.png" alt="like"></button>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

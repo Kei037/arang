@@ -20,6 +20,7 @@ public class FindContactCommend {
 	private String genre;
 	private String imgPath;
 	private String name;
+	private long artistId;
 	
 	public FindContactCommend() {
 	}

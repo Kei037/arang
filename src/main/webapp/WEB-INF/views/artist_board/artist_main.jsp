@@ -77,7 +77,8 @@
                 <div class="col artist_item ${artworkPage.genre}">
                   <div class="artist_info d-flex flex-row">
                     <div class="artist_avatar">
-                      <a href="/arang/artist_board/artist_depth?id=${artworkPage.aid}"><img src="${artworkPage.imgPath}"></a>
+                      <a href="/arang/artist_board/artist_depth?id=${artworkPage.aid}">
+                      <img src="${artworkPage.imgPath}"></a>
                     </div>
                     <div class="artist_text">
                       <div class="first">

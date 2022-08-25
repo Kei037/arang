@@ -19,6 +19,7 @@ SELECT * FROM Artist;
 
 UPDATE Artist SET passwd = 1234, name_kor='세가' WHERE aid = 1;
 
+!DROP TABLE Artwork;
 CREATE TABLE Artwork (
 	wid 				BIGINT			PRIMARY KEY AUTO_INCREMENT,
 	artistId			BIGINT			NOT NULL,
@@ -27,7 +28,7 @@ CREATE TABLE Artwork (
 	technique			VARCHAR(60)		NOT NULL,
 	size				VARCHAR(40)		NOT NULL,
 	publicationDate		VARCHAR(40)		NOT NULL,
-	description			VARCHAR(255)	NOT NULL,
+	description			VARCHAR(500)	NOT NULL,
 	artworkImgPath		VARCHAR(60)		NOT NULL,
 	regDate				TIMESTAMP		NOT NULL	DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT Artwork_artistId_FK
@@ -46,7 +47,6 @@ a.artworkImgPath, b.mainTitle, b.subTitle, b.workInfoImgPath
 FROM Artwork a INNER JOIN ArtworkInfo b ON a.wid = b.artworkId 
 WHERE a.wid = 1001;
 
-!DROP TABLE Artwork;
 
 SELECT DISTINCT FROM Artwork WHERE artistId = 1;
 
@@ -63,7 +63,7 @@ description, imgPath) VALUES (1001, '조조의 그림', 'painter', '심혈을 �
 CREATE TABLE ArtistInfo (
 	bid 				BIGINT			PRIMARY KEY AUTO_INCREMENT,
 	artistId			BIGINT			NOT NULL,
-	title				VARCHAR(40)		NOT NULL,
+	title				VARCHAR(200)	NOT NULL,
 	description			VARCHAR(1000)	NOT NULL,
 	infoImgPath			VARCHAR(40)		NOT NULL,
 	regDate				TIMESTAMP		NOT NULL	DEFAULT CURRENT_TIMESTAMP,
@@ -169,14 +169,15 @@ ON a.code = b.galleryCode;
 
 
 
-
 !DROP TABLE Contact;
 CREATE TABLE Contact(
 	contactId			BIGINT			PRIMARY KEY  AUTO_INCREMENT,
 	galleryCode			BIGINT			NOT NULL,
 	artistId			BIGINT			NOT NULL,
-	comment				VARCHAR(500)	NULL,
-	exhibitionDate		VARCHAR(15)		NULL,
+	comment				VARCHAR(100)	NULL,
+	exhibitionTitle		VARCHAR(20)		NULL,
+	startDate			VARCHAR(20)		NULL,
+	endDate				VARCHAR(20)		NULL,
 	accept				VARCHAR(3)		NULL DEFAULT 'U',
 	regDate				TIMESTAMP		NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT Contact_galleryCode 
@@ -196,3 +197,6 @@ FROM Contact a LEFT JOIN Artist b
 ON b.aid = a.artistId JOIN Artwork c ON a.artistId = c.artistId
 WHERE a.galleryCode = 1 GROUP BY a.contactId;
 
+SELECT a.contactId, a.accept, a.regDate, a.startDate, a.endDate, a.exhibitionTitle,
+a.comment, b.galleryName_eng, b.galleryImgPath FROM Contact a LEFT JOIN Gallery b 
+ON b.code = a.galleryCode WHERE a.artistId = 1 GROUP BY a.contactId;
