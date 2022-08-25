@@ -272,6 +272,32 @@ public class MyPageController {
 	}
 	
 	
+	
+	@GetMapping("/mypage/artist_checkpage")
+	public String artistCheckpage() {
+		return "mypage/artist_checkpage";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// contact 부분
+	
 	@GetMapping("/mypage/mypage_request_list")
 	public String requestPageForm(HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -345,4 +371,5 @@ public class MyPageController {
 		
 		return "redirect:/mypage/mypage_request_list2";
 	}
+	
 }

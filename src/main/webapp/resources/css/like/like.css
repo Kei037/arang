@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.container {
+  padding-bottom: 200px;
+}
+
+.sub_title {
+  padding-top: 130px;
+}
+
+.list_name {
+  font-family: 'Bebas Neue', cursive;
+  font-weight: nomal;
+  font-size: 21px;
+  /* border-bottom: 1px solid #333;
+  border-width: 20%; */
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+
+.list_name.gallery {
+  margin-top: 55px;
+}

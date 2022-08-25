@@ -136,7 +136,7 @@ public class AddArtistController {
 		//세션 담기
 //		session.setAttribute("email", artistCommand.getEmail());
 		
-		return "user/add_success";
+		return "login";
 	}
 	
 	//회원가입폼 이메일 데이터 제공

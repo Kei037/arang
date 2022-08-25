@@ -63,7 +63,7 @@ public class GalleristInsertController {
 	private static final String PATH_DIR = "/upload_img/";
 	
 
-	//갤러리 게시판 등록 + 이미지 처리
+
 	@PostMapping("gallery/join_gallerist")
 	public String insertGalleryForm(@ModelAttribute("galleristCommend")
 			GalleristCommend galleristCommend, HttpServletRequest request,

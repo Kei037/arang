@@ -8,7 +8,7 @@ CREATE TABLE Artist(
   name_eng		VARCHAR(20)		NOT NULL,
   ssn			VARCHAR(20)		NOT NULL,
   phone			VARCHAR(13)		NOT NULL,
-  genre			VARCHAR(20)		NOT NULL,
+  genre			VARCHAR(50)		NOT NULL,
   career		VARCHAR(100)	NOT NULL,
   imgPath		VARCHAR(300)	NOT NULL,
   regDate		TIMESTAMP		NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -170,6 +170,7 @@ ON a.code = b.galleryCode;
 
 
 !DROP TABLE Contact;
+!DELETE FROM Contact WHERE contactId = 102;
 CREATE TABLE Contact(
 	contactId			BIGINT			PRIMARY KEY  AUTO_INCREMENT,
 	galleryCode			BIGINT			NOT NULL,
@@ -179,6 +180,7 @@ CREATE TABLE Contact(
 	startDate			VARCHAR(20)		NULL,
 	endDate				VARCHAR(20)		NULL,
 	accept				VARCHAR(3)		NULL DEFAULT 'U',
+	sendingType			VARCHAR(3)		NOT NULL,
 	regDate				TIMESTAMP		NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT Contact_galleryCode 
 		FOREIGN KEY (galleryCode) REFERENCES Gallery(code),
@@ -192,11 +194,33 @@ INSERT INTO Contact (galleryCode, artistId) VALUES (3, 11);
 
 SELECT * FROM Contact WHERE galleryCode = 1;
 
-SELECT a.accept, a.regDate, b.name_kor, b.genre, b.imgPath, c.artworkImgPath
-FROM Contact a LEFT JOIN Artist b 
+SELECT exhibitionTitle, startDate, endDate, artworkImgPath FROM Contact a 
+INNER JOIN Artwork b ON a.artistId = b.artistId WHERE a.sendingType = 'G' 
+AND a.accept = 'Y' GROUP BY a.contactId;
+
+SELECT a.accept, a.regDate, b.name_kor, b.genre, b.imgPath, c.artworkImgPath,
+a.sendingType
+FROM Contact a INNER JOIN Artist b 
 ON b.aid = a.artistId JOIN Artwork c ON a.artistId = c.artistId
-WHERE a.galleryCode = 1 GROUP BY a.contactId;
+WHERE a.galleryCode = 1 AND a.sendingType = 'A' GROUP BY a.contactId;
 
 SELECT a.contactId, a.accept, a.regDate, a.startDate, a.endDate, a.exhibitionTitle,
 a.comment, b.galleryName_eng, b.galleryImgPath FROM Contact a LEFT JOIN Gallery b 
 ON b.code = a.galleryCode WHERE a.artistId = 1 GROUP BY a.contactId;
+
+
+SELECT a.contactId, a.accept, a.regDate, b.galleryName_eng, b.galleryImgPath, 
+a.startDate, a.endDate, a.exhibitionTitle, a.comment, a.galleryCode, 
+a.sendingType FROM Contact a LEFT JOIN Gallery b ON b.code = a.galleryCode 
+WHERE a.artistId = 1 AND a.sendingType = 'A' GROUP BY a.contactId;
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,29 @@
+@charset "UTF-8";
+.container {
+  padding-bottom: 300px;
+}
+
+.sub_title.other {
+  margin-top: 120px;
+}
+
+.product {
+  margin-bottom: 0px;
+}
+
+/* .item:nth-child(5n) .artwork {
+  margin-right: 0px!important;
+} */
+
+.item .artwork_wrap {
+  width: 218px;
+  height: 218px;
+}
+
+.slick_trak.mypage .item {
+  margin-right: 20px
+}
+
+.slick_trak.mypage .item:nth-child(5n) {
+  margin-right: 0px!important;
+}

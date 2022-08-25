@@ -119,6 +119,7 @@ public class GalleryMainController {
 		
 		contactCommand.setArtistId(artist.getAid());
 		contactCommand.setGalleryCode(code);
+		contactCommand.setSendingType("A");
 		System.out.println(contactCommand.getGalleryCode());
 		System.out.println("삽입할 aid"+contactCommand.getArtistId());
 		contactService.contactGallery(contactCommand);

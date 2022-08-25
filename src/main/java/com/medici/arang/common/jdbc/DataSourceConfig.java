@@ -15,6 +15,8 @@ import com.medici.arang.board.artist.service.ArtworkInfoServiceImpl;
 import com.medici.arang.board.artist.service.ArtworkServiceImpl;
 import com.medici.arang.board.contact.dao.ContactDao;
 import com.medici.arang.board.contact.service.ContactServiceImpl;
+import com.medici.arang.board.exhibitions.dao.ExhibitionDao;
+import com.medici.arang.board.exhibitions.service.ExhibitionServiceImpl;
 import com.medici.arang.board.gallery.dao.GalleryDao;
 import com.medici.arang.board.gallery.dao.GalleryInfoDao;
 import com.medici.arang.board.gallery.service.GalleryInfoServiceImpl;
@@ -133,4 +135,15 @@ public class DataSourceConfig {
 	public ContactServiceImpl contactServiceImpl() {
 		return new ContactServiceImpl();
 	}
+	
+	@Bean
+	public ExhibitionDao exhibitionDao() {
+		return new ExhibitionDao(dataSource());
+	}
+	
+	@Bean
+	public ExhibitionServiceImpl exhibitionServiceImpl() {
+		return new ExhibitionServiceImpl();
+	}
+	
 }

@@ -95,6 +95,7 @@ public class ArtworkInfoController {
 		System.out.println(getCon.getGalleryCode());
 		contactCommand.setArtistId(getCon.getArtistId());
 		contactCommand.setGalleryCode(getCon.getGalleryCode());
+		contactCommand.setSendingType("G");
 		System.out.println(contactCommand.getExhibitionTitle());
 		System.out.println(contactCommand.getComment());
 		System.out.println(contactCommand.getStartDate());

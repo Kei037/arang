@@ -18,6 +18,7 @@ public class ContactCommand {
 	private String startDate;
 	private String endDate;
 	private String accept;
+	private String sendingType;
 	private Date regDate;
 	
 	public ContactCommand() {

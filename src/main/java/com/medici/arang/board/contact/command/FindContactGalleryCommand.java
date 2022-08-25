@@ -20,6 +20,7 @@ public class FindContactGalleryCommand {
 	private String exhibitionTitle;
 	private String comment;
 	private long galleryCode;
+	private String sendingType;
 	
 	public FindContactGalleryCommand() {
 		

@@ -21,6 +21,7 @@ public class FindContactCommend {
 	private String imgPath;
 	private String name;
 	private long artistId;
+	private String sendingType;
 	
 	public FindContactCommend() {
 	}

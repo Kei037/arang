@@ -99,6 +99,12 @@ button {
   margin-left: 20px;
   margin-top: 4px;
 }
+.button_wrap {
+  padding-left: 0px;
+}
+.button_wrap .btn_group {
+  float: left;
+}
 
 .button_wrap .btn_group .like img {
   width: 28px;
