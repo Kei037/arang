@@ -74,3 +74,7 @@
 .about_box .about_box2.box3 {
   margin-top: 14px;
 }
+
+.form_inline {
+	display: inline-block;
+}

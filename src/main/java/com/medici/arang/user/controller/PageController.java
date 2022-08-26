@@ -1,5 +1,7 @@
 package com.medici.arang.user.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.medici.arang.board.artist.command.ArtworkCommand;
+import com.medici.arang.board.artist.command.FindArtistInfoCommand;
+import com.medici.arang.board.artist.service.ArtistInfoServiceImpl;
+import com.medici.arang.board.artist.service.ArtworkServiceImpl;
+import com.medici.arang.board.gallery.command.GalleryPageCommand;
+import com.medici.arang.board.gallery.service.GalleryInfoServiceImpl;
 import com.medici.arang.user.service.ArtistServiceImpl;
 import com.medici.arang.user.service.GalleristServiceImpl;
 
@@ -21,8 +29,24 @@ public class PageController {
 	@Autowired
 	GalleristServiceImpl galleristService;
 	
+	@Autowired
+	ArtistInfoServiceImpl artistInfoService;
+	
+	@Autowired
+	ArtworkServiceImpl artworkService;
+	
+	@Autowired
+	GalleryInfoServiceImpl galleryInfoService;
+	
 	@GetMapping("/main")
-	public String mainForm() {
+	public String mainForm(Model model) {
+		List<FindArtistInfoCommand> artistList1 = artistInfoService.findArtist();
+		List<ArtworkCommand> arkworkList = artworkService.allFindArtwork();
+		model.addAttribute("artworkList", arkworkList);
+		model.addAttribute("artistList1", artistList1);
+		
+		List<GalleryPageCommand> galleryList = galleryInfoService.allFindGallery();
+		model.addAttribute("galleryList", galleryList);
 		return "main";				
 	}
 	
@@ -53,7 +77,7 @@ public class PageController {
 		}
 		session.setAttribute("email", email);
 		//성공시 갈곳
-		return "main";
+		return "redirect:main";
 	}
 	
 	@GetMapping("/user/logout")
@@ -61,7 +85,7 @@ public class PageController {
 		HttpSession session = request.getSession(false);
 
 		session.invalidate();		
-		return "main";
+		return "redirect:/main";
 	}
 	
 	@GetMapping("/user/select_user_type")

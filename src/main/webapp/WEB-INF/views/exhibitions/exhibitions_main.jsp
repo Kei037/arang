@@ -17,29 +17,18 @@
 <div id="wrap">
   
 <jsp:include page="/WEB-INF/views/header/header.jsp"/>
-
-<div class="container">
-      <div class="row artist_list">
-      <c:forEach var="exhibitions" items="${exhibitionList}">
-        <div class="col artist_item">
-          <div class="artist_info d-flex flex-row">
-            <div class="artist_avatar">
-              <a href="#">
-              <img src="${exhibitions.artworkImgPath }" alt="1" style="width: 400px; height: 400px;">
-              </a>
-            </div>
-            <div class="artist_text">
-              <div class="second d-flex flex-row">
-                <div>${exhibitions.exhibitionTitle } ${exhibitions.startDate} ~ ${exhibitions.endDate }</div>
-              </div>
-            </div>
+      
+<div class="exhibition">
+      <div class="exhibition_wrapper">
+        <div class="exhibition_view">
+          <div class="img_wrapper">
+            <a href="../html_exhibition/exhibition_focus.html"><img src="${exhibitions.artworkImgPath }"></a>
           </div>
-          </div>
+          <p>${exhibitions.exhibitionTitle }</p>
+          <p class="date">${exhibitions.startDate} ~ ${exhibitions.endDate }</p>
         </div>
-      </c:forEach>
-        
-      </div>
     </div>
 </div>
+
 </body>
 </html>

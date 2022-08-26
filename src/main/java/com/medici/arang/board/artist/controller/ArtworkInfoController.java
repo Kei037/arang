@@ -2,7 +2,6 @@ package com.medici.arang.board.artist.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -24,9 +23,6 @@ import com.medici.arang.board.contact.command.ContactCommand;
 import com.medici.arang.board.contact.service.ContactServiceImpl;
 import com.medici.arang.board.gallery.command.GalleryCommand;
 import com.medici.arang.board.gallery.service.GalleryServiceImpl;
-import com.medici.arang.user.command.GalleristCommend;
-import com.medici.arang.user.service.ArtistServiceImpl;
-import com.medici.arang.user.service.GalleristServiceImpl;
 
 
 @Controller

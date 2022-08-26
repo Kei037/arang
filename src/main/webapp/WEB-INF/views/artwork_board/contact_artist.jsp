@@ -43,7 +43,7 @@
       
         </table>
         <div class="button-group">
-          <button type="submit" class="gbtn normal">회원가입</button>
+          <button type="submit" class="gbtn normal">CONTACT 신청</button>
           <button class="gbtn normal" type="button" onclick="location.href='/arang/main'">취소</button>
         </div>
       </form>

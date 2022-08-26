@@ -167,14 +167,17 @@ public class ArtworkController {
 		
 		System.out.println(artwork.getArtworkImgPath());
 		System.out.println(artworkInfo.getWorkInfoImgPath());
-		artworkService.addArtwork(artwork);
-		ArtworkCommand findArtwork = artworkService.findArtworkByImg(imgName);
+	//	artworkService.addArtwork(artwork);
+	//	ArtworkCommand findArtwork = artworkService.findArtworkByImg(imgName);
 		
-		System.out.println(findArtwork.getWid());
-		artworkInfo.setArtworkId(findArtwork.getWid());
-		artworkInfoService.addArtworkInfo(artworkInfo);
+	//	System.out.println(findArtwork.getWid());
+	//	artworkInfo.setArtworkId(findArtwork.getWid());
+	//	artworkInfoService.addArtworkInfo(artworkInfo);
+		model.addAttribute("artist", artist);
+		model.addAttribute("artwork", artwork);
+		model.addAttribute("artworkInfo", artworkInfo);
 		model.addAttribute("imgName", imgName);
-		return "pages/test";
+		return "pages/success_add_artwork";
 	}
 	
 	
@@ -225,8 +228,8 @@ public class ArtworkController {
 		String imgName = artwork.getArtworkImgPath();
 		System.out.println(imgName);
 		model.addAttribute("imgName", imgName);
-		
-		artwork.setArtistId(1001);
+		model.addAttribute("artwork", artwork);
+
 		artworkService.updateArtwork(artwork);
 		
 		return "pages/update_artwork";

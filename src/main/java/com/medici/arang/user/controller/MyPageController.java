@@ -54,6 +54,12 @@ public class MyPageController {
 		
 		ArtistCommand artist = artistService.getArtistByEmail(email);
 		
+		List<FindContactGalleryCommand> contactList = 
+				contactService.findGalleryByEmail(artist.getAid());
+		
+		request.setAttribute("contactList", contactList);
+		
+		
 		// 주민번호 처리 코드
 		String ssn = artist.getSsn();
 		String testone = ssn.substring(0, 8);
@@ -68,9 +74,52 @@ public class MyPageController {
 		
 		request.setAttribute("artist", artist);
 		
-		return "mypage/mypage_artist";		
+		return "mypage/mypage_artist";
+	}
+	
+	
+	@GetMapping("/mypage/mypage_request_list2")
+	public String requestPageForm2(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String email = (String)session.getAttribute("email");
+		ArtistCommand artist = artistService.getArtistByEmail(email);
+		
+		List<FindContactGalleryCommand> contactList = 
+				contactService.findGalleryByEmail(artist.getAid());
+		
+		request.setAttribute("contactList", contactList);
+		return "mypage/mypage_request_list2";
 		
 	}
+	
+	
+	@PostMapping("/mypage/yesga")
+	public String acceptBtnga(HttpServletRequest request) {
+		String yesBtn = request.getParameter("yesBtn");
+		long id = Long.parseLong(request.getParameter("contactId"));
+		System.out.println(yesBtn);
+		
+		contactService.acceptTpye(yesBtn, id);
+		
+		return "redirect:/mypage/mypage_artist";
+	}
+	
+	@PostMapping("/mypage/nodga")
+	public String notBtnga(HttpServletRequest request) {
+		String noBtn = request.getParameter("noBtn");
+		long id = Long.parseLong(request.getParameter("contactId"));
+		System.out.println(noBtn);
+		
+		contactService.acceptTpye(noBtn, id);
+		
+		return "redirect:/mypage/mypage_artist";
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -335,41 +384,6 @@ public class MyPageController {
 	}
 	
 	
-	@GetMapping("/mypage/mypage_request_list2")
-	public String requestPageForm2(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		String email = (String)session.getAttribute("email");
-		ArtistCommand artist = artistService.getArtistByEmail(email);
-		
-		List<FindContactGalleryCommand> contactList = 
-				contactService.findGalleryByEmail(artist.getAid());
-		
-		request.setAttribute("contactList", contactList);
-		return "mypage/mypage_request_list2";
-		
-	}
 	
-	
-	@PostMapping("/mypage/yesga")
-	public String acceptBtnga(HttpServletRequest request) {
-		String yesBtn = request.getParameter("yesBtn");
-		long id = Long.parseLong(request.getParameter("contactId"));
-		System.out.println(yesBtn);
-		
-		contactService.acceptTpye(yesBtn, id);
-		
-		return "redirect:/mypage/mypage_request_list2";
-	}
-	
-	@PostMapping("/mypage/nodga")
-	public String notBtnga(HttpServletRequest request) {
-		String noBtn = request.getParameter("noBtn");
-		long id = Long.parseLong(request.getParameter("contactId"));
-		System.out.println(noBtn);
-		
-		contactService.acceptTpye(noBtn, id);
-		
-		return "redirect:/mypage/mypage_request_list2";
-	}
 	
 }

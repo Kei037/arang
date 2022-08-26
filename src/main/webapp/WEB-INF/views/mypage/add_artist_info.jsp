@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="/fake_resources/css/default/normalize.css">
 <link rel="stylesheet" href="/fake_resources/css/default/default.css">
 <link rel="stylesheet" href="/fake_resources/css/default/header.css">
+<link rel="stylesheet" href="/fake_resources/css/mypage/artwork_upload.css">
 <link rel="stylesheet" href="/fake_resources/css/mypage/gallery_upload.css">
 <link rel="stylesheet" href="/fake_resources/css/artist/artist_focus.css">
 <script type="text/javascript" src="/fake_resources/js/common.js"></script>

@@ -21,6 +21,10 @@ import com.medici.arang.board.gallery.dao.GalleryDao;
 import com.medici.arang.board.gallery.dao.GalleryInfoDao;
 import com.medici.arang.board.gallery.service.GalleryInfoServiceImpl;
 import com.medici.arang.board.gallery.service.GalleryServiceImpl;
+import com.medici.arang.like.dao.LikeDao;
+import com.medici.arang.like.service.LikeServiceImpl;
+import com.medici.arang.storage.dao.StorageDao;
+import com.medici.arang.storage.service.StorageServiceImpl;
 import com.medici.arang.user.dao.ArtistDao;
 import com.medici.arang.user.dao.GalleristDao;
 import com.medici.arang.user.service.ArtistServiceImpl;
@@ -146,4 +150,25 @@ public class DataSourceConfig {
 		return new ExhibitionServiceImpl();
 	}
 	
+	
+	@Bean
+	public StorageDao storageDao() {
+	   return new StorageDao(dataSource());
+	}
+	   
+	@Bean
+	public StorageServiceImpl storageServiceImpl() {
+	   return new StorageServiceImpl();
+	}
+	
+	
+	@Bean
+	public LikeDao likeDao() {
+	   return new LikeDao(dataSource());
+	}
+	   
+	@Bean
+	public LikeServiceImpl likeService() {
+	   return new LikeServiceImpl();
+	}
 }

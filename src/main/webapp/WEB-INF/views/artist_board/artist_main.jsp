@@ -14,7 +14,6 @@
   <link rel="stylesheet" type="text/css" href="/fake_resources/css/swiper/swiper.css"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
   <script type="text/javascript" src="/fake_resources/js/jquery.js"></script>
-  <script type="text/javascript" src="/fake_resources/js/slidebanner.js"></script>
   
 </head>
 
@@ -28,7 +27,6 @@
           <div class="sub_page_top">
             <h5 class="sub_title">Artist of the month</h5>
             <div class="row">
-            
             
             <c:forEach var="artistL" items="${artistList1}" begin="0" end="1">
             <div class="col_wrap"> 
@@ -61,7 +59,6 @@
   				</c:forEach>
                 </div>
               	</div>
-              
               </div>
   			</c:forEach>
              

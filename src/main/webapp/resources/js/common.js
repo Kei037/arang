@@ -37,6 +37,7 @@ function artwork_middle(imgFile) {
 }
 
 function artwork_small_middle(imgFile) {
+	console.log("test");
   var imgWidth = imgFile.width;
   var imgHeight = imgFile.height;
   console.log(imgWidth);

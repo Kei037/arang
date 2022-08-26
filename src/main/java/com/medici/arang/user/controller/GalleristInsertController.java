@@ -133,6 +133,30 @@ public class GalleristInsertController {
 		
 		System.out.println(galleristCommend.getEmail());
 		System.out.println(galleristCommend.getImgPath());
+		
+		List<String> errorMsgs = new ArrayList<>();
+		if(galleristCommend.getEmail() == null || galleristCommend.getEmail().length() == 0) {
+			errorMsgs.add("이메일은 필수입력 정보입니다.");
+		}if(galleristCommend.getPasswd() == null || galleristCommend.getPasswd().length() == 0) {
+			errorMsgs.add("비밀번호는 필수입력 정보입니다.");
+		}if(galleristCommend.getName() == null || galleristCommend.getName().length() == 0) {
+			errorMsgs.add("이름은 필수입력 정보입니다.");
+		}if(galleristCommend.getSsn() == null || galleristCommend.getSsn().length() == 0) {
+			errorMsgs.add("주민등록번호는 필수입력 정보입니다.");
+		}if(galleristCommend.getPhone() == null || galleristCommend.getPhone().length() == 0) {
+			errorMsgs.add("전화번호는 필수입력 정보입니다.");	
+		}if(galleristCommend.getPhone() == null || galleristCommend.getPhone().length() == 0) {
+			errorMsgs.add("전화번호는 필수입력 정보입니다.");	
+		}if(galleristCommend.getPhone() == null || galleristCommend.getPhone().length() == 0) {
+			errorMsgs.add("전화번호는 필수입력 정보입니다.");	
+		if(errorMsgs.size() > 0) {
+			model.addAttribute("msg", errorMsgs);
+			model.addAttribute("url", "add_artist");
+			return "alert";
+			}
+		}	
+		
+		
 		galleristServiceImpl.insertGallerist(galleristCommend);
 		
 //		RequestDispatcher rd = request.getRequestDispatcher("add_success");

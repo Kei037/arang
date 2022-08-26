@@ -120,41 +120,17 @@ const remove = (obj) => {
               <p class="born">1984</p>
               <p class="txt">${artist.description}</p>
             </div>
-            <!-- <div class="product">
-              <h4 class="sub_title">This artist's work</h4>
-              <div id="product2" class="item_list1">
-                <div class="slick_list">
-                  <div class="slick_trak">
-                    <div class="item">
-                        <div class="artwork_wrap">
-                          <a href="#"><img class="artwork" src="../resources/img/윤라희/윤라희-오브제2_s01_fub8Yrj.jpg" alt="오브제2"></a>
-                        </div>
-                      <figcaption>
-                        <h5>BLOCK (Falling Bluse Brown)</h5>
-                        <p>Limited Unique</p>
-                      </figcaption>
-                    </div>
-                    <div class="item">
-                        <div class="artwork_wrap">
-                          <a href="#"><img class="artwork" src="../resources/img/윤라희/윤라희-오브제3_s01_gpLUosS.jpg" alt="오브제3"></a>
-                        </div>
-                      <figcaption>
-                        <h5>BLOCK (Falling Bluse Brown)</h5>
-                        <p>Limited Unique</p>
-                      </figcaption>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
           </section>
-        </div>
-      </div>
-
     </div>
       <div class="btn_group2">
         <button class="btn2" type="submit">완료</button>
+      <a href="/arang/mypage/mypage_artist">
+        <button class="btn2" type="button">취소</button>
+      </a>
       </div>
+        </div>
+      </div>
+
 
 </form:form>
 </div>

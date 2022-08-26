@@ -26,7 +26,7 @@
             <li><a href="/arang/artist_board/artist_main">Artists</a></li>
             <li><a href="/arang/gallery/gallery">Gallerys</a></li>
             <li><a href="/arang/exhibitions/exhibitions_main">Exhibitions</a></li>
-            <li><a href="./storage/storage.html">Storage</a></li>
+            <li><a href="/arang/storage_page/storage_main">Storage</a></li>
             <li><a href="./notice/notice.html">Notice</a></li>
           </ul>
           <ul class="side_menu">

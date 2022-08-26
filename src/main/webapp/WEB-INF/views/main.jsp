@@ -11,8 +11,8 @@
 <link rel="stylesheet" href="/fake_resources/css/default/default.css">
 <link rel="stylesheet" href="/fake_resources/css/artist/artist.css">
 <link rel="stylesheet" href="/fake_resources/css/main/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
 <script type="text/javascript" src="/fake_resources/js/jquery.js"></script>
-<script type="text/javascript" src="/fake_resources/js/slidebanner.js"></script>
 <script type="text/javascript" src="/fake_resources/js/common.js"></script>
 </head>
 <body>
@@ -25,29 +25,18 @@
     </div>
     <div id="slidebanner">
       <div id="carousel-wrap">
-        <p id="carousel-prev" class="button"><img src="/fake_resources/img/artworks/btn_prev.png" alt="prev"></p>
-        <p id="carousel-next" class="button"><img src="/fake_resources/img/artworks/btn_next.png" alt="next"></p>
         <div id="carousel">
           <!--화면에 보여지는 영역-->
-          <div id="carousel-inner">
+          <div  class="swiper mySwiper2">
             <!-- li*4>a[href="#"]>img[src=./img/photo$_thum.jpg] -->
-            <ul class="column">
-              <li><a href="#"><img src="/fake_resources/img/artworks/1.png" alt=""></a></li>
-              <li><a href="#"><img src="/fake_resources/img/artworks/2.png" alt=""></a></li>
-              <li><a href="#"><img src="/fake_resources/img/artworks/3.png" alt=""></a></li>
-              <li><a href="#"><img src="/fake_resources/img/artworks/4.png" alt=""></a></li>
-              <li><a href="#"><img src="/fake_resources/img/artworks/5.png" alt=""></a></li>
-              <li><a href="#"><img src="/fake_resources/img/artworks/6.png" alt=""></a></li>
-              <li><a href="#"><img src="/fake_resources/img/artworks/7.png" alt=""></a></li>
-              <li><a href="#"><img src="/fake_resources/img/artworks/1.png" alt=""></a></li>
-              <li><a href="#"><img src="/fake_resources/img/artworks/2.png" alt=""></a></li>
-              <li><a href="#"><img src="/fake_resources/img/artworks/3.png" alt=""></a></li>
-              <li><a href="#"><img src="/fake_resources/img/artworks/4.png" alt=""></a></li>
-              <li><a href="#"><img src="/fake_resources/img/artworks/5.png" alt=""></a></li>
-              <li><a href="#"><img src="/fake_resources/img/artworks/6.png" alt=""></a></li>
-              <li><a href="#"><img src="/fake_resources/img/artworks/7.png" alt=""></a></li>
-              <!-- <li><a href="#"><img src="./img/photo15_thum.jpg" alt=""></a></li>
-              <li><a href="#"><img src="./img/photo16_thum.jpg" alt=""></a></li> -->
+            <ul class=" swiper-wrapper">
+              <c:forEach var="artworkL" items="${artworkList}">
+                  <li class="swiper-slide">
+                    <a href="/arang/artwork_board/artwork_info?id=${artistL.aid}&wid=${artworkL.wid}">
+                    	<img src="${artworkL.artworkImgPath}" style="width: 200px; height: 200px">
+                    </a>
+                  </li>
+  				</c:forEach>
             </ul>
           </div>
         </div>
@@ -63,68 +52,41 @@
               <p>Artist of the month! Look at their artworks.</P>
             </div>
             <div class="row">
-              <div class="col_wrap">
-                <div class="col col-1">
-                  <div class="artist_info month_artist d-flex flex-row">
-                    <div class="artist_avatar">
-                      <a href="./artist_focus.html"><img src="/fake_resources/img/윤라희/윤라희.jpg" alt="윤라희jpg"></a>
-                    </div>
-                    <div class="artist_text">
-                      <div class="first">
-                        <span>윤라희</span>
-                        <span class="futuraM">Yoon, Ra Hee</span>
-                        <span class="genre_tag">Sculptor</span>
-                      </div>
-                      <div class="second d-flex flex-row">
-                        <div>날 것 그대로의 본질에 우연적 효과를 불어넣다.</div>
-                        <button class="like"><img src="/fake_resources/img/icon/like.png" alt="like"></button>
-                      </div>
-                    </div>
+            
+            <c:forEach var="artistL" items="${artistList1}" begin="0" end="1">
+            <div class="col_wrap"> 
+  			<div class="swiper mySwiper col col-1">
+                <div class="artist_info d-flex flex-row">
+                  <div class="artist_avatar">
+                    <a href="/arang/artist_board/artist_depth?id=${artistL.aid}"><img src="${artistL.imgPath}" ></a>
                   </div>
-                  <div class="row artwork_wrap">
-                    <div class="col">
-                      <a href="../html_artwork/artwork_focus.html"><img class="artwork" src="/fake_resources/img/윤라희/윤라희-오브제1_s02.jpg" alt="오브제1" onload="JavaScript:artwork_small(this)"></a>
+                  <div class="artist_text">
+                    <div class="first">
+                      <span>${artistL.name_kor}</span>
+                      <span class="futuraM">${artistL.name_eng}</span>
+                      <span class="genre_tag">${artistL.genre}</span>
                     </div>
-                    <div class="col">
-                      <a href="#"><img class="artwork" src="/fake_resources/img/윤라희/윤라희-오브제2_s01_fub8Yrj.jpg" alt="오브제2" onload="JavaScript:artwork_small(this)"></a>
-                    </div>
-                    <div class="col">
-                      <a href="#"><img class="artwork" src="/fake_resources/img/윤라희/윤라희-오브제3_s01_gpLUosS.jpg" alt="오브제3" onload="JavaScript:artwork_small(this)"></a>
+                    <div class="second d-flex flex-row">
+                      <div>${artistL.title}</div>
+                      <button class="like"><img src="/fake_resources/img/icon/like.png" alt="like"></button>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col_wrap">
-                <div class="col col-2">
-                  <div class="artist_info month_artist d-flex flex-row">
-                    <div class="artist_avatar">
-                      <a href="#"><img src="/fake_resources/img/김효원/김효원.jpg" alt="김효원jpg"></a>
-                    </div>
-                    <div class="artist_text">
-                      <div class="first">
-                        <span>김효원</span>
-                        <span class="futuraM">Kim, Hyo Won </span>
-                        <span class="genre_tag">Painter</span>
-                      </div>
-                      <div class="second d-flex flex-row">
-                        <div>도시정원</div>
-                        <button class="like"><img src="/fake_resources/img/icon/like.png" alt="like"></button>
-                      </div>
-                    </div>
+                <div class="row artwork_wrap swiper-wrapper">
+  				<c:forEach var="artworkL" items="${artworkList}">
+  				<c:if test="${artistL.aid == artworkL.artistId}">
+                  <div class="col swiper-slide">
+                    <a href="/arang/artwork_board/artwork_info?id=${artistL.aid}&wid=${artworkL.wid}">
+                    	<img class="artwork small" src="${artworkL.artworkImgPath}">
+                    </a>
                   </div>
-                  <div class="row artwork_wrap">
-                    <div class="col">
-                      <a href="#"><img class="artwork" src="/fake_resources/img/김효원/painting_1.jpg" alt="painting_1" onload="JavaScript:artwork_small(this)"></a>
-                    </div>
-                    <div class="col">
-                      <a href="#"><img class="artwork" src="/fake_resources/img/김효원/painting_2.jpg" alt="painting_2" onload="JavaScript:artwork_small(this)"></a>
-                    </div>
-                    <div class="col">
-                      <a href="#"><img class="artwork" src="/fake_resources/img/김효원/painting_3.jpg" alt="painting_3" onload="JavaScript:artwork_small(this)"></a>
-                    </div>
-                  </div>
+  				</c:if>
+  				</c:forEach>
                 </div>
+              	</div>
               </div>
+  			</c:forEach>
+              
             </div>
           </div>
         </div>
@@ -174,73 +136,35 @@
           <div class="sub_page_context">
             <div class="grid_wrapper">
               <div class="row artist_list">
+              <c:forEach var="gallery" items="${galleryList}" begin="0" end="2">
                 <div class="col artist_item">
                   <div class="artist_info d-flex flex-row">
                     <div class="artist_avatar">
-                      <a href="../html_gallery/gallery_focus.html"><img src="/fake_resources/img/gallerys/g1.png" alt="g1"></a>
+                      <a href="/arang/gallery/gallery_focus?code=${gallery.code}">
+                      	<img src="${gallery.galleryImgPath}">
+                      </a>
                     </div>
                     <div class="artist_text">
                       <div class="first">
-                        <span>ARARIO Gallery</span>
+                        <span>${gallery.galleryName_eng}</span>
                       </div>
                       <div class="second d-flex flex-row">
-                        <div>Jongno-gu,Seoul,Korea</div>
+                        <div>${gallery.address}</div>
                       </div>
                     </div>
                   </div>
                   <div class="banner_wrap">
                     <a href="#">
                       <div class="artwork_banner">
-                        <a href="../html_gallery/gallery_focus.html"><img src="/fake_resources/img/gallerys/2.jpg" alt="2"></a>
+                        <a href="/arang/gallery/gallery_focus?code=${gallery.code}">
+                        	<img src="${gallery.infoImgPath}" alt="2">
+                        </a>
                       </div>
                     </a>
                   </div>
                 </div>
-                <div class="col artist_item">
-                  <div class="artist_info d-flex flex-row">
-                    <div class="artist_avatar">
-                      <a href="#"><img src="/fake_resources/img/gallerys/jeju2.jpg"></a>
-                    </div>
-                    <div class="artist_text">
-                      <div class="first">
-                        <span>Jeju museum of contemporary art</span>
-                      </div>
-                      <div class="second d-flex flex-row">
-                        <div>Hangyeong-myeon, Jeju-do</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="banner_wrap">
-                    <a href="#">
-                      <div class="artwork_banner">
-                        <img src="/fake_resources/img/gallerys/jeju.jpg" alt="g3">
-                      </div>
-                    </a>
-                  </div>
+              </c:forEach>
                 </div>
-                <div class="col artist_item">
-                  <div class="artist_info d-flex flex-row">
-                    <div class="artist_avatar">
-                      <a href="#"><img src="/fake_resources/img/gallerys/g2.png" alt="g2"></a>
-                    </div>
-                    <div class="artist_text">
-                      <div class="first">
-                        <span>Baudoin Lebon</span>
-                      </div>
-                      <div class="second d-flex flex-row">
-                        <div>Jongno-gu,Seoul,Korea</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="banner_wrap">
-                    <a href="#">
-                      <div class="artwork_banner">
-                        <img src="/fake_resources/img/gallerys/g2.png" alt="g2">
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -250,6 +174,43 @@
     
 
   </div>
-  </div>
+  <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+    	autoplay: {
+    		  delay: 5000,
+    		  disableOnInteraction: false,
+    		},
+        slidesPerView: 3,
+        spaceBetween: 0,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+      
+      var swiper = new Swiper(".mySwiper2", {
+      	autoplay: {
+      		  delay: 5000,
+      		  disableOnInteraction: false,
+      		},
+          slidesPerView: 6,
+          spaceBetween: 1,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+        });
+      
+      
+      
+    </script>
 </body>
 </html>

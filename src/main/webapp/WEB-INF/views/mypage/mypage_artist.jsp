@@ -118,7 +118,9 @@
       </div>
       <div class="btn2_group">
         <a href="/arang/mypage/mypage_artist_modify"><button class="btn2 first">내 정보 수정</button></a>
-        <a href="/arang/mypage/artist_checkpage"><button class="btn2 first">내 페이지 관리</button></a>
+      	<a href="/arang/mypage/add_artist_info"><button class="btn2 first">내 페이지 등록</button></a>
+      	<a href="#"><button class="btn2 first">내 페이지 수정</button></a>
+      	<a href="/arang/mypage/mypage_request_list2"><button class="btn2 first">신청 아티스트 목록</button></a>
       </div>
       <h4 class="sub_title other">MY ArtWorks</h4>
       <div class="product">
@@ -157,13 +159,12 @@
         </div>
       </div>
       <div class="btn2_group">
-        <a href="./artwork_upload.html"><button class="btn2">작품 등록</button></a>
+        <a href="/arang/pages/add_artwork"><button class="btn2 first">작품 등록</button></a>
         <!-- <a href="../html_mypage/artwork_upload.html"><button class="btn2">작품 수정</button></a> -->
         <a href="./artwork_upload.html"><button class="btn2">작품 삭제</button></a>
       </div>
       <!-- 컨택팅 >>  -->
       <div class="container my_gallery2">
-        <!-- <h4 class="sub_title other">Contacting</h4> -->
         <div class="board_wrapper">
           <h3 class="sub_title contacting">Contacting</h3>
           <img class="arrow" src="../../resources/img/icon/right.png">
@@ -176,15 +177,11 @@
                   <a href="#"><button class="board_btn" type="button">검색</button></a>
                 </div>
               </fieldset>
-            </form>
-            <!-- <div class="sequence">
-            <p>최신순</p>
-          </div> -->
         </div>
         <table class="storage_list mypage first">
           <tr>
             <td>2022-08-25</td>
-            <td>오후 01:24</td>
+            <td>오후 04:32</td>
             <td>
               <div class="artist_avatar">
                 <a href="../../html_artist/artist_focus.html"><img class="contacting_img" src="../../resources/img/gallerys/4.jpg"></a>
@@ -222,12 +219,13 @@
               </table>
             </div>
           </div>
+          
       <!-- 컨택팅 <<  -->
       <div class="container my_gallery2">
             <!-- <h4 class="sub_title other">Contacting</h4> -->
             <div class="board_wrapper">
               <h3 class="sub_title contacting">Contacting</h3>
-              <img class="arrow" src="../../resources/img/icon/left.png">
+              <img class="arrow" src="/fake_resources/img/icon/left.png">
               <div>
                 <form>
                   <fieldset>
@@ -238,51 +236,33 @@
                     </div>
                   </fieldset>
                 </form>
-                <!-- <div class="sequence">
-                <p>최신순</p>
-              </div> -->
             </div>
-            <table class="storage_list mypage">
+            <table class="storage_list2 mypage2 contact_list">
+            <c:forEach var="contact" items="${contactList}">
               <tr>
-                <td>2022-08-25</td>
-                <td>오후 01:24</td>
+                <td>${contact.regDate}</td>
                 <td>
                   <div class="artist_avatar">
-                    <a href="../../html_artist/artist_focus.html"><img class="contacting_img" src="../../resources/img/gallerys/2.jpg"></a>
+                    <a href="/arang/gallery/gallery_focus?code=${contact.galleryCode}">
+                    <img class="contacting_img" src="${contact.galleryImgPath}" style="width: 40px; height: 40px; margin-top:0;">
+                    </a>
                   </div>
                 </td>
-                <td><a class="name_hover" href="../../html_artist/artist_focus.html">ARARIO Gallery</a></td>
-                <td>Jongno-gu,Seoul</td>
-                <td><button type="button">수락</button></td>
-                <td><button type="button">거절</button></td>
+                <td><a class="name_hover" href="/arang/gallery/gallery_focus?code=${contact.galleryCode}">
+                ${contact.galleryName_eng}</a></td>
+                <td>${contact.startDate} ~ ${contact.endDate}</td>
+                <td>${contact.exhibitionTitle }</td>
+                <td><button class="board_btn" type="button">수락</button></td>
+                <td><button class="board_btn" type="button">거절</button></td>
               </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+              </c:forEach>
             </table>
           </div>
         </div>
 
       <div class="btn2_group">
-      	<a href="/arang/mypage/mypage_request_list2"><button class="btn2 first">신청한 아티스트 목록</button></a>
-        <a href="/arang/mypage/mypage_artist_modify"><button class="btn2 first">내 정보 수정</button></a>
-      	<a href="/arang/mypage/add_artist_info"><button class="btn2 first">내 아티스트정보 입력하기</button></a>
-        <a href="/arang/pages/add_artwork"><button class="btn2 first">작품 등록</button></a>
+      	
+        
       </div>
     </div>
 </div>

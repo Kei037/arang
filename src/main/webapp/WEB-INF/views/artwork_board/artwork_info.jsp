@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="/fake_resources/css/swiper/swiper.css"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
 <script type="text/javascript" src="/fake_resources/js/jquery.js"></script>
-<script type="text/javascript" src="/fake_resources/js/slidebanner.js"></script>
+<script type="text/javascript" src="/fake_resources/js/common.js"></script>
 </head>
 <body>
 <div id="wrap">
@@ -28,7 +28,7 @@
               <div class="artwork_view">
                 <div class="img_wrapper">
                   <div class="paintings">
-                    <img class="artwork" src="${artworkInfo.artworkImgPath}" alt="오브제1">
+                    <img class="artwork" src="${artworkInfo.artworkImgPath}" onload="JavaScript:artwork_large(this)">
                   </div>
                 </div>
               </div>
@@ -107,7 +107,7 @@
                       <div class="item swiper-slide">
                         <div class="artwork_wrap">
                           <a href="/arang/artwork_board/artwork_info?id=${artwork.artistId}&wid=${artwork.wid}">
-                            <img class="artwork" src="${artwork.artworkImgPath}"></a>
+                            <img class="artwork" src="${artwork.artworkImgPath}" onload="JavaScript:artwork_middle(this)"></a>
                         </div>
                       <figcaption>
                           <h5>${artwork.name}</h5>

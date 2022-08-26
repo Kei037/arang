@@ -44,4 +44,12 @@ select {
 }
 .date_td p:nth-child(2) {
   top: 52px;
+} 
+
+.input_small {
+	width: 30px!important;
+}
+
+.color_white {
+	color: white;
 }

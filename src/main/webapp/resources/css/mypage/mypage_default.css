@@ -118,7 +118,7 @@
   width: 0px;
 }
 
-.storage_list.mypage .artist_avatar .contacting_img {
+.storage_list.mypage .contacting_img {
   margin: 5px 0px;
   width: 40px;
   height: 40px;
@@ -134,8 +134,12 @@
 }
 
 
-tr td{
-  height: 55px;
+.contact_list tr td{
+  height: 53px;
+}
+
+.height_zero {
+	height: 0px;
 }
 /* contacting >> */
 /* date */
@@ -163,11 +167,12 @@ tr td{
 /* check */
 .storage_list.mypage.first tr td:nth-child(6) {
   width: 5%;
-  padding-right: 40px;
+  
 }
 
 .storage_list.mypage.first tr td:nth-child(6) p {
   float: right;
+  padding-right: 40px;
 }
 
 .YES p{
@@ -177,33 +182,33 @@ tr td{
 
 /* contacting << */
 /* date */
-.storage_list.mypage tr td:nth-child(1) {
-  width: 3%;
+.storage_list2.mypage2 tr td:nth-child(1) {
+  width: 5%;
   padding-left: 40px;
 }
-/* time */
-.storage_list.mypage tr td:nth-child(2) {
-  width: 5%;
-}
 /* img */
-.storage_list.mypage tr td:nth-child(3) {
-  width: 1.7%;
+.storage_list2.mypage2 tr td:nth-child(2) {
+  width: 0%;
 }
 /* name */
-.storage_list.mypage tr td:nth-child(4) {
+.storage_list2.mypage2 tr td:nth-child(3) {
+  width: 5%;
+}
+/* exhition_date */
+.storage_list2.mypage2 tr td:nth-child(4) {
   width: 8%;
 }
-/* genre */
-.storage_list.mypage tr td:nth-child(5) {
+/* exhibition_name */
+.storage_list2.mypage2 tr td:nth-child(5) {
   width: 16%;
 }
 /* check */
-.storage_list.mypage tr td:nth-child(6) {
-  width: 2%;
+.storage_list2.mypage2 tr td:nth-child(6) {
+  width: 5%;
 }
 /* check */
-.storage_list.mypage tr td:nth-child(7) {
-  width: 2%;
+.storage_list2.mypage2 tr td:nth-child(7) {
+  width: 5%;
   padding-right: 40px;
 }
 

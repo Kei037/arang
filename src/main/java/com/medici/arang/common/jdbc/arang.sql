@@ -17,7 +17,7 @@ CREATE TABLE Artist(
 SELECT * FROM Artist;
 
 
-UPDATE Artist SET passwd = 1234, name_kor='세가' WHERE aid = 1;
+UPDATE Artist SET genre = 'painter', name_eng='Kim sun' WHERE aid = 3;
 
 !DROP TABLE Artwork;
 CREATE TABLE Artwork (
@@ -74,6 +74,7 @@ CREATE TABLE ArtistInfo (
 SELECT * FROM ArtistInfo;
 
 !DROP TABLE ArtistInfo;
+!DELETE FROM ArtistInfo WHERE bid=2005;
 
 SELECT a.name_kor, a.ssn, a.imgPath, b.title, b.description, b.infoImgPath 
 FROM ArtistInfo b LEFT JOIN Artist a ON a.aid = b.artistId WHERE a.aid = 1;
@@ -93,7 +94,7 @@ CREATE TABLE ArtworkInfo (
 SELECT * FROM ArtworkInfo;
 
 !DROP TABLE ArtworkInfo;
-
+!DELETE FROM ArtworkInfo WHERE cid = 3012;
 
 
 INSERT INTO Artist (email, passwd) VALUES ('test@naver.com', '1234');
@@ -221,6 +222,27 @@ WHERE a.artistId = 1 AND a.sendingType = 'A' GROUP BY a.contactId;
 
 
 
+CREATE TABLE Storage (
+   sid					BIGINT			PRIMARY KEY AUTO_INCREMENT,
+   artistId             VARCHAR(40)     DEFAULT NULL,
+   myAddress            VARCHAR(70)     DEFAULT NULL,
+   storagePeriodStart  	VARCHAR(20)     DEFAULT NULL,
+   storagePeriodEnd     VARCHAR(20)     DEFAULT NULL,
+   artworkType          VARCHAR(20)     DEFAULT NULL,
+   artworkSize          VARCHAR(30)     DEFAULT NULL,
+   artworkWeight        VARCHAR(30)     DEFAULT NULL,
+   locationArea         VARCHAR(70)     DEFAULT NULL,
+   charge               INT             DEFAULT NULL,
+   transport            BOOLEAN         DEFAULT 0,
+   approvalStatus       VARCHAR(20)     DEFAULT NULL,
+   regDate              TIMESTAMP       DEFAULT CURRENT_TIMESTAMP
+)AUTO_INCREMENT = 1;
 
 
-
+CREATE TABLE LikeTable(
+   lid         		BIGINT           PRIMARY KEY AUTO_INCREMENT,     
+   userId    		VARCHAR(50)      DEFAULT NULL,
+   targetValue  	VARCHAR(50)      DEFAULT NULL,
+   likeNum     		INT(10)         DEFAULT 0,
+   regDate      	TIMESTAMP      DEFAULT CURRENT_TIMESTAMP   
+)AUTO_INCREMENT = 1;

@@ -130,13 +130,36 @@ public class AddArtistController {
 		
 		System.out.println(artistCommand.getCareer());
 		
+		List<String> errorMsgs = new ArrayList<>();
+		if(artistCommand.getEmail() == null || artistCommand.getEmail().length() == 0) {
+			errorMsgs.add("이메일은 필수입력 정보입니다.");
+		}if(artistCommand.getPasswd() == null || artistCommand.getPasswd().length() == 0) {
+			errorMsgs.add("비밀번호는 필수입력 정보입니다.");
+		}if(artistCommand.getName_kor() == null || artistCommand.getName_kor().length() == 0) {
+			errorMsgs.add("이름은 필수입력 정보입니다.");
+		}if(artistCommand.getName_eng() == null || artistCommand.getName_eng().length() == 0) {
+			errorMsgs.add("이름은 필수입력 정보입니다.");
+		}if(artistCommand.getSsn() == null || artistCommand.getSsn().length() == 0) {
+			errorMsgs.add("주민등록번호는 필수입력 정보입니다.");
+		}if(artistCommand.getPhone() == null || artistCommand.getPhone().length() == 0) {
+			errorMsgs.add("전화번호는 필수입력 정보입니다.");	
+		}if(artistCommand.getGenre() == null || artistCommand.getGenre().length() == 0) {
+			errorMsgs.add("1개 이상의 장르를 선택해주세요.");
+		if(errorMsgs.size() > 0) {
+			model.addAttribute("msg", errorMsgs);
+			model.addAttribute("url", "add_artist");
+			return "alert";
+			}
+		}
+		
+		
 		model.addAttribute("imgName", imgName);
 		artistService.addArtist(artistCommand);
 		
 		//세션 담기
 //		session.setAttribute("email", artistCommand.getEmail());
 		
-		return "login";
+		return "/arang/login";
 	}
 	
 	//회원가입폼 이메일 데이터 제공
