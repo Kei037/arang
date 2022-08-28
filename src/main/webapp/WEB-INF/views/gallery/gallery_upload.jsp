@@ -120,23 +120,6 @@ const remove = (obj) => {
                 </div>
               </div>
             </div>
-            <div class="side_block">
-              <div class="a_list">
-                <h3>추천작가</h3>
-                <ul>
-                  <li>
-                    <a href="#">신수희</a>
-                  </li>
-                  <li>
-                    <a href="#">최선호</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="a_banner">
-                <h3>이달의 전시</h3>
-                <a href="#"><img class="exhibition_banner" src="/fake_resources/img/김선배너.jpg" alt="exhibition_banner"></a>
-              </div>
-            </div>
           </div>
         </div>
       </div>

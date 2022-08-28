@@ -19,4 +19,5 @@ public class FindContactArtistCommand {
 	private String name_eng;
 	private String genre;
 	private long contactId;
+	private long artistId;
 }

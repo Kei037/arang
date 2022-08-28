@@ -18,4 +18,5 @@ public class FindContactingArtistCommand {
 	private String endDate;
 	private String sendingType;
 	private String comment;
+	private long artistId;
 }

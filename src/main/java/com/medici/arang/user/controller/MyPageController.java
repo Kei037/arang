@@ -72,9 +72,9 @@ public class MyPageController {
 			errorMsgs.add("로그인 상태가 아닙니다.");
 		}if(errorMsgs.size() > 0) {
 			model.addAttribute("msg", errorMsgs);
-			model.addAttribute("url", "login");
+			model.addAttribute("url", "/arang/login");
 			return "alert";
-			}
+		}
 		
 		//작가 영역
 		List<ArtistPageCommand> artistList = likeService.findArtistJoinLike(email);
@@ -101,6 +101,14 @@ public class MyPageController {
 	public String artistMypageForm(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		String email = (String)session.getAttribute("email");
+		List<String> errorMsgs = new ArrayList<>();
+		if(email == null) {
+			errorMsgs.add("로그인 상태가 아닙니다.");
+		}if(errorMsgs.size() > 0) {
+			model.addAttribute("msg", errorMsgs);
+			model.addAttribute("url", "/arang/login");
+			return "alert";
+		}
 		
 		ArtistCommand artist = artistService.getArtistByEmail(email);
 		request.setAttribute("artist", artist);
@@ -244,11 +252,20 @@ public class MyPageController {
 	
 	
 	@GetMapping("/mypage/mypage_gallerist")
-	public String galleristMypageForm(HttpServletRequest request) {
+	public String galleristMypageForm(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		String email = (String)session.getAttribute("email");		
 		GalleristCommend gallerist = galleristService.findMyGallerist(email);
 		request.setAttribute("gallerist", gallerist);
+		List<String> errorMsgs = new ArrayList<>();
+		if(email == null) {
+			errorMsgs.add("로그인 상태가 아닙니다.");
+		}if(errorMsgs.size() > 0) {
+			model.addAttribute("msg", errorMsgs);
+			model.addAttribute("url", "/arang/login");
+			return "alert";
+		}
+		
 		
 		// 주민번호 처리코드
 		String ssn = gallerist.getSsn();

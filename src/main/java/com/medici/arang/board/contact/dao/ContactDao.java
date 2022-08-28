@@ -158,8 +158,8 @@ public class ContactDao {
 	
 	public List<FindContactArtistCommand> findArtistkList(String email) {
 		String sql = "SELECT a.accept, a.regDate, d.imgPath, d.name_kor, "
-				+ "b.galleryImgPath, b.galleryName_eng, "
-				+ "d.name_eng, d.genre, a.contactId FROM Contact a LEFT JOIN Gallery b "
+				+ "b.galleryImgPath, b.galleryName_eng, d.name_eng, d.genre, "
+				+ "a.contactId, a.artistId FROM Contact a LEFT JOIN Gallery b "
 				+ "ON b.code = a.galleryCode JOIN Gallerist c "
 				+ "ON b.galleristEmail = c.email JOIN Artist d "
 				+ "ON d.aid = a.artistId WHERE c.email = ? AND a.sendingType = ?";
@@ -172,7 +172,7 @@ public class ContactDao {
 						rs.getString("imgPath"), rs.getString("name_kor"), 
 						rs.getString("galleryImgPath"), rs.getString("galleryName_eng"),
 						rs.getString("name_eng"), rs.getString("genre"), 
-						rs.getLong("contactId"));
+						rs.getLong("contactId"), rs.getLong("artistId"));
 				return artist;
 			}
 		}, email, "A");
@@ -181,7 +181,7 @@ public class ContactDao {
 	public List<FindContactingArtistCommand> findArtistList(String email) {
 		String sql = "SELECT a.accept, a.regDate, d.imgPath, d.name_kor, "
 				+ "d.name_eng, a.exhibitionTitle, a.startDate, a.endDate,  "
-				+ "a.sendingType, a.comment  "
+				+ "a.sendingType, a.comment, a.artistId  "
 				+ "FROM Contact a LEFT JOIN Gallery b "
 				+ "ON b.code = a.galleryCode JOIN Gallerist c "
 				+ "ON b.galleristEmail = c.email JOIN Artist d "
@@ -194,7 +194,8 @@ public class ContactDao {
 						rs.getString("imgPath"), rs.getString("name_kor"), 
 						rs.getString("name_eng"), rs.getString("exhibitionTitle"),
 						rs.getString("startDate"), rs.getString("endDate"), 
-						rs.getString("sendingType"), rs.getString("comment"));
+						rs.getString("sendingType"), rs.getString("comment"), 
+						rs.getLong("artistId"));
 				return artist;
 			}
 		}, email, "G");

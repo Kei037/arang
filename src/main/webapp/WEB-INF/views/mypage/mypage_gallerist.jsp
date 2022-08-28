@@ -146,10 +146,6 @@
               </div>
             </div>
           </div>
-          <div class="btn2_group">
-            <a href="./artist_info_modify.html"><button class="btn2">내 정보 수정</button></a>
-            <a href="./artist_checkpage.html"><button class="btn2">내 페이지 관리</button></a>
-          </div>
         </div>
       </form>
       <!-- 컨택팅 >>  -->
@@ -175,12 +171,12 @@
             <td>${contacting.regDate}</td>
             <td>
               <div class="artist_avatar">
-                <a href="../../html_artist/artist_focus.html">
+                <a href="/arang/artist_board/artist_depth?id=${contacting.artistId}">
                 <img class="contacting_img" src="${contacting.imgPath}">
                 </a>
               </div>
             </td>
-            <td><a class="name_hover" href="../../html_artist/artist_focus.html">${contacting.name_kor} ${contacting.name_eng}</a></td>
+            <td><a class="name_hover" href="/arang/artist_board/artist_depth?id=${contacting.artistId}">${contacting.name_kor} ${contacting.name_eng}</a></td>
             <td>${contacting.startDate}~${contacting.endDate}</td>
             <td>${contacting.exhibitionTitle}</td>
             <td class="YES">
@@ -224,12 +220,13 @@
                 <td>${artist.galleryName_eng}</td>
                 <td>
                   <div class="artist_avatar">
-                    <a href="../../html_artist/artist_focus.html">
+                    <a href="/arang/artist_board/artist_depth?id=${artist.artistId}">
                     <img class="contacting_img" src="${artist.imgPath}">
                     </a>
                   </div>
                 </td>
-                <td><a class="name_hover" href="../../html_artist/artist_focus.html">${artist.name_kor} ${name_eng }</a></td>
+                <td><a class="name_hover" href="/arang/artist_board/artist_depth?id=${artist.artistId}">
+                ${artist.name_kor} ${name_eng}</a></td>
                 <td><span class="genre_tag">${artist.genre}</span></td>
                 <td>
                 <form action="yesda" method="post">
