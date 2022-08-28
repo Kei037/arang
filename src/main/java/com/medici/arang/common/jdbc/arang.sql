@@ -1,4 +1,4 @@
-!DROP TABLE Artist;
+	!DROP TABLE Artist;
 !DELETE FROM Artist WHERE aid = 7;
 
 CREATE TABLE Artist(
@@ -40,6 +40,7 @@ SELECT * FROM Artwork GROUP BY artistId;
 SELECT * FROM Artwork;
 
 
+
 !DELETE FROM Artwork WHERE wid = 1003;
 
 SELECT a.name, a.genre, a.technique, a.size, a.publicationDate, a.description, 
@@ -47,7 +48,7 @@ a.artworkImgPath, b.mainTitle, b.subTitle, b.workInfoImgPath
 FROM Artwork a INNER JOIN ArtworkInfo b ON a.wid = b.artworkId 
 WHERE a.wid = 1001;
 
-UPDATE Artwork SET genre = 'digtalArt' WHERE wid = 1006;
+UPDATE Artwork SET genre = 'Paint' WHERE genre = 'paint';
 
 SELECT DISTINCT FROM Artwork WHERE artistId = 1;
 

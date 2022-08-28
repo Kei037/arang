@@ -62,16 +62,16 @@
       <ul class="pagination">
          <!-- 시작 -->
          <c:choose>
-            <c:when test="${genrePagingList.first}"></c:when>
+            <c:when test="${artistPagingList.first}"></c:when>
             <c:otherwise>
                <li class="page_item"><a class="page_link" href="<c:url value='/artist_board/artist_main?page=0'/>">처음</a></li>
-					<li class="page_item"><a class="page_link" href="<c:url value='/artist_board/artist_main?page=${genrePagingList.number-1}'/>">&larr;</a></li>
+					<li class="page_item"><a class="page_link" href="<c:url value='/artist_board/artist_main?page=${artistPagingList.number-1}'/>">&larr;</a></li>
             </c:otherwise>
          </c:choose>
          <!-- 페이지 그룹 -->
          <c:forEach begin="${startBlockPage}" end="${endBlockPage}" var="i">
             <c:choose>
-               <c:when test="${genrePagingList.pageable.pageNumber+1 == i}">
+               <c:when test="${artistPagingList.pageable.pageNumber+1 == i}">
                   <li class="page_item disabled"><a class="page_link pick_num" href="<c:url value='/artist_board/artist_main?page=${i-1}'/>">${i}</a></li>
                </c:when>
                <c:otherwise>
@@ -81,10 +81,10 @@
          </c:forEach>
          <!-- 끝 -->
          <c:choose>
-            <c:when test="${genrePagingList.last}"></c:when>
+            <c:when test="${artistPagingList.last}"></c:when>
             <c:otherwise>
-               <li class="page_item"><a class="page_link" href="<c:url value='/artist_board/artist_main?page=${genrePagingList.number+1}'/>">&rarr;</a></li>
-					<li class="page_item"><a class="page_link" href="<c:url value='/artist_board/artist_main?page=${genrePagingList.totalPages-1}'/>">마지막</a></li>
+               <li class="page_item"><a class="page_link" href="<c:url value='/artist_board/artist_main?page=${artistPagingList.number+1}'/>">&rarr;</a></li>
+					<li class="page_item"><a class="page_link" href="<c:url value='/artist_board/artist_main?page=${artistPagingList.totalPages-1}'/>">마지막</a></li>
             </c:otherwise>
          </c:choose>
       </ul>

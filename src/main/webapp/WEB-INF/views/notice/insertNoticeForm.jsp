@@ -31,7 +31,9 @@ const remove = (obj) => {
     cnt--;
 }
 </script>
-
+<style>
+  .ck-editor__editable { height: 300px; width: 881px; }
+</style>
 </head>
 <body>
   <jsp:include page="/WEB-INF/views/header/header_main.jsp"/>
@@ -51,7 +53,7 @@ const remove = (obj) => {
                 <form:input path="title" class="title" type="text" size="100" maxlength="100" />
                 <input type="hidden" value="${noticeCommand.writer}">
                 <p class="sub_txt inner">내용</p>
-                <form:textarea id="notice_textarea" path="content" class="content" cols="100" rows="100" />
+                <form:textarea id="editor" path="content" class="content" cols="100" rows="100" />
               </div>
             </div>
           </div>
@@ -64,7 +66,9 @@ const remove = (obj) => {
     </div>
     </form:form>
     </div>
-    <script type="text/javascript" src="/fake_resources/js/ckeditor.js"></script>
-    
+<script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
+<script>
+  ClassicEditor.create( document.querySelector( '#editor' ) );
+</script> 
 </body>
 </html>

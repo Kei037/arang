@@ -59,4 +59,7 @@ public class ArtistServiceImpl implements ArtistService {
 	public ArtistPageCommand findArtistkById(long id) {
 		return artistDao.findArtistkById(id);
 	}
+	public Page<ArtistPageCommand> findAllPageByGenre(Pageable pageable, String genre) {
+		return artistDao.findAllPageByGenre(pageable, genre);
+	}
 }

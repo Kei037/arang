@@ -13,6 +13,9 @@
 <link rel="stylesheet" href="/fake_resources/css/mypage/gallery_upload.css">
 <link rel="stylesheet" href="/fake_resources/css/artist/artist_focus.css">
 <script type="text/javascript" src="/fake_resources/js/common.js"></script>
+<style>
+  .ck-editor__editable { height: 300px; width: 815px; }
+</style>
 </head>
 <body>
 <div id="wrap">
@@ -36,7 +39,7 @@
             <div class="content_block">
               <div class="review">
                 <h2><input type="text" name="title" placeholder="타이틀"></h2>
-                <p><textarea class="textarea_box" name="description" placeholder="작가 소개" cols="43" rows="7"></textarea></p>
+                <p><textarea id="editor" class="textarea_box" name="description" placeholder="작가 소개" cols="43" rows="7"></textarea></p>
                 <p><br></p>
                 <p>
                 <div class="upload_box">
@@ -72,5 +75,9 @@
     </div>
     </form>
     </div>
+<script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
+<script>
+  ClassicEditor.create( document.querySelector( '#editor' ) );
+</script>
 </body>
 </html>

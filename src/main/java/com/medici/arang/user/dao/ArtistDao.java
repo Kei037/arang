@@ -138,6 +138,33 @@ public class ArtistDao {
 				pageable, getCount());
 		}
 	
+	public Page<ArtistPageCommand> findAllPageByGenre(Pageable pageable, String genre){
+		Order order = pageable.getSort().isEmpty()
+				? Order.by("aid")
+				: pageable.getSort().toList().get(0);
+		String sql = "SELECT a.name_kor, a.name_eng, a.genre, a.imgPath, "
+				+ "b.artworkImgPath, a.aid, b.wid, c.title FROM Artist a "
+				+ "INNER JOIN artwork b ON b.artistId = a.aid JOIN ArtistInfo c "
+				+ "ON a.aid = c.artistId WHERE b.genre = ? GROUP BY b.artistId"
+				+ " ORDER BY " + order.getProperty() + " " + order.getDirection().name()
+				//MY SQL
+				+ " LIMIT " + pageable.getPageSize()
+				+ " OFFSET " + pageable.getOffset();
+		return new PageImpl<ArtistPageCommand>(
+				jdbcTemplate.query(sql, new RowMapper<ArtistPageCommand>() {
+					@Override
+					public ArtistPageCommand mapRow(ResultSet rs, int rowNum) throws SQLException {
+						ArtistPageCommand artist = new ArtistPageCommand(
+								rs.getString("name_kor"), rs.getString("name_eng"), 
+								rs.getString("genre"), rs.getString("imgPath"), 
+								rs.getString("artworkImgPath"), rs.getLong("aid"),
+								rs.getLong("wid"), rs.getString("title"));
+						return artist;
+					}
+				}, genre),
+				pageable, getCount());
+		}
+	
 	
 	
 	public List<ArtistPageCommand> findAllArtistkByGenre(String ctg) {

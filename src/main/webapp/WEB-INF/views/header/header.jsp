@@ -91,8 +91,7 @@ $('.testBtn').click(function(event) {
     			console.log("데이터 전송 성공!!");
     			console.log(data);
     			console.log($('#artist').children().remove());
-    			$('#artist').html(data);
-    		//	location.href="/arang/" + data;
+    			location.href="/arang/artist_board/artist_main?genre=" + data;
    	 		}
    		 }
 	})

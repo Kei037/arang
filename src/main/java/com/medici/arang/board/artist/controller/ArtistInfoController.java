@@ -220,23 +220,25 @@ public class ArtistInfoController {
 		return "artist_board/artist_main";
 	}
 	
-	/*
-	@GetMapping("/artist_board/artist_main")
-	public String findArtistByGenre(Model model, HttpServletRequest request) {
+	@GetMapping("/artist_board/artist_main_ctg")
+	public String findArtistCtgForm(Model model, @RequestParam("genre") String genre,
+							HttpServletRequest request) {
 		//page 요청 검사
 		int page = 0;
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));			
 		}
 		//페이징
-		Pageable pageable = PageRequest.of(page, 1, Sort.Direction.DESC, "aid");
-		Page<ArtistPageCommand> genrePagingList = 
-				artistservice.findPageByGenre(pageable, ctgValue);
+		Pageable pageable = PageRequest.of(page, 9, Sort.Direction.DESC, "aid");
+		Page<ArtistPageCommand> artistPagingList = 
+				artistservice.findAllPageByGenre(pageable, genre);
+		
+		// ajax, 컨트롤러 처리 해야함
 		
 		//현재페이지
-		int pageNumber = genrePagingList.getPageable().getPageNumber();
+		int pageNumber = artistPagingList.getPageable().getPageNumber();
 		//총 페이지수
-		int totalPages = genrePagingList.getTotalPages();
+		int totalPages = artistPagingList.getTotalPages();
 		//블럭의 수
 		int pageBlock = 5;
 		//현재 페이지가 7이라면 1*5+1=6
@@ -245,19 +247,23 @@ public class ArtistInfoController {
 		int endBlockPage = startBlockPage+pageBlock-1;
 		endBlockPage= totalPages<endBlockPage? totalPages:endBlockPage;
 		
+		
+		List<ArtworkCommand> arkworkList = artworkService.allFindArtwork();
+		List<ArtistPageCommand> artworkPageList = artistservice.findAllArtistkByEmail();
+		List<FindArtistInfoCommand> artistList1 = artistInfoService.findArtist();
+		long artistCount = artistInfoService.getArtistCount();
+		
+		model.addAttribute("artistList1", artistList1);
+		model.addAttribute("artworkList", arkworkList);
+		model.addAttribute("artworkPageList", artworkPageList);
+		model.addAttribute("artistCount", artistCount);
+		
 		//페이징 영역
 		model.addAttribute("startBlockPage", startBlockPage);
 		model.addAttribute("endBlockPage", endBlockPage);
-		model.addAttribute("genrePagingList", genrePagingList);
-		
-		
-		List<ArtistPageCommand> artworkPageList = 
-				artistservice.findAllArtistkByGenre(ctgValue);
-		
-		model.addAttribute("artworkPageList", artworkPageList);
-		return "artist_board/artist_main";
+		model.addAttribute("artistPagingList", artistPagingList);
+		return "artist_board/artist_main_ctg";
 	}
-	*/
 	
 	
 	@ResponseBody
@@ -274,7 +280,7 @@ public class ArtistInfoController {
 		//page 요청 검사
 		
 		
-		return "artist_main_ctg";
+		return ctgValue;
 	}
 	
 	

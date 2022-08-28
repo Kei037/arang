@@ -27,6 +27,9 @@ const remove = (obj) => {
     cnt--;
 }
 </script>
+<style>
+  .ck-editor__editable { height: 220px; }
+</style>
 </head>
 <body>
 <div id="wrap">
@@ -87,7 +90,7 @@ const remove = (obj) => {
                     <div class="info_block2">
                       <div class="first">설명(Description)</div>
                       <div class="last">
-                        <form:textarea path="description"  placeholder="작품설명 300자 이내" cols="43" rows="7"/>
+                        <form:textarea id="editor" path="description"  placeholder="작품설명 300자 이내" cols="43" rows="7"/>
                       </div>
                     </div>
                   </div>
@@ -134,5 +137,9 @@ const remove = (obj) => {
 
 </form:form>
 </div>
+<script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
+<script>
+  ClassicEditor.create( document.querySelector( '#editor' ) );
+</script>
 </body>
 </html>

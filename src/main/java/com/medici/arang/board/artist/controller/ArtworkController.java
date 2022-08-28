@@ -88,13 +88,13 @@ public class ArtworkController {
 	@ModelAttribute("artCategoryProvicerList")
 	public List<String> getArtCategoryList(){
 		List<String> list = new ArrayList<String>();
-		list.add("sculpture");
-		list.add("paint");
-		list.add("orientalPaint");
-		list.add("drawing");
-		list.add("illustration");
-		list.add("digtalArt");
-		list.add("photo");
+		list.add("Sculpture");
+		list.add("Paint");
+		list.add("OrientalPaint");
+		list.add("Drawing");
+		list.add("Illustration");
+		list.add("DigtalArt");
+		list.add("Photo");
 		
 		return list;
 	}

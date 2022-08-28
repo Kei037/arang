@@ -185,7 +185,7 @@
             <td><p><strong>YET</p></td>
             </c:if>
             <c:if test="${contacting.accept == 'Y'}">
-            <td><p><strong>YES</p></td>
+            <td><p><strong style="color: tomato;">YES</p></td>
             </c:if>
             <c:if test="${contacting.accept == 'N'}">
             <td><p><strong>NO</p></td>
