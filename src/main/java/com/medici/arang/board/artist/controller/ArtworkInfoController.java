@@ -23,6 +23,8 @@ import com.medici.arang.board.contact.command.ContactCommand;
 import com.medici.arang.board.contact.service.ContactServiceImpl;
 import com.medici.arang.board.gallery.command.GalleryCommand;
 import com.medici.arang.board.gallery.service.GalleryServiceImpl;
+import com.medici.arang.like.domain.LikeVo;
+import com.medici.arang.like.service.LikeServiceImpl;
 
 
 @Controller
@@ -43,7 +45,8 @@ public class ArtworkInfoController {
 	@Autowired
 	ContactServiceImpl contactService;
 	
-	
+	@Autowired
+	LikeServiceImpl likeService;
 	
 	@GetMapping("/artwork_board/artwork_info")
 	public String artworkForm(@RequestParam("id") long id, 
@@ -53,6 +56,14 @@ public class ArtworkInfoController {
 		FindArtistInfoCommand artistInfo = artistInfoService.findArtistInfo(id);
 		List<ArtworkCommand> artworkList = artworkService.allfindArtwork(id);
 		FindArtworkInfoCommand artworkInfo = artworkInfoService.findArtworkInfo(wid);
+		
+		LikeVo findLike = likeService.findLikeByTargetId(wid);
+
+		if(findLike != null) {
+			model.addAttribute("likeNum", 0);
+		}else {
+			model.addAttribute("likeNum", 1);
+		}
 		
 		model.addAttribute("wid", wid);
 		model.addAttribute("artistInfo", artistInfo);

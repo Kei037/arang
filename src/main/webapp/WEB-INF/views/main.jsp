@@ -30,7 +30,7 @@
           <div  class="swiper mySwiper2">
             <!-- li*4>a[href="#"]>img[src=./img/photo$_thum.jpg] -->
             <ul class=" swiper-wrapper">
-              <c:forEach var="artworkL" items="${artworkList}">
+              <c:forEach var="artworkL" items="${artworkList}" begin="1">
                   <li class="swiper-slide">
                     <a href="/arang/artwork_board/artwork_info?id=${artistL.aid}&wid=${artworkL.wid}">
                     	<img src="${artworkL.artworkImgPath}" style="width: 200px; height: 200px">

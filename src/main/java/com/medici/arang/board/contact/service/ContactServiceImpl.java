@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.medici.arang.board.contact.command.ContactCommand;
+import com.medici.arang.board.contact.command.FindContactArtistCommand;
 import com.medici.arang.board.contact.command.FindContactCommend;
 import com.medici.arang.board.contact.command.FindContactGalleryCommand;
+import com.medici.arang.board.contact.command.FindContactingArtistCommand;
 import com.medici.arang.board.contact.dao.ContactDao;
 
 public class ContactServiceImpl {
@@ -35,5 +37,17 @@ public class ContactServiceImpl {
 	
 	public List<FindContactGalleryCommand> findGalleryByEmail(long id) {
 		return contactDao.findGalleryByEmail(id);
+	}
+	
+	public List<FindContactGalleryCommand> findGalleryContacting(long id){
+	      return contactDao.findGalleryContacting(id);
+	}
+	
+	public List<FindContactArtistCommand> findArtistkList(String email) {
+		return contactDao.findArtistkList(email);
+	}
+	
+	public List<FindContactingArtistCommand> findArtistList(String email) {
+		return contactDao.findArtistList(email);
 	}
 }

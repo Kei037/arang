@@ -20,7 +20,7 @@ public class ExhibitionDao {
 	}
 	
 	public List<FindExhibitionsCommand> findContactExgibitions() {
-		String sql = "SELECT exhibitionTitle, startDate, endDate, artworkImgPath "
+		String sql = "SELECT a.exhibitionTitle, a.startDate, a.endDate, b.artworkImgPath "
 				+ "FROM Contact a INNER JOIN Artwork b ON a.artistId = b.artistId "
 				+ "WHERE a.sendingType = 'G' AND a.accept = 'Y' GROUP BY a.contactId";
 		

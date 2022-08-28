@@ -120,7 +120,9 @@ select.box {
 .table_a td > * { margin: 0 auto;}
 
 .table_a tr td:nth-child(1) {
+/*
   width: 100px;
+*/
   color: #333333;
 }
 

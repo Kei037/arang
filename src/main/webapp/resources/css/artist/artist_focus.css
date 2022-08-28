@@ -148,7 +148,6 @@
   justify-content: space-between; */
   width: 1320px;
   display: flex;
-  flex-wrap: wrap;
 }
 
 .item {

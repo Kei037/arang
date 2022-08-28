@@ -40,7 +40,7 @@
             <c:if test="${galleristLogin == null && artistLogin == null}">
             	<li><a href="/arang/login"><img src="<c:url value ='/resources/img/icon/mypage.png'/>" alt="mypage"></a></li>
             </c:if>
-            <li><a href="/arang/mypage/add_artist_info"><img src="<c:url value ='/resources/img/icon/like.png'/>" alt="like"></a></li>
+            <li><a href="/arang/mypage/wish_list"><img src="<c:url value ='/resources/img/icon/like.png'/>" alt="like"></a></li>
             <li><a href="/arang/mypage/mypage_gallerist"><img src="<c:url value ='/resources/img/icon/cart.png'/>" alt="cart"></a></li>
             <c:if test="${email == null}">
             	<li><a href="/arang/login">Login</a></li>
@@ -53,7 +53,7 @@
       </div>
     </header>
 
-    <div class="headline_artworks">
+    <div class="headline">
       <h3>ARTISTS</h3>
       <nav id="sub-nav">
         <ul>

@@ -72,6 +72,11 @@ public class GalleryDao {
 		return jdbcTemplate.queryForObject(sql, new GalleryRowMapper(), email);
 	}
 	
+	public List<GalleryCommand> findGalleryListByEmail(String email) {
+		String sql = "SELECT * FROM Gallery WHERE galleristEmail = ?";
+		return jdbcTemplate.query(sql, new GalleryRowMapper(), email);
+	}
+	
 	
 	public List<GalleryCommand> findAllGalleryInfo(){
 		String sql = "SELECT * FROM Gallery";

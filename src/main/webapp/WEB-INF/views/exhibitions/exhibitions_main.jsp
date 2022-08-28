@@ -11,6 +11,9 @@
 <link rel="stylesheet" type="text/css" href="/fake_resources/css/default/default.css"/>
 <link rel="stylesheet" type="text/css" href="/fake_resources/css/login/input_style.css"/>
 <link rel="stylesheet" type="text/css" href="/fake_resources/css/join/join_artist.css"/>
+<link rel="stylesheet" href="/fake_resources/css/main/main.css">
+<link rel="stylesheet" href="/fake_resources/css/artist/artist.css">
+<link rel="stylesheet" href="/fake_resources/css/exhibition/exhibition.css">
 </head>
 <body>
 
@@ -20,15 +23,19 @@
       
 <div class="exhibition">
       <div class="exhibition_wrapper">
+      <c:forEach var="exhibitions" items="${exhibitionList}">
         <div class="exhibition_view">
           <div class="img_wrapper">
-            <a href="../html_exhibition/exhibition_focus.html"><img src="${exhibitions.artworkImgPath }"></a>
+            <a href="../html_exhibition/exhibition_focus.html">
+            <img src="${exhibitions.artworkImgPath}"></a>
           </div>
           <p>${exhibitions.exhibitionTitle }</p>
-          <p class="date">${exhibitions.startDate} ~ ${exhibitions.endDate }</p>
+          <p class="date">${exhibitions.startDate} ~ ${exhibitions.endDate}</p>
         </div>
+      </c:forEach>
     </div>
+    
 </div>
-
+</div>
 </body>
 </html>

@@ -30,6 +30,9 @@ public class GalleryServiceImpl implements GalleryService{
 		return galleryDao.findGalleryByEmail(email);
 	}
 	
+	public List<GalleryCommand> findGalleryListByEmail(String email) {
+		return galleryDao.findGalleryListByEmail(email);
+	}
 
 	
 	/*

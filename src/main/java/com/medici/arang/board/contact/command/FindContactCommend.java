@@ -22,6 +22,7 @@ public class FindContactCommend {
 	private String name;
 	private long artistId;
 	private String sendingType;
+	private String name_eng;
 	
 	public FindContactCommend() {
 	}

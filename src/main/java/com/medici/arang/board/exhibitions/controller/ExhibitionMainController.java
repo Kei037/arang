@@ -1,5 +1,6 @@
 package com.medici.arang.board.exhibitions.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,11 @@ public class ExhibitionMainController {
 		List<FindExhibitionsCommand> exhibitionList = 
 				exhibitionService.findContactExgibitions();
 		model.addAttribute("exhibitionList", exhibitionList);
+		
+		for (FindExhibitionsCommand a : exhibitionList) {
+			
+			System.out.println(a.getArtworkImgPath());
+		}
 		return "exhibitions/exhibitions_main";
 	}
 	

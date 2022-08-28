@@ -27,3 +27,72 @@
 .slick_trak.mypage .item:nth-child(5n) {
   margin-right: 0px!important;
 }
+
+
+/* contacting >> */
+.storage_list.mypage.artist_contact_first tr td:nth-child(1) {
+  width: 120px;
+  padding-left: 40px;
+}
+.storage_list.mypage.artist_contact_first tr td:nth-child(2) {
+  width: 60px;
+}
+.storage_list.mypage.artist_contact_first tr td:nth-child(3) {
+  width: 190px;
+}
+.storage_list.mypage.artist_contact_first tr td:nth-child(4) {
+  width: 500px;
+}
+.storage_list.mypage.artist_contact_first tr td:nth-child(5) {
+  width: 100px;
+  padding-right: 40px;
+}
+.storage_list.mypage.artist_contact_first tr td:nth-child(5) p {
+  float: right;
+}
+.YES p{
+  color: tomato;
+}
+.storage_list.mypage.artist_contact_first tr td:nth-child() {
+  width: 100px;
+  padding-right: 40px;
+}
+
+/* contacting << */
+.storage_list.mypage.artist_contact_last tr td:nth-child(1) {
+  width: 175px;
+  padding-left: 40px;
+}
+.storage_list.mypage.artist_contact_last tr td:nth-child(2) {
+  width: 93px;
+}
+.storage_list.mypage.artist_contact_last tr td:nth-child(3) {
+  width: 245px;
+}
+.storage_list.mypage.artist_contact_last tr td:nth-child(4) {
+  width: 240px;
+}
+.storage_list.mypage.artist_contact_last tr td:nth-child(5) {
+  width: 500px;
+}
+.storage_list.mypage.artist_contact_last tr td:nth-child(6) {
+  width: 90px;
+   margin-right: 40px;
+}
+.storage_list.mypage.artist_contact_last tr td:nth-child(7) {
+  width: 90px;
+ margin-right: 40px;
+}
+
+.storage_list.mypage.artist_contact_last button {
+  float: right;
+  background-color: #333;
+  color: white;
+  height: 35px;
+  width: 65px;
+  margin-left: 8px;
+}
+
+.storage_list.mypage.artist_contact_last button:hover {
+  background-color: tomato;
+}

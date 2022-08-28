@@ -21,6 +21,7 @@ public class FindContactGalleryCommand {
 	private String comment;
 	private long galleryCode;
 	private String sendingType;
+	private String address;
 	
 	public FindContactGalleryCommand() {
 		

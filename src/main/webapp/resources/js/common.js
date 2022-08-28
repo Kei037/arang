@@ -1,3 +1,4 @@
+
 // 이미지 틀에 맞추기
 function artwork_large(imgFile) {
   var imgWidth = imgFile.width;
@@ -78,7 +79,7 @@ function artwork_small(imgFile) {
 var likeClick = 0;
   function toggleImg() {
     if ( likeClick == 0 ) {
-    document.getElementById("img").src="../resources/img/icon/like_2.png";
+    document.getElementById("like").src="../resources/img/icon/like_2.png";
     likeClick = 1;
     console.log("heart1");
 
@@ -88,3 +89,43 @@ var likeClick = 0;
     console.log("heart2");
   }
 }
+
+$(".likeButton").click(function() {
+		//해당 Value값 가져와서 할당
+		let userId = '<c:out value="${email}"/>';
+		let targetValue = $(this).attr('value');
+		console.log(userId);
+		console.log(targetValue);
+		$.ajax({
+			type :'post',
+			url : '<c:url value ="/likeUp"/>',
+			contentType: 'application/json',
+			data : JSON.stringify(
+					{
+						"userId" : userId,
+						"targetValue" : targetValue,
+						"likeNum" : 1
+					}
+				),
+			context: this, 
+			success : function(data) {
+				alert(data.msg);
+				let likeCheck = data.likeCheck;
+				if(likeCheck == 1){
+					$(this).$(".like_img").src="../resources/img/icon/like_2.png";
+					console.log($(this));
+				}else{
+					$(this).$(".like_img").src="../resources/img/icon/like.png";
+					console.log($(this));
+				}
+			},
+			error : function(error) {
+				alert(error);
+			}
+		})
+
+	});//like
+
+$("#alert1").on("click", function(){
+	alert("내 상세 페이지를 먼저 등록해주세요.");
+});

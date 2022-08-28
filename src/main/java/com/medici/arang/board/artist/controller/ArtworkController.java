@@ -99,7 +99,7 @@ public class ArtworkController {
 		return list;
 	}
 	
-	private static final String SAVE_DIR = "C:\\JavaYoung\\JavaStudy\\eclipse-workspace\\arang\\src\\main\\webapp\\resources\\img\\";
+	private static final String SAVE_DIR = "C:\\PSH\\my-workSpace\\arang\\src\\main\\webapp\\resources\\img\\";
 	private static final String PATH_DIR = "/upload_img/";
 	
 	//	작품추가 기능
@@ -167,12 +167,12 @@ public class ArtworkController {
 		
 		System.out.println(artwork.getArtworkImgPath());
 		System.out.println(artworkInfo.getWorkInfoImgPath());
-	//	artworkService.addArtwork(artwork);
-	//	ArtworkCommand findArtwork = artworkService.findArtworkByImg(imgName);
-		
-	//	System.out.println(findArtwork.getWid());
-	//	artworkInfo.setArtworkId(findArtwork.getWid());
-	//	artworkInfoService.addArtworkInfo(artworkInfo);
+		artworkService.addArtwork(artwork);
+		ArtworkCommand findArtwork = artworkService.findArtworkByImg(imgName);
+
+		System.out.println(findArtwork.getWid());
+		artworkInfo.setArtworkId(findArtwork.getWid());
+		artworkInfoService.addArtworkInfo(artworkInfo);
 		model.addAttribute("artist", artist);
 		model.addAttribute("artwork", artwork);
 		model.addAttribute("artworkInfo", artworkInfo);
@@ -266,11 +266,5 @@ public class ArtworkController {
 		return "pages/all_find_artwork";
 	}
 	
-	
-	
 
-	
-	
-	
-	
 }

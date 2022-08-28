@@ -109,9 +109,9 @@ const remove = (obj) => {
                             <div class="first">전화번호(Phone)</div>
                             <input type="text" placeholder="전화번호" name="galleryPhone">
                             <br>
-                            <input type="text" placeholder="갤러리스트네임" name="representer">
+                            <input type="text" placeholder="사업자명" name="representer">
                             <br>
-                            <input type="text" placeholder="갤러리스트네임" name="representerNum">
+                            <input type="text" placeholder="사업자등록번호(ex)123-45-67890)" name="representerNum">
                           </div>
                         </div>
                       </div>

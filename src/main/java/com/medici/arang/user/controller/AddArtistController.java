@@ -36,7 +36,7 @@ public class AddArtistController {
 	}
 	
 	//이미지 저장될 경로
-	private static final String SAVE_DIR = "C:\\JavaYoung\\JavaStudy\\eclipse-workspace\\arang\\src\\main\\webapp\\resources\\img\\";
+	private static final String SAVE_DIR = "C:\\PSH\\my-workSpace\\arang\\src\\main\\webapp\\resources\\img\\";
 	private static final String PATH_DIR = "/upload_img/";
 	
 	//유저 회원가입 처리 + 이미지 처리
@@ -44,7 +44,7 @@ public class AddArtistController {
 	public String addArtist(@ModelAttribute("artistCommand")
 			ArtistCommand artistCommand, Model model,
 			HttpServletRequest request, @RequestParam("imgFile") MultipartFile file) {
-//		HttpSession session = request.getSession();
+//			HttpSession session = request.getSession();
 		
 		String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드
 		long size = file.getSize(); //파일 사이즈
@@ -93,7 +93,6 @@ public class AddArtistController {
 		
 		artistCommand.setImgPath(PATH_DIR + "artist/" + forderName + "/" + uniqueName+fileExtension);
 		String imgName = artistCommand.getImgPath();
-		System.out.println(imgName);
 				
 		String email = artistCommand.getEmail1()+"@"+artistCommand.getEmail2();
 		artistCommand.setEmail(email);
@@ -145,6 +144,8 @@ public class AddArtistController {
 			errorMsgs.add("전화번호는 필수입력 정보입니다.");	
 		}if(artistCommand.getGenre() == null || artistCommand.getGenre().length() == 0) {
 			errorMsgs.add("1개 이상의 장르를 선택해주세요.");
+		}if(artistService.getArtistByEmail(artistCommand.getEmail()) != null) {
+			errorMsgs.add("이미 등록된 이메일 입니다.");
 		if(errorMsgs.size() > 0) {
 			model.addAttribute("msg", errorMsgs);
 			model.addAttribute("url", "add_artist");
@@ -153,13 +154,12 @@ public class AddArtistController {
 		}
 		
 		
+		
+		
+		
 		model.addAttribute("imgName", imgName);
 		artistService.addArtist(artistCommand);
-		
-		//세션 담기
-//		session.setAttribute("email", artistCommand.getEmail());
-		
-		return "/arang/login";
+		return "redirect:/login";
 	}
 	
 	//회원가입폼 이메일 데이터 제공

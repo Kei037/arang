@@ -21,6 +21,8 @@ import com.medici.arang.board.contact.service.ContactServiceImpl;
 import com.medici.arang.board.gallery.command.GalleryPageCommand;
 import com.medici.arang.board.gallery.service.GalleryInfoServiceImpl;
 import com.medici.arang.board.gallery.service.GalleryServiceImpl;
+import com.medici.arang.like.domain.LikeVo;
+import com.medici.arang.like.service.LikeServiceImpl;
 import com.medici.arang.user.command.ArtistCommand;
 import com.medici.arang.user.command.ArtistPageCommand;
 import com.medici.arang.user.service.ArtistServiceImpl;
@@ -39,6 +41,9 @@ public class GalleryMainController {
 	
 	@Autowired
 	ContactServiceImpl contactService;
+	
+	@Autowired
+	LikeServiceImpl likeService;
 	
 	@GetMapping("/gallery/gallery")
 	public String Gallery(Model model, HttpServletRequest request) {
@@ -62,7 +67,7 @@ public class GalleryMainController {
 			page = Integer.parseInt(request.getParameter("page"));			
 		}
 		//페이징
-		Pageable pageable = PageRequest.of(page, 2, Sort.Direction.DESC, "code");
+		Pageable pageable = PageRequest.of(page, 6, Sort.Direction.DESC, "code");
 		Page<GalleryPageCommand> galleryPagingList = 
 				galleryInfoService.allFindGalleryPage(pageable);
 		
@@ -98,6 +103,16 @@ public class GalleryMainController {
 	public String GalleryInfoForm(@RequestParam("code") long code, Model model) {
 		GalleryPageCommand galleryCommand = galleryInfoService.findGalleryByID(code);
 		model.addAttribute("galleryCommand", galleryCommand);
+		
+		///갤러리id code로 찾기
+		LikeVo findLike = likeService.findLikeByTargetId(code);
+
+		if(findLike != null) {
+			model.addAttribute("likeNum", 4);
+		}else {
+			model.addAttribute("likeNum", 5);		
+		}
+		
 		
 		return "gallery/gallery_focus";
 	}

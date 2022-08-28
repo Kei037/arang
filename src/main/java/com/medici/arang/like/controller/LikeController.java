@@ -17,12 +17,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.medici.arang.board.artist.service.ArtistInfoServiceImpl;
 import com.medici.arang.like.domain.LikeVo;
 import com.medici.arang.like.service.LikeServiceImpl;
 
 @Controller("like.controller.LikeController")
 public class LikeController {
 	private LikeServiceImpl likeService;
+	private ArtistInfoServiceImpl artistInfoService;
+	
 	
 	@Autowired
 	public LikeController(LikeServiceImpl likeService) {
@@ -37,17 +40,13 @@ public class LikeController {
 		LikeVo findLike = likeService.findLike(userId, targetValue);
 		Map<String, String> likeData = new HashMap<String, String>();
 		
-		System.out.println(userId);
-		System.out.println(targetValue);
-		System.out.println(vo.getLikeNum());
-				
 		if(findLike!=null) {
 			likeService.likeDown(userId, targetValue);
-			likeData.put("msg", "BookMark Delete");
+			likeData.put("msg", "위시리스트에서 삭제되었습니다.");
 			likeData.put("likeCheck", "0");
 		} else {
 			likeService.likeUp(vo);
-			likeData.put("msg", "BookMark Add");
+			likeData.put("msg", "위시리스트에 추가되었습니다.");
 			likeData.put("likeCheck", "1");
 			}
 		return likeData;

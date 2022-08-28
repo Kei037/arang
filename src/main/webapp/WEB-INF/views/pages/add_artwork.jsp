@@ -121,13 +121,13 @@ const remove = (obj) => {
               <p class="txt">${artist.description}</p>
             </div>
           </section>
-    </div>
       <div class="btn_group2">
         <button class="btn2" type="submit">완료</button>
       <a href="/arang/mypage/mypage_artist">
         <button class="btn2" type="button">취소</button>
       </a>
       </div>
+    </div>
         </div>
       </div>
 

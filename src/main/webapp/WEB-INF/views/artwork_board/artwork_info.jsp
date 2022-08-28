@@ -18,7 +18,6 @@
 <body>
 <div id="wrap">
 <jsp:include page="/WEB-INF/views/header/header.jsp"/>
-
 	<!-- 아트워크 상세 -->
     <div id="artwork">
       <div id="artwork_detail">
@@ -71,8 +70,15 @@
                     <form action="testbtn" method="get">
                       <input type="hidden" id="aid" name="artistId" value="${artistInfo.aid}" />
                       <button id="contactBtn" class="btn1" type="submit">Contacting</button>
-                      <button class="like"><img src="../resources/img/icon/like.png" alt="like"></button>
                     </form>
+                      <button class="like likeButton" value="${wid}">
+                      <c:if test="${likeNum == 0}">
+                      <img class="like_img" src="/fake_resources/img/icon/like_2.png" alt="like">
+						</c:if>
+						<c:if test="${likeNum == 1}">
+                      <img class="like_img" src="/fake_resources/img/icon/like.png" alt="like">
+						</c:if>
+                      </button>
                   </div>
                 </div>
               </div>
@@ -156,7 +162,42 @@
 		console.log(aid);
 		console.log(wid);
 	})
-      
+     
+	$(".likeButton").click(function() {
+		//해당 Value값 가져와서 할당
+		let userId = '<c:out value="${email}"/>';
+		let targetValue = $(this).attr('value');
+		console.log(userId);
+		console.log(targetValue);
+		$.ajax({
+			type :'post',
+			url : '<c:url value ="/likeUp"/>',
+			contentType: 'application/json',
+			data : JSON.stringify(
+					{
+						"userId" : userId,
+						"targetValue" : targetValue,
+						"likeNum" : 1
+					}
+				),
+			context: this, 
+			success : function(data) {
+				alert(data.msg);
+				let likeCheck = data.likeCheck;
+				if(likeCheck == 1){
+					$(this).children("img").attr('src','../resources/img/icon/like_2.png');
+					console.log($(this));
+				}else{
+					$(this).children("img").attr('src','../resources/img/icon/like.png');
+					console.log($(this));
+				}
+			},
+			error : function(error) {
+				alert(error);
+			}
+		})
+
+	});//like
       
     </script>
 </body>

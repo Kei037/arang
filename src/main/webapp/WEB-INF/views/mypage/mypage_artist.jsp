@@ -14,14 +14,13 @@
 <link rel="stylesheet" href="/fake_resources/css/storage/storage_list.css">
 <link rel="stylesheet" href="/fake_resources/css/mypage/mypage_default.css">
 <link rel="stylesheet" href="/fake_resources/css/mypage/mypage_artist.css">
+<script type="text/javascript" src="/fake_resources/js/jquery.js"></script>
 <script type="text/javascript" src="/fake_resources/js/common.js"></script>
 </head>
 <body>
 <div id="wrap">
-
 <jsp:include page="/WEB-INF/views/header/header_main.jsp"/>
-
-<div class="container">
+<div class="container padding_zero">
       <h4 class="sub_title">My Information</h4>
       <div class="info_simul">
         <div class="info_wrapper first">
@@ -118,58 +117,51 @@
       </div>
       <div class="btn2_group">
         <a href="/arang/mypage/mypage_artist_modify"><button class="btn2 first">내 정보 수정</button></a>
-      	<a href="/arang/mypage/add_artist_info"><button class="btn2 first">내 페이지 등록</button></a>
+        <c:if test="${infoCheck == 0}">
+      	<a href="/arang/mypage/add_artist_info"><button class="btn2 first" style="width: 160px;">아티스트 페이지 등록</button></a>
+      	</c:if>
       	<a href="#"><button class="btn2 first">내 페이지 수정</button></a>
+      	<!-- 
       	<a href="/arang/mypage/mypage_request_list2"><button class="btn2 first">신청 아티스트 목록</button></a>
+      	 -->
       </div>
       <h4 class="sub_title other">MY ArtWorks</h4>
       <div class="product">
         <div id="product2" class="item_list1">
           <div class="slick_list">
             <div class="slick_trak mypage">
+            <c:forEach var="artwork" items="${artworkList}">
               <div class="item">
                   <div class="artwork_wrap">
-                    <a href="../../html_artwork/artwork_focus.html"><img class="artwork" src="../../resources/img/윤라희/윤라희-오브제1_s02.jpg" alt="오브제1" onload="JavaScript:artwork_small_middle(this)"></a>
+                    <a href="/arang/artwork_board/artwork_info?id=${artwork.artistId}&wid=${artwork.wid}">
+                    <img class="artwork" src="${artwork.artworkImgPath}" onload="JavaScript:artwork_small_middle(this)"></a>
                   </div>
                 <figcaption>
-                  <h5>BLOCK (Falling Bluse Brown)</h5>
-                  <p>Limited Unique</p>
-                </figcaption>
-              </div>
-              <div class="item">
-                  <div class="artwork_wrap">
-                    <a href="#"><img class="artwork" src="../../resources/img/윤라희/윤라희-오브제2_s01_fub8Yrj.jpg" alt="오브제2" onload="JavaScript:artwork_small_middle(this)"></a>
-                  </div>
-                <figcaption>
-                  <h5>BLOCK (Falling Bluse Brown)</h5>
-                  <p>Limited Unique</p>
-                </figcaption>
-              </div>
-              <div class="item">
-                  <div class="artwork_wrap">
-                    <a href="#"><img class="artwork" src="../../resources/img/윤라희/윤라희-오브제3_s01_gpLUosS.jpg" alt="오브제3" onload="JavaScript:artwork_small_middle(this)"></a>
-                  </div>
-                <figcaption>
-                  <h5>BLOCK (Falling Bluse Brown)</h5>
-                  <p>Limited Unique</p>
-                </figcaption>
-              </div>
+                  <h5>${artwork.name}</h5>
+				<p>${artwork.technique}</p>
+				</figcaption>
+			</div>
+		</c:forEach>
+				</div>
             </div>
           </div>
-        </div>
-      </div>
+        </div>      
       <div class="btn2_group">
+      <c:if test="${infoCheck == 1}">
         <a href="/arang/pages/add_artwork"><button class="btn2 first">작품 등록</button></a>
+      </c:if>
+      <c:if test="${infoCheck == 0}">
+       <button id="alert1" class="btn2 first">작품 등록</button>
+      </c:if>
         <!-- <a href="../html_mypage/artwork_upload.html"><button class="btn2">작품 수정</button></a> -->
         <a href="./artwork_upload.html"><button class="btn2">작품 삭제</button></a>
       </div>
       <!-- 컨택팅 >>  -->
-      <div class="container my_gallery2">
+     <div class="container my_gallery2">
         <div class="board_wrapper">
           <h3 class="sub_title contacting">Contacting</h3>
-          <img class="arrow" src="../../resources/img/icon/right.png">
+          <img class="arrow" src="/fake_resources/img/icon/right.png">
           <div>
-            <form>
               <fieldset>
                 <div class="field_inner">
                   <label>검색어</label>
@@ -178,44 +170,28 @@
                 </div>
               </fieldset>
         </div>
-        <table class="storage_list mypage first">
-          <tr>
-            <td>2022-08-25</td>
-            <td>오후 04:32</td>
+        <table class="storage_list mypage artist_contact_first">
+           <c:forEach var="contacting" items="${contactingList}">
+            <tr>
+            <td>${contacting.regDate}</td>
             <td>
               <div class="artist_avatar">
-                <a href="../../html_artist/artist_focus.html"><img class="contacting_img" src="../../resources/img/gallerys/4.jpg"></a>
+                <a href="/arang/gallery/gallery_focus?code=${contacting.galleryCode}"><img class="contacting_img" src="${contacting.galleryImgPath}"></a>
               </div>
             </td>
-            <td><a class="name_hover" href="../../html_artist/artist_focus.html">Gallery Sun contemporary</a></td>
-            <td>Mapo-gu,Seoul</td>
+            <td><a class="name_hover" href="/arang/gallery/gallery_focus?code=${contacting.galleryCode}">${contacting.galleryName_eng}</a></td>
+            <td>${contacting.address}</td>
+            <c:if test="${contacting.accept == 'U'}">
             <td><p><strong>YET</p></td>
+            </c:if>
+            <c:if test="${contacting.accept == 'Y'}">
+            <td><p><strong>YES</p></td>
+            </c:if>
+            <c:if test="${contacting.accept == 'N'}">
+            <td><p><strong>NO</p></td>
+            </c:if>
             </tr>
-            <tr>
-              <td>2022-08-23</td>
-              <td>오후 04:32</td>
-              <td>
-                <div class="artist_avatar">
-                  <a href=""><img class="contacting_img" src="../../resources/img/gallerys/3.jpg"></a>
-                </div>
-              </td>
-              <td><a class="name_hover" href="">GALLERY BATON</a></td>
-              <td>Dokseodang-ro, Yongsan-gu, Seoul</td>
-              <!-- <td>Painter</td> -->
-              <td><p><strong>YET</p></td>
-              </tr>
-              <tr>
-                <td>2022-08-23</td>
-                <td>오후 12:28</td>
-                <td>
-                  <div class="artist_avatar">
-                    <a href=""><img class="contacting_img" src="../../resources/img/gallerys/6.jpg"></a>
-                  </div>
-                </td>
-                <td><a class="name_hover" href="">Hakgojae Gallery</a></td>
-                <td>Samcheong-ro, Jongno-gu, Seoul</td>
-                <td><p><strong>YET</p></td>
-                </tr>
+           </c:forEach>
               </table>
             </div>
           </div>
@@ -237,7 +213,7 @@
                   </fieldset>
                 </form>
             </div>
-            <table class="storage_list2 mypage2 contact_list">
+		<table class="storage_list mypage artist_contact_last">
             <c:forEach var="contact" items="${contactList}">
               <tr>
                 <td>${contact.regDate}</td>
@@ -252,19 +228,29 @@
                 ${contact.galleryName_eng}</a></td>
                 <td>${contact.startDate} ~ ${contact.endDate}</td>
                 <td>${contact.exhibitionTitle }</td>
-                <td><button class="board_btn" type="button">수락</button></td>
-                <td><button class="board_btn" type="button">거절</button></td>
+                <form action="yesga" method="post">
+                  <input type="hidden" name="contactId" value="${contact.contactId}"/>
+                  <input type="hidden" name="yesBtn" value="Y"/>
+                  <td><button class="board_btn" type="submit">승낙</button></td>
+                </form>
+                <form action="nodga" method="post">
+                  <input type="hidden" name="contactId" value="${contact.contactId}"/>
+                  <input type="hidden" name="noBtn" value="N"/>
+                  <td style="padding-right: 40px;"><button class="board_btn" type="submit">거절</button></td>
+                </form>
               </tr>
               </c:forEach>
             </table>
           </div>
         </div>
-
-      <div class="btn2_group">
-      	
-        
+      <div class="btn2_group">      	       
       </div>
     </div>
-</div>
+   </div>
+   <script>
+   $("#alert1").on("click", function(){
+		alert("내 상세 페이지를 먼저 등록해주세요.");
+	});
+   </script>
 </body>
 </html>

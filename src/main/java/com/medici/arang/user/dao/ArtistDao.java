@@ -81,7 +81,6 @@ public class ArtistDao {
 		}, id);
 	}
 	
-	
 	public List<ArtistPageCommand> findAllArtistkByEmail() {
 		String sql = "SELECT a.name_kor, a.name_eng, a.genre, a.imgPath, "
 				+ "b.artworkImgPath, a.aid, b.wid, c.title "
@@ -110,8 +109,6 @@ public class ArtistDao {
 		jdbcTemplate.update(sql, artist.getPasswd(), artist.getPhone(), 
 				artist.getImgPath(), artist.getEmail());
 	}
-	
-	
 	
 	// 페이징 부분
 	public Page<ArtistPageCommand> findAllPage(Pageable pageable){
@@ -164,6 +161,26 @@ public class ArtistDao {
 		}, ctg);
 	}
 	
+	public List<ArtistPageCommand> findAllArtist() {
+		String sql = "SELECT a.name_kor, a.name_eng, a.genre, a.imgPath, "
+				+ "b.artworkImgPath, a.aid, b.wid, c.title "
+				+ "FROM Artist a INNER JOIN artwork b "
+				+ "ON b.artistId = a.aid JOIN ArtistInfo c ON a.aid = c.artistId "
+				+ "WHERE a.genre = ? GROUP BY b.artistId";
+		
+		return jdbcTemplate.query(sql, new RowMapper<ArtistPageCommand>() {
+			
+			@Override
+			public ArtistPageCommand mapRow(ResultSet rs, int rowNum) throws SQLException {
+				ArtistPageCommand artist = new ArtistPageCommand(
+						rs.getString("name_kor"), rs.getString("name_eng"), 
+						rs.getString("genre"), rs.getString("imgPath"), 
+						rs.getString("artworkImgPath"), rs.getLong("aid"),
+						rs.getLong("wid"), rs.getString("title"));
+				return artist;
+			}
+		});
+	}
 	
 	
 	

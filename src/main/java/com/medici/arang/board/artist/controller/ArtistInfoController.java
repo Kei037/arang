@@ -34,6 +34,8 @@ import com.medici.arang.board.artist.command.CategoryCommand;
 import com.medici.arang.board.artist.command.FindArtistInfoCommand;
 import com.medici.arang.board.artist.service.ArtistInfoServiceImpl;
 import com.medici.arang.board.artist.service.ArtworkServiceImpl;
+import com.medici.arang.like.domain.LikeVo;
+import com.medici.arang.like.service.LikeServiceImpl;
 import com.medici.arang.user.command.ArtistCommand;
 import com.medici.arang.user.command.ArtistPageCommand;
 import com.medici.arang.user.service.ArtistServiceImpl;
@@ -53,6 +55,9 @@ public class ArtistInfoController {
 	
 	@Autowired
 	public ArtworkServiceImpl artworkService;
+	
+	@Autowired
+	LikeServiceImpl likeService;
 	
 	//	작품추가 페이지FORM
 	@GetMapping("/mypage/add_artist_info")
@@ -86,7 +91,7 @@ public class ArtistInfoController {
 	
 	
 	
-	private static final String SAVE_DIR = "C:\\JavaYoung\\JavaStudy\\eclipse-workspace\\arang\\src\\main\\webapp\\resources\\img\\";
+	private static final String SAVE_DIR = "C:\\PSH\\my-workSpace\\arang\\src\\main\\webapp\\resources\\img\\";
 	private static final String PATH_DIR = "/upload_img/";
 	
 	//	작품추가 기능
@@ -134,9 +139,17 @@ public class ArtistInfoController {
 		artistInfo.setArtistId(artist.getAid());
 		model.addAttribute("artistInfo", artistInfo);
 		artistInfoService.addArtistInfo(artistInfo);
-		return "mypage/success_info";
+		
+		request.setAttribute("artist", artist);
+		
+		return "mypage/artist_checkpage";
 	}
 	
+	
+	@GetMapping("/mypage/artist_checkpage")
+	public String artistCheckpage(HttpServletRequest request) {
+		return "mypage/artist_checkpage";
+	}
 	
 	
 	@GetMapping("/artist_board/artist_depth")
@@ -144,7 +157,17 @@ public class ArtistInfoController {
 		FindArtistInfoCommand artistInfo = artistInfoService.findArtistInfo(id);
 		List<ArtworkCommand> artworkList = artworkService.allfindArtwork(id);
 		
+		///작가id aid로 찾기
+		LikeVo findLike = likeService.findLikeByTargetId(id);
+
+		if(findLike != null) {
+			model.addAttribute("likeNum", 2);
+		}else {
+			model.addAttribute("likeNum", 3);		
+		}
 		
+		//아티스트 PK ID
+		model.addAttribute("id", id);
 		model.addAttribute("artistInfo", artistInfo);
 		model.addAttribute("artworkList", artworkList);
 		return "artist_board/artist_depth";
@@ -162,7 +185,7 @@ public class ArtistInfoController {
 			page = Integer.parseInt(request.getParameter("page"));			
 		}
 		//페이징
-		Pageable pageable = PageRequest.of(page, 3, Sort.Direction.DESC, "aid");
+		Pageable pageable = PageRequest.of(page, 9, Sort.Direction.DESC, "aid");
 		Page<ArtistPageCommand> artistPagingList = artistservice.findAllPage(pageable);
 		
 		// ajax, 컨트롤러 처리 해야함

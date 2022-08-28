@@ -1,5 +1,6 @@
 !DROP TABLE Artist;
-!DELETE FROM Artist WHERE aid = 4;
+!DELETE FROM Artist WHERE aid = 7;
+
 CREATE TABLE Artist(
   aid			BIGINT			PRIMARY KEY AUTO_INCREMENT,
   email			VARCHAR(30)		NOT NULL,
@@ -15,7 +16,6 @@ CREATE TABLE Artist(
 )AUTO_INCREMENT = 1;
 
 SELECT * FROM Artist;
-
 
 UPDATE Artist SET genre = 'painter', name_eng='Kim sun' WHERE aid = 3;
 
@@ -40,13 +40,14 @@ SELECT * FROM Artwork GROUP BY artistId;
 SELECT * FROM Artwork;
 
 
-!DELETE FROM Artwork WHERE wid = 1012;
+!DELETE FROM Artwork WHERE wid = 1003;
 
 SELECT a.name, a.genre, a.technique, a.size, a.publicationDate, a.description, 
 a.artworkImgPath, b.mainTitle, b.subTitle, b.workInfoImgPath 
 FROM Artwork a INNER JOIN ArtworkInfo b ON a.wid = b.artworkId 
 WHERE a.wid = 1001;
 
+UPDATE Artwork SET genre = 'digtalArt' WHERE wid = 1006;
 
 SELECT DISTINCT FROM Artwork WHERE artistId = 1;
 
@@ -58,7 +59,6 @@ WHERE a.genre = 'DrawingArtist' GROUP BY b.artistId;
 INSERT INTO Artwork (artistId, name, genre, technique, size, publicationDate, 
 description, imgPath) VALUES (1001, '조조의 그림', 'painter', '심혈을 기울인 기법', 
 '500cm * 500cm', '2022', '조조가 그린 그림입니다.', 'chochoArt.jpg');	
-
 
 CREATE TABLE ArtistInfo (
 	bid 				BIGINT			PRIMARY KEY AUTO_INCREMENT,
@@ -74,7 +74,7 @@ CREATE TABLE ArtistInfo (
 SELECT * FROM ArtistInfo;
 
 !DROP TABLE ArtistInfo;
-!DELETE FROM ArtistInfo WHERE bid=2005;
+!DELETE FROM ArtistInfo WHERE artistId=7;
 
 SELECT a.name_kor, a.ssn, a.imgPath, b.title, b.description, b.infoImgPath 
 FROM ArtistInfo b LEFT JOIN Artist a ON a.aid = b.artistId WHERE a.aid = 1;
@@ -94,8 +94,7 @@ CREATE TABLE ArtworkInfo (
 SELECT * FROM ArtworkInfo;
 
 !DROP TABLE ArtworkInfo;
-!DELETE FROM ArtworkInfo WHERE cid = 3012;
-
+!DELETE FROM ArtworkInfo WHERE cid = 3002;
 
 INSERT INTO Artist (email, passwd) VALUES ('test@naver.com', '1234');
 SELECT * FROM Artist;
@@ -103,14 +102,12 @@ SELECT * FROM Artist;
 INSERT INTO Artwork (artistId, artworkName, artworkImg, description, artworkCategory) 
 VALUES (101, '조조의 그림', 'chochoArt.jpg', '조조가 그린 그림입니다.', '전통판화');
 SELECT * FROM Artwork;
-
+DELETE FROM Artwork WHERE wid=1002;
 SELECT * FROM Artwork JOIN Artist ON Artwork.artistId = Artist.aid WHERE mid = ?
 
 UPDATE Artwork SET artistId = 101, artworkName = '조조가 훔친 유비의 그림', 
 artworkImg = 'bbart.png', description = '조조가 홈친 유비의 그림이다.', 
 artworkCategory = '동양화' WHERE wid = 1001;
-
-
 
 
 !DROP TABLE Gallerist;
@@ -126,7 +123,6 @@ CREATE TABLE Gallerist(
 );
 
 SELECT * FROM Gallerist;
-
 
 !DROP TABLE Gallery;
 CREATE TABLE Gallery(
@@ -167,11 +163,8 @@ a.galleryEmail, a.galleryPhone, a.since, a.area, a.openClose, a.galleryImgPath,
 b.description, b.infoImgPath FROM GalleryInfo b LEFT JOIN Gallery a 
 ON a.code = b.galleryCode;
 
-
-
-
 !DROP TABLE Contact;
-!DELETE FROM Contact WHERE contactId = 102;
+!DELETE FROM Contact WHERE contactId = 101;
 CREATE TABLE Contact(
 	contactId			BIGINT			PRIMARY KEY  AUTO_INCREMENT,
 	galleryCode			BIGINT			NOT NULL,
@@ -191,36 +184,48 @@ CREATE TABLE Contact(
 
 SELECT * FROM Contact;
 
+
+SELECT a.accept, a.regDate, d.imgPath, d.name_kor, d.name_eng, a.exhibitionTitle, 
+a.startDate, a.endDate, a.sendingType, a.comment 
+FROM Contact a LEFT JOIN Gallery b 
+ON b.code = a.galleryCode JOIN Gallerist c 
+ON b.galleristEmail = c.email JOIN Artist d 
+ON d.aid = a.artistId WHERE c.email = 'test1@naver.com' AND a.sendingType = 'G';
+
+
 INSERT INTO Contact (galleryCode, artistId) VALUES (3, 11);
 
 SELECT * FROM Contact WHERE galleryCode = 1;
+
+SELECT a.contactId, a.accept, a.regDate, FROM Contact a LEFT JOIN Gallery b 
+ON b.code = a.galleryCode WHERE a.artistId = 1 GROUP BY a.contactId;
+
 
 SELECT exhibitionTitle, startDate, endDate, artworkImgPath FROM Contact a 
 INNER JOIN Artwork b ON a.artistId = b.artistId WHERE a.sendingType = 'G' 
 AND a.accept = 'Y' GROUP BY a.contactId;
 
-SELECT a.accept, a.regDate, b.name_kor, b.genre, b.imgPath, c.artworkImgPath,
-a.sendingType
-FROM Contact a INNER JOIN Artist b 
-ON b.aid = a.artistId JOIN Artwork c ON a.artistId = c.artistId
-WHERE a.galleryCode = 1 AND a.sendingType = 'A' GROUP BY a.contactId;
+
+
+SELECT a.accept, a.regDate, d.imgPath, d.name_kor, d.name_eng, d.genre, 
+b.galleryName_eng, b.galleryImgPath
+FROM Contact a  
+LEFT JOIN Gallery b ON b.code = a.galleryCode
+JOIN Gallerist c ON b.galleristEmail = c.email
+JOIN Artist d ON d.aid = a.artistId
+WHERE c.email = 'test1@naver.com' AND a.sendingType = 'A';
+
+
+
 
 SELECT a.contactId, a.accept, a.regDate, a.startDate, a.endDate, a.exhibitionTitle,
 a.comment, b.galleryName_eng, b.galleryImgPath FROM Contact a LEFT JOIN Gallery b 
 ON b.code = a.galleryCode WHERE a.artistId = 1 GROUP BY a.contactId;
 
-
 SELECT a.contactId, a.accept, a.regDate, b.galleryName_eng, b.galleryImgPath, 
 a.startDate, a.endDate, a.exhibitionTitle, a.comment, a.galleryCode, 
 a.sendingType FROM Contact a LEFT JOIN Gallery b ON b.code = a.galleryCode 
 WHERE a.artistId = 1 AND a.sendingType = 'A' GROUP BY a.contactId;
-
-
-
-
-
-
-
 
 CREATE TABLE Storage (
    sid					BIGINT			PRIMARY KEY AUTO_INCREMENT,
@@ -238,7 +243,6 @@ CREATE TABLE Storage (
    regDate              TIMESTAMP       DEFAULT CURRENT_TIMESTAMP
 )AUTO_INCREMENT = 1;
 
-
 CREATE TABLE LikeTable(
    lid         		BIGINT           PRIMARY KEY AUTO_INCREMENT,     
    userId    		VARCHAR(50)      DEFAULT NULL,
@@ -246,3 +250,23 @@ CREATE TABLE LikeTable(
    likeNum     		INT(10)         DEFAULT 0,
    regDate      	TIMESTAMP      DEFAULT CURRENT_TIMESTAMP   
 )AUTO_INCREMENT = 1;
+
+SELECT * FROM LikeTable;
+!DROP TABLE LikeTable;
+
+SELECT exhibitionTitle, startDate, endDate, artworkImgPath FROM Contact a 
+INNER JOIN Artwork b ON a.artistId = b.artistId WHERE a.sendingType = 'G' 
+AND a.accept = 'Y' GROUP BY a.contactId;
+
+SELECT a.name_kor, a.name_eng, a.genre, a.imgPath,
+b.artworkImgPath, a.aid, b.wid, c.title, d.userId
+ FROM Artist a INNER JOIN artwork b
+ ON b.artistId = a.aid JOIN ArtistInfo c ON a.aid = c.artistId
+JOIN LikeTable d ON b.wid = d.targetValue WHERE d.userId='test1@naver.com';
+
+SELECT a.name_kor, a.name_eng, a.genre, a.imgPath,
+b.artworkImgPath, a.aid, b.wid, c.title, d.userID
+FROM Artist a LEFT JOIN artwork b ON b.artistId = a.aid JOIN ArtistInfo c 
+ON c.artistId = b.artistId JOIN LikeTable d ON d.targetValue = c.artistId
+WHERE d.userId = 'test1@naver.com'
+GROUP BY a.aid;

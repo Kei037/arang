@@ -104,8 +104,15 @@
                         <form action="gallery_focus" method="post">
                           <a href="#"><button class="btn1" type="submit">Contacting</button></a>
                           <input type="hidden" name="galleryCode" value="${galleryCommand.code}" />
-                          <button class="like"><img src="../resources/img/icon/like.png" alt="like"></button>
                         </form>
+                          <button class="like likeButton" value="${galleryCommand.code}">
+                      <c:if test="${likeNum == 4}">
+                      <img class="like_img" src="/fake_resources/img/icon/like_2.png" alt="like">
+						</c:if>
+						<c:if test="${likeNum == 5}">
+                      <img class="like_img" src="/fake_resources/img/icon/like.png" alt="like">
+						</c:if>
+                      </button>
                           <p>76</p>
                         </div>
                       </div>
@@ -137,6 +144,43 @@
 
     </div>
   </div>
+  <script>
+	$(".likeButton").click(function() {
+		//해당 Value값 가져와서 할당
+		let userId = '<c:out value="${email}"/>';
+		let targetValue = $(this).attr('value');
+		console.log(userId);
+		console.log(targetValue);
+		$.ajax({
+			type :'post',
+			url : '<c:url value ="/likeUp"/>',
+			contentType: 'application/json',
+			data : JSON.stringify(
+					{
+						"userId" : userId,
+						"targetValue" : targetValue,
+						"likeNum" : 1
+					}
+				),
+			context: this, 
+			success : function(data) {
+				alert(data.msg);
+				let likeCheck = data.likeCheck;
+				if(likeCheck == 1){
+					$(this).children("img").attr('src','../resources/img/icon/like_2.png');
+					console.log($(this));
+				}else{
+					$(this).children("img").attr('src','../resources/img/icon/like.png');
+					console.log($(this));
+				}
+			},
+			error : function(error) {
+				alert(error);
+			}
+		})
+
+	});//like
+  </script>
 </body>
 
 </html>

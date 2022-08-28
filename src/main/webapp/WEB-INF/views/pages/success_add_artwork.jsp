@@ -37,12 +37,12 @@
               </div>
               <div class="artwork_info_wrap">
                 <div class="artwork_info">
-                  <h2>${artist.name_kor}</h2>
+                  <h2>${artwork.name}</h2>
                   <div class="info">
                     <div class="info_block">
                       <div class="first">장르(Genre)</div>
                       <div class="last">
-                        <a href="../html_artist/artist.html">${artist.genre}</a>
+                        <a href="../html_artist/artist.html">${artwork.genre}</a>
                       </div>
                     </div>
                     <div class="info_block">

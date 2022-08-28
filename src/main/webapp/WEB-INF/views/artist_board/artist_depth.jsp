@@ -64,7 +64,21 @@
                     </div>
                   </div>
               </div>
-            </div>
+              <div class="button_wrap">
+                <div class="btn_group">
+                  <a href="#"><button class="btn1">Contacting</button></a>
+                      <button class="like likeButton" value="${id}">
+                      <c:if test="${likeNum == 2}">
+                      <img class="like_img" src="/fake_resources/img/icon/like_2.png" alt="like">
+						</c:if>
+						<c:if test="${likeNum == 3}">
+                      <img class="like_img" src="/fake_resources/img/icon/like.png" alt="like">
+						</c:if>
+                      </button>
+                  <!-- <p>76</p> -->
+                </div>
+              </div>
+           </div> 
             <div class="side_block">
               <div class="a_list">
                 <h3>추천작가</h3>
@@ -82,12 +96,12 @@
                 <a href="#"><img class="exhibition_banner" src="/upload_img/banner/김선배너.jpg" alt="exhibition_banner"></a>
               </div>
             </div>
+            </div>
           </div>
         </div>
       </div>
 
     </div>
-  </div>
  
 
     <!-- Swiper JS -->
@@ -102,15 +116,7 @@
     		},
         slidesPerView: 3,
         spaceBetween: 10,
-        slidesOffsetBefore: 23,
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
+        slidesOffsetBefore: 0,
       });
       
    // 이미지 틀에 맞추기
@@ -203,7 +209,42 @@
           console.log("heart2");
         }
       }
+	
+    	$(".likeButton").click(function() {
+    		//해당 Value값 가져와서 할당
+    		let userId = '<c:out value="${email}"/>';
+    		let targetValue = $(this).attr('value');
+    		console.log(userId);
+    		console.log(targetValue);
+    		$.ajax({
+    			type :'post',
+    			url : '<c:url value ="/likeUp"/>',
+    			contentType: 'application/json',
+    			data : JSON.stringify(
+    					{
+    						"userId" : userId,
+    						"targetValue" : targetValue,
+    						"likeNum" : 1
+    					}
+    				),
+    			context: this, 
+    			success : function(data) {
+    				alert(data.msg);
+    				let likeCheck = data.likeCheck;
+    				if(likeCheck == 1){
+    					$(this).children("img").attr('src','../resources/img/icon/like_2.png');
+    					console.log($(this));
+    				}else{
+    					$(this).children("img").attr('src','../resources/img/icon/like.png');
+    					console.log($(this));
+    				}
+    			},
+    			error : function(error) {
+    				alert(error);
+    			}
+    		})
 
+    	});//like
     </script>
   
   
