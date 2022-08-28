@@ -68,7 +68,6 @@
                     </div>
                     <div class="second d-flex flex-row">
                       <div>${artistL.title}</div>
-                      <button class="like"><img src="/fake_resources/img/icon/like.png" alt="like"></button>
                     </div>
                   </div>
                 </div>

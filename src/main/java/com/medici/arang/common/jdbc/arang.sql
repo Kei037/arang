@@ -270,3 +270,12 @@ FROM Artist a LEFT JOIN artwork b ON b.artistId = a.aid JOIN ArtistInfo c
 ON c.artistId = b.artistId JOIN LikeTable d ON d.targetValue = c.artistId
 WHERE d.userId = 'test1@naver.com'
 GROUP BY a.aid;
+
+CREATE TABLE notice(
+	num				BIGINT				PRIMARY KEY  AUTO_INCREMENT,
+	title			VARCHAR(100)		NOT NULL,
+	writer			VARCHAR(50),
+	content			VARCHAR(1000)		NOT NULL,
+	readCnt			INT,
+	regDate			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP
+)auto_increment = 1;
