@@ -3,6 +3,10 @@
   padding-bottom: 300px;
 }
 
+.artist_avatar.artist {
+	margin-right: 0px;
+}
+
 .sub_title.other {
   margin-top: 120px;
 }

@@ -14,7 +14,12 @@
 <link rel="stylesheet" href="/fake_resources/css/artist/artist_focus.css">
 <script type="text/javascript" src="/fake_resources/js/common.js"></script>
 <style>
-  .ck-editor__editable { height: 300px; width: 815px; }
+
+.ck-editor__editable { 
+  height: 300px; 
+  width: 815px; 
+  background-color: #f5f5f5;
+}
 </style>
 </head>
 <body>

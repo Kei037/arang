@@ -6,7 +6,7 @@ import com.medici.arang.board.artist.command.ArtworkInfoCommand;
 import com.medici.arang.board.artist.command.FindArtworkInfoCommand;
 import com.medici.arang.board.artist.dao.ArtworkInfoDao;
 
-public class ArtworkInfoServiceImpl {
+public class ArtworkInfoServiceImpl implements ArtworkInfoService {
 	
 	@Autowired
 	ArtworkInfoDao artworkInfoDao;

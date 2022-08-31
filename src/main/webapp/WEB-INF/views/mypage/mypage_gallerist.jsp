@@ -29,7 +29,7 @@
                 <table class="table_a">
                   <tr>
                     <td>
-                      <div class="artist_avatar">
+                      <div class="artist_avatar gallerist">
                         <img src="${gallerist.imgPath}" alt="2">
                       </div>
                     </td>
@@ -115,17 +115,17 @@
         <div class="container my_gallery2">
           <div class="sub_page_context">
             <div class="grid_wrapper">
-              <h5 class="sub_title">My Gallerys<small>${galleryCount}</small></h5>
+              <h5 class="sub_title">My Gallerys<small></small></h5>
               <div class="row artist_list">
               <c:forEach var="gallery" items="${myGalleryList}">
                 <div class="col artist_item">
                   <div class="artist_info d-flex flex-row">
                     <div class="artist_avatar">
-                      <a href="../../html_gallery/gallery_focus.html"><img src="/fake_resources/img/gallerys/g1.png" alt="g1"></a>
+                      <a href="/arang/gallery/gallery_focus?code=${gallery.code}"><img src="${gallery.galleryImgPath}" alt="g1"></a>
                     </div>
                     <div class="artist_text">
                       <div class="first">
-                        <span>${gallery.galleryName_kor}</span>
+                        <span>${gallery.galleryName_eng}</span>
                       </div>
                       <div class="second d-flex flex-row">
                         <div>${gallery.address}</div>
@@ -136,7 +136,7 @@
                     <a href="#">
                       <div class="artwork_banner">
                         <a href="/arang/gallery/gallery_focus?code=${gallery.code}">
-                        <img src="${gallery.galleryImgPath}"></a>
+                        <img src="${gallery.infoImgPath}"></a>
                       </div>
                     </a>
                   </div>

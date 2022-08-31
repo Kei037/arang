@@ -29,7 +29,7 @@
     </div>
     <div class="exhibition">
       <div class="exhibition_wrapper1">
-        <img class="first" src="/fake_resources/img/exhibition/안보희/1.jpg">
+        <img class="first" src="/fake_resources/img-2/exhibition/KimBoHei/1.jpg">
       </div>
       <div class="info_txt">
         <h3>THE DAYS</h3>
@@ -37,7 +37,7 @@
         <p class="date">2022.08.20~09.20</p>
       </div>
       <div class="exhibition_wrapper2">
-        <img src="/fake_resources/img/exhibition/안보희/2.jpg">
+        <img src="/fake_resources/img-2/exhibition/KimBoHei/2.jpg">
         <div class="sub_box">
           <p class="sub">쉼에서 움트는 생명력 가득한 풍경들</p>
           <p class="sub">The lifelike landscapes of rest</p>
@@ -52,12 +52,12 @@
             <p class="date">김보희 개인전 2022.08.20~09.20 제주현대미술관</p>
           </div>
         </div>
-        <img src="/fake_resources/img/exhibition/안보희/3.jpg">
+        <img src="/fake_resources/img-2/exhibition/KimBoHei/3.jpg">
       </div>
-      <img class="work6" src="/fake_resources/img/exhibition/안보희/6.jpg">
+      <img class="work6" src="/fake_resources/img-2/exhibition/KimBoHei/4.jpg">
       <div class="exhibition_wrapper4">
-        <img src="/fake_resources/img/exhibition/안보희/4.jpg">
-        <img src="/fake_resources/img/exhibition/안보희/5.jpg">
+        <img src="/fake_resources/img-2/exhibition/KimBoHei/5.jpg">
+        <img src="/fake_resources/img-2/exhibition/KimBoHei/6.jpg">
       </div>
       <div class="exhibition_wrapper5">
         <div class="info_txt">
@@ -83,14 +83,13 @@
                   <div class="col artist_item">
                     <div class="artist_info d-flex flex-row">
                       <div class="artist_avatar">
-                        <a href="#"><img src="/fake_resources/img/김보희/김보희.jpg" alt="김보희"></a>
+                        <a href="#"><img src="/fake_resources/img-2/artist/KimBoHei/profile.jpg" alt="김보희"></a>
                       </div>
                       <div class="artist_text">
                         <div class="first">
                           <span>김보희</span>
                           <span class="futuraM">Kim, Bo Hei</span>
                           <span class="genre_tag">Painter</span>
-                          <span class="genre_tag">Sculptor</span>
                         </div>
                         <div class="second d-flex flex-row">
                           <div>모성애를 담은 자연</div>
@@ -100,7 +99,7 @@
                     <div class="banner_wrap">
                       <a href="#">
                         <div class="artwork_banner">
-                          <img src="/fake_resources/img/김보희/3.jpg">
+                          <img src="/fake_resources/img-2/artist/KimBoHei/artist_detail.jpg">
                         </div>
                       </a>
                     </div>
@@ -108,21 +107,21 @@
                   <div class="col artist_item">
                     <div class="artist_info d-flex flex-row">
                       <div class="artist_avatar">
-                        <a href="#"><img src="/fake_resources/img/gallerys/제주현대미술관2.jpg"></a>
+                        <a href="#"><img src="/fake_resources/img-2/gallery/jeju_museum/profile.jpg"></a>
                       </div>
                       <div class="artist_text">
                         <div class="first">
                           <span>Jeju museum of contemporary art</span>
                         </div>
                         <div class="second d-flex flex-row">
-                          <div>Hangyeong-myeon, Jeju-do</div>
+                          <div>제주도 제주시 한경면 저지14길 35</div>
                         </div>
                       </div>
                     </div>
                     <div class="banner_wrap">
                       <a href="#">
                         <div class="artwork_banner">
-                          <img src="/fake_resources/img/gallerys/제주현대미술관.jpg">
+                          <img src="/fake_resources/img-2/gallery/jeju_museum/detail.jpg">
                         </div>
                       </a>
                     </div>

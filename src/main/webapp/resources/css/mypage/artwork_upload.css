@@ -113,13 +113,6 @@ section {
   padding-bottom: 20px;
 }
 
-.btn1 {
-  background: gray!important;
-}
-.btn1:hover {
-  background: gray!important;
-}
-
 .board_btn.service {
   margin-top: 15px;
 }

@@ -1,6 +1,11 @@
 @charset "UTF-8";
 
 /* 회원가입 (아티스트/갤러리확인) */
+.container.join {
+	padding-top: 290px;
+}
+
+
 .job {
   width: 200px;
 }
@@ -15,7 +20,7 @@
 
 #join_wrapper {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   position: relative;
 }
 

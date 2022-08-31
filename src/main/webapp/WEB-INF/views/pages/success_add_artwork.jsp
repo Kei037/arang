@@ -18,11 +18,6 @@
   <div id="wrap">
     <jsp:include page="/WEB-INF/views/header/header.jsp"/>
     <!-- 아티스트상세페이지 -->
-          <div class="button_wrap">
-                  <div class="btn_group">
-                  <button href="/arang/mypage/mypage_artist" class="btn1" type="button">마이페이지</button>
-                  </div>
-                </div>
 <div id="artwork">
       <div id="artwork_detail">
         <div class="container">
@@ -80,11 +75,12 @@
             <div class="a_artwork">
             	<img class="artwork" src="${artworkInfo.workInfoImgPath}" alt="오브제1">
             </div>
-            
           </section>
+      		<div class="btn_group2">
+         		<button href="/arang/mypage/mypage_artist" class="btn1" type="button">마이페이지</button>
+      		</div>
         </div>
       </div>
-
     </div>
     </div>
 </body>

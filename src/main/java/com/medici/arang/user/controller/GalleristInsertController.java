@@ -159,10 +159,7 @@ public class GalleristInsertController {
 		
 		galleristServiceImpl.insertGallerist(galleristCommend);
 		
-//		RequestDispatcher rd = request.getRequestDispatcher("add_success");
-//		rd.forward(request, response);
-		
-		return "user/add_success";
+		return "redirect:/login";
 	}
 	
 	

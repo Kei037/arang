@@ -31,15 +31,6 @@
         <div class="container">
           <div class="detail_wrapper d-flex">
             <div class="side_block">
-              <div class="artist_info">
-                <span class="genre_tag">${artist.genre}</span>
-                <h3>${artist.name_kor }</h3>
-                <p class="e_name">${artist.name_eng}</p>
-                <p class="born">1984</p>
-                <div class="artist_avatar">
-                  <img src="${artist.imgPath}">
-                </div>
-              </div>
             </div>
             <div class="content_block">
               <div class="review">

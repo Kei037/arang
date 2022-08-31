@@ -33,6 +33,9 @@ public class NoticeController {
 			HttpServletRequest request, HttpSession session, 
 			@RequestParam(required = false, defaultValue = "") String field,
 			@RequestParam(required = false, defaultValue = "") String word) {
+		session = request.getSession();
+		String email = (String)session.getAttribute("email");
+		
 		List<NoticeCommand> noticeFindAll = noticeServiceImpl.findAllNotice();
 		model.addAttribute("noticeFindAll", noticeFindAll);
 		

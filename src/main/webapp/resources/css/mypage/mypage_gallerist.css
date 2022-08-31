@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.artist_avatar.gallerist {
+	margin-right: 0px;
+}
+
 
 /* contacting >> */
 .storage_list.mypage.gallerist_contact_first tr td:nth-child(1) {

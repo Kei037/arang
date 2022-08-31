@@ -19,14 +19,14 @@
 
 <div id="wrap">
   
-<jsp:include page="/WEB-INF/views/header/header.jsp"/>
+<jsp:include page="/WEB-INF/views/header/header_main.jsp"/>
       
 <div class="exhibition">
       <div class="exhibition_wrapper">
       <c:forEach var="exhibitions" items="${exhibitionList}">
         <div class="exhibition_view">
           <div class="img_wrapper">
-            <a href="../html_exhibition/exhibition_focus.html">
+            <a href="/arang/exhibitions/exhibition_focus">
             <img src="${exhibitions.artworkImgPath}"></a>
           </div>
           <p>${exhibitions.exhibitionTitle }</p>

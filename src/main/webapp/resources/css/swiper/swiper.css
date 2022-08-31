@@ -5,3 +5,6 @@
  	top: 300px;
  }
  
+.mySwiper > .swiper-wrapper {
+   width: 1320px;;
+ }

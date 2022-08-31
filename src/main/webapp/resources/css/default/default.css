@@ -1,11 +1,16 @@
 @charset "UTF-8";
 /* html,body { height: 100%;} */
-body {  background-color: #EAE9E9; overflow-x: hidden;}
+body {  background-color: #EAE9E9;}
+/*overflow-x: hidden;*/
 ul,li { list-style: none;}
 ul,li,h1,h2,h3,p { margin: 0; padding: 0; color:#333333;}
 a { text-decoration: none; color: #333333;}
 p {color: #333333;}
 a:hover { color: #111111;}
+
+:root {
+	--ck-color-base-background: #f5f5f5;
+}
 
 #header {
   position: fixed;
@@ -15,6 +20,7 @@ input {
   border: none;
   outline: none;
 }
+
 
 .artist_info.d-flex.flex-row {
   margin-top: 0px;
@@ -106,6 +112,7 @@ button:focus {
   background-color: tomato;
   border: none;
   padding: 0 7px;
+  padding-bottom: 1px;
 }
 
 /* container */

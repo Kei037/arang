@@ -1,5 +1,6 @@
-	!DROP TABLE Artist;
-!DELETE FROM Artist WHERE aid = 7;
+!DROP TABLE Artist;
+!DELETE FROM Artist WHERE aid=5;
+!ALTER TABLE Artist MODIFY genre VARCHAR(100);
 
 CREATE TABLE Artist(
   aid			BIGINT			PRIMARY KEY AUTO_INCREMENT,
@@ -9,7 +10,7 @@ CREATE TABLE Artist(
   name_eng		VARCHAR(20)		NOT NULL,
   ssn			VARCHAR(20)		NOT NULL,
   phone			VARCHAR(13)		NOT NULL,
-  genre			VARCHAR(50)		NOT NULL,
+  genre			VARCHAR(100)	NOT NULL,
   career		VARCHAR(100)	NOT NULL,
   imgPath		VARCHAR(300)	NOT NULL,
   regDate		TIMESTAMP		NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -17,7 +18,9 @@ CREATE TABLE Artist(
 
 SELECT * FROM Artist;
 
-UPDATE Artist SET genre = 'painter', name_eng='Kim sun' WHERE aid = 3;
+UPDATE Artist SET imgPath = "/upload_img/artist/Kim Bo Hei/127d4f6c.jpg" WHERE aid = 11;
+
+UPDATE Artwork SET name = 'BLOCK (Falling Blue Brown)' WHERE artistId = '2';
 
 !DROP TABLE Artwork;
 CREATE TABLE Artwork (
@@ -39,9 +42,7 @@ SELECT * FROM Artwork GROUP BY artistId;
 
 SELECT * FROM Artwork;
 
-
-
-!DELETE FROM Artwork WHERE wid = 1003;
+!DELETE FROM Artwork WHERE wid <= 1022;
 
 SELECT a.name, a.genre, a.technique, a.size, a.publicationDate, a.description, 
 a.artworkImgPath, b.mainTitle, b.subTitle, b.workInfoImgPath 
@@ -95,7 +96,7 @@ CREATE TABLE ArtworkInfo (
 SELECT * FROM ArtworkInfo;
 
 !DROP TABLE ArtworkInfo;
-!DELETE FROM ArtworkInfo WHERE cid = 3002;
+!DELETE FROM ArtworkInfo WHERE cid = 3022;
 
 INSERT INTO Artist (email, passwd) VALUES ('test@naver.com', '1234');
 SELECT * FROM Artist;
@@ -103,7 +104,7 @@ SELECT * FROM Artist;
 INSERT INTO Artwork (artistId, artworkName, artworkImg, description, artworkCategory) 
 VALUES (101, '조조의 그림', 'chochoArt.jpg', '조조가 그린 그림입니다.', '전통판화');
 SELECT * FROM Artwork;
-DELETE FROM Artwork WHERE wid=1002;
+DELETE FROM Artwork WHERE wid=1022;
 SELECT * FROM Artwork JOIN Artist ON Artwork.artistId = Artist.aid WHERE mid = ?
 
 UPDATE Artwork SET artistId = 101, artworkName = '조조가 훔친 유비의 그림', 
@@ -112,6 +113,7 @@ artworkCategory = '동양화' WHERE wid = 1001;
 
 
 !DROP TABLE Gallerist;
+!DELETE FROM Gallerist WHERE cid = 1;
 
 CREATE TABLE Gallerist(
 	email		VARCHAR(30)		PRIMARY KEY,
@@ -145,8 +147,12 @@ CREATE TABLE Gallery(
 		FOREIGN KEY (galleristEmail) REFERENCES Gallerist(email)
 ) AUTO_INCREMENT = 1;
 
+!ALTER TABLE Gallery MODIFY openClose VARCHAR(200);
+
 SELECT * FROM Gallery;
 
+!DELETE FROM Gallery WHERE code=10;
+!DELETE FROM GalleryInfo WHERE galleryCode=10;
 
 !DROP TABLE GalleryInfo;
 CREATE TABLE GalleryInfo(
@@ -280,3 +286,37 @@ CREATE TABLE notice(
 	readCnt			INT,
 	regDate			TIMESTAMP			DEFAULT CURRENT_TIMESTAMP
 )auto_increment = 1;
+
+SELECT * FROM notice;
+
+CREATE TABLE ShopCategory (
+   cateName      VARCHAR(20)      DEFAULT NULL,
+   cateCode      VARCHAR(20)      PRIMARY KEY,
+   cateCodeRef      VARCHAR(20)      DEFAULT NULL,
+   FOREIGN KEY (cateCodeRef) REFERENCES ShopCategory(cateCode)
+);
+
+CREATE TABLE ShopItem (
+   sid            BIGINT         PRIMARY KEY AUTO_INCREMENT,
+   cateCodeRef      VARCHAR(20)      DEFAULT NULL,
+   cateCode      VARCHAR(20)      DEFAULT NULL,
+   itemName      VARCHAR(100)   DEFAULT NULL,
+   itemPrice      DOUBLE         DEFAULT NULL,
+   itemNum         INT            DEFAULT NULL,
+   itemStock      INT            DEFAULT NULL,
+   itemInfo      VARCHAR(500)   DEFAULT NULL,
+   itemImg         VARCHAR(200)   NOT NULL,
+   regDate         TIMESTAMP      NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   FOREIGN KEY (cateCode) REFERENCES ShopCategory(cateCode),
+   FOREIGN KEY (cateCodeRef) REFERENCES ShopCategory(cateCode)
+)AUTO_INCREMENT 1;
+
+SELECT * FROM ShopItem;
+
+CREATE TABLE Cart (
+   cid            BIGINT         PRIMARY KEY AUTO_INCREMENT,
+   itemImg         VARCHAR(200)   NOT NULL,
+   itemName      VARCHAR(100)   DEFAULT NULL,
+   itemStock      INT            DEFAULT NULL,
+   itemPrice      DOUBLE         DEFAULT NULL
+)AUTO_INCREMENT 1001;

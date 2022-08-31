@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/fake_resources/css/mypage/mypage_default.css">
 </head>
 <body>
-<form action="mypage_gallerist_modify" method="post" enctype="multipart/form-data">
+
 <div id="wrap">
 
 <jsp:include page="/WEB-INF/views/header/header_main.jsp"/>
@@ -28,14 +28,16 @@
                   <tr>
                     <td>
                       <div class="artist_avatar">
-                        <img src="${gallerist.imgPath}">
+                      <form action="uploadAjaxAction" method="post" enctype="multipart/form-data">
+                        <img id="changeImg" src="${gallerist.imgPath}" class="click">
+                        <input id="uploadFile" type="file" name="uploadFile" style="display: none;" onchange="imgchange(this)">
+                        <button id="uploadBtn" style="display: none;"></button>
+                      </form>
                       </div>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <input class="profile_up" type="file" name="imgFile" placeholder="이미지등록">
-                      <input type="hidden" value="${artist.imgPath}" name="oriImg"/>
                     </td>
                   </tr>
                   <tr>
@@ -43,12 +45,12 @@
                       <h3>${gallerist.name}</h3>
                       <input type="hidden" value="${gallerist.name}" name="name"/>
                       <p class="e_name">gallerist</p>
-                      
                     </td>
                   </tr>
                 </table>
             </div>
           </div>
+          <form action="mypage_gallerist_modify" method="post">
           <div class="info_center">
             <div class="my_info center gallerist">
                 <table class="table_a">
@@ -103,6 +105,7 @@
                 </table>
             </div>
           </div>
+          </form>
         </div>
       </div>
       <div class="btn2_group">
@@ -112,6 +115,45 @@
     </div>
 
 </div>
-</form>
+
+<script>
+$('#uploadBtn').click(function(event) {
+	   console.log(this.innerText);
+	   let clickCategory = this.innerText;
+	   $.ajax({
+	       type:"post",
+	       url : '/uploadAjaxAction',
+	       contentType: false,
+	       dataType: "file",
+	       data : JSON.stringify(
+	             {
+	             <!-- 보내지는 데이터 영역 -->
+	             "categoryValue" : clickCategory
+	             }
+	             ),
+	       success: function(data){
+	          if(data == "error"){
+	                alert("데이터 전송 실패!!");
+	          }else{                 
+	             console.log("데이터 전송 성공!!");
+	             console.log(data);
+	             alert(data);
+	             }
+	          }
+	   })
+	});
+
+	let click = document.querySelector(".click");
+	let clickTarget = document.querySelector("#uploadFile");
+	let btnTarget = document.querySelector("#uploadBtn");
+	click.addEventListener("click", function() {
+	   alert("이미지를 선택해주세요.");
+	   clickTarget.click();
+	});
+
+	function imgchange(e) {
+	   btnTarget.click();
+	}
+</script>
 </body>
 </html>

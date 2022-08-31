@@ -21,4 +21,5 @@ public interface LikeService {
 	List<ArtworkCommand> findArtworkJoinLike(String email);
 	List<GalleryPageCommand> findGalleryJoinLike(String email);
 	long getLikeArtistCount(String email);
+	LikeVo findLike(String userId, long targetValue);
 }

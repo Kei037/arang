@@ -134,6 +134,6 @@ public class GalleryInsertController {
 		infoCommand.setGalleryCode(a.getCode());
 		galleryInfoServiceImpl.insertGalleryInfo(infoCommand);
 		
-		return "user/add_success";
+		return "redirect:/mypage/mypage_gallerist";
 	}
 }

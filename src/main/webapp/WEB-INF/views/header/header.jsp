@@ -28,9 +28,10 @@
             <li><a href="/arang/exhibitions/exhibitions_main">Exhibitions</a></li>
             <li><a href="/arang/storage_page/storage_main">Storage</a></li>
             <li><a href="/arang/notice/notice">Notice</a></li>
+            <li><a href="/arang/customer_page/customer_main">Shop</a></li>
           </ul>
           <ul class="side_menu">
-            <li><a href="/arang/gallery/gallery_upload"><img src="<c:url value ='/resources/img/icon/find.png'/>" alt="find"></a></li>
+            <li><a href="/arang/main"><img src="<c:url value ='/resources/img/icon/find.png'/>" alt="find"></a></li>
             <c:if test="${artistLogin != null}">
             	<li><a href="/arang/mypage/mypage_artist"><img src="<c:url value ='/resources/img/icon/mypage.png'/>" alt="mypage"></a></li>
             </c:if>

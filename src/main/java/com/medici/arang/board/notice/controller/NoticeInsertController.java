@@ -34,11 +34,10 @@ public class NoticeInsertController {
 	@GetMapping("notice/insertNoticeForm")
 	public String insertGet(@ModelAttribute NoticeCommand noticeCommand, Model model,
 			HttpServletRequest request) {
-		//아이디 세션유지
 		HttpSession session = request.getSession();
-		String adminIdentified = (String) session.getAttribute("email");
-		System.out.println(adminIdentified);
-		noticeCommand.setWriter(adminIdentified);
+		String email = (String)session.getAttribute("email");
+		System.out.println(email);
+		noticeCommand.setWriter(email);
 		
 		model.addAttribute("noticeCommand", noticeCommand);
 		return "notice/insertNoticeForm";

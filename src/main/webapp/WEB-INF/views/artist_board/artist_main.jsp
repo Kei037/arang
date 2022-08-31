@@ -11,8 +11,8 @@
   <link rel="stylesheet" type="text/css" href="/fake_resources/css/default/normalize.css"/>
   <link rel="stylesheet" type="text/css" href="/fake_resources/css/default/default.css"/>
   <link rel="stylesheet" type="text/css" href="/fake_resources/css/artist/artist.css"/>
-  <link rel="stylesheet" type="text/css" href="/fake_resources/css/swiper/swiper.css"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+  <link rel="stylesheet" type="text/css" href="/fake_resources/css/swiper/swiper.css"/>
   <script type="text/javascript" src="/fake_resources/js/jquery.js"></script>
   
 </head>
@@ -79,7 +79,9 @@
                     <div class="artist_text">
                       <div class="first">
                         <span>${artworkPage.name_kor}</span>
-                        <span class="genre_tag">${artworkPage.genre}</span>
+                        <c:forTokens var="genre" items="${artworkPage.genre}" delims=";">
+                        <span class="genre_tag">${genre}</span>
+                        </c:forTokens>
                       </div>
                       <div class="second d-flex flex-row">
                         <div>날 것 그대로의 본질에 우연적 효과를 불어넣다.</div>

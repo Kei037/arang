@@ -100,12 +100,16 @@ public class GalleryMainController {
 	}
 	
 	@GetMapping("/gallery/gallery_focus")
-	public String GalleryInfoForm(@RequestParam("code") long code, Model model) {
+	public String GalleryInfoForm(@RequestParam("code") long code, Model model,
+							HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String email = (String)session.getAttribute("email");
+		
 		GalleryPageCommand galleryCommand = galleryInfoService.findGalleryByID(code);
 		model.addAttribute("galleryCommand", galleryCommand);
 		
 		///갤러리id code로 찾기
-		LikeVo findLike = likeService.findLikeByTargetId(code);
+		LikeVo findLike = likeService.findLike(email, code);
 
 		if(findLike != null) {
 			model.addAttribute("likeNum", 4);

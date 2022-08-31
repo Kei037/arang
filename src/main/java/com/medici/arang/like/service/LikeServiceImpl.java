@@ -75,6 +75,9 @@ public class LikeServiceImpl implements LikeService {
 	public LikeVo findLikeByTargetId(long targetValue) {
 		return likeDao.findLikeByTargetId(targetValue);
 	}
-
 	
+	@Override
+	public LikeVo findLike(String userId, long targetValue) {
+		return likeDao.findLike(userId, targetValue);
+	}
 }

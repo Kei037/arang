@@ -27,7 +27,7 @@
           <div class="detail_wrapper d-flex">
             <div class="side_block">
               <div class="artist_info">
-                <button><span class="futuraM">${artistInfo.genre}</span></button>
+                <span class="genre_tag">${artistInfo.genre}</span>
                 <h3>${artistInfo.name_kor}</h3>
                 <p class="e_name">${artistInfo.name_eng}</p>
                 <p class="born">1984</p>

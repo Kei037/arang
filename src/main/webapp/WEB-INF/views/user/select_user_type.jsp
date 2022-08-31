@@ -12,9 +12,10 @@
   <script type="text/javascript" src="/fake_resources/js/jquery.js"></script>
 </head>
 <body>
+<div id="wrap">
 <jsp:include page="/WEB-INF/views/header/header_main.jsp"/>
 
-<div class="container">
+<div class="container join">
       <div class="artwork_simul">
         <div id="join_wrapper">
           <div id="artist_join">
@@ -38,5 +39,6 @@
         </div>
       </div>
     </div>
+</div>    
 </body>
 </html>

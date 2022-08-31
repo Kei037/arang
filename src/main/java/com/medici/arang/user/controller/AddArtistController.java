@@ -144,19 +144,14 @@ public class AddArtistController {
 			errorMsgs.add("전화번호는 필수입력 정보입니다.");	
 		}if(artistCommand.getGenre() == null || artistCommand.getGenre().length() == 0) {
 			errorMsgs.add("1개 이상의 장르를 선택해주세요.");
-		}if(artistService.getArtistByEmail(artistCommand.getEmail()) != null) {
-			errorMsgs.add("이미 등록된 이메일 입니다.");
+		}
+		
 		if(errorMsgs.size() > 0) {
 			model.addAttribute("msg", errorMsgs);
 			model.addAttribute("url", "add_artist");
 			return "alert";
 			}
-		}
-		
-		
-		
-		
-		
+
 		model.addAttribute("imgName", imgName);
 		artistService.addArtist(artistCommand);
 		return "redirect:/login";

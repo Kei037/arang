@@ -22,7 +22,7 @@
     
     <jsp:include page="/WEB-INF/views/header/header_main.jsp"/>
     
-    <div class="headline_artworks">
+    <div class="headline">
       <h3>Gallery</h3>
       <nav id="sub-nav">
         <ul>

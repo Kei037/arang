@@ -25,6 +25,10 @@ import com.medici.arang.board.notice.dao.NoticeDao;
 import com.medici.arang.board.notice.service.NoticeServiceImpl;
 import com.medici.arang.like.dao.LikeDao;
 import com.medici.arang.like.service.LikeServiceImpl;
+import com.medici.arang.shop.dao.ShopCategoryDao;
+import com.medici.arang.shop.dao.ShopItemDao;
+import com.medici.arang.shop.service.ShopCategoryServiceImpl;
+import com.medici.arang.shop.service.ShopItemServiceImpl;
 import com.medici.arang.storage.dao.StorageDao;
 import com.medici.arang.storage.service.StorageServiceImpl;
 import com.medici.arang.user.dao.ArtistDao;
@@ -182,5 +186,25 @@ public class DataSourceConfig {
 	@Bean
 	public NoticeServiceImpl noticeService() {
 	   return new NoticeServiceImpl();
+	}
+	
+	@Bean
+	public ShopItemDao shopItemDao() {
+		return new ShopItemDao(dataSource());
+	}
+	
+	@Bean
+	public ShopCategoryDao shopCategoryDao() {
+		return new ShopCategoryDao(dataSource());
+	}
+	
+	@Bean
+	public ShopItemServiceImpl shopItemService() {
+		return new ShopItemServiceImpl();
+	}
+	
+	@Bean
+	public ShopCategoryServiceImpl shopCategoryService() {
+		return new ShopCategoryServiceImpl();
 	}
 }

@@ -30,7 +30,7 @@
                 <table class="table_a">
                   <tr>
                     <td>
-                      <div class="artist_avatar">
+                      <div class="artist_avatar artist">
                         <img class="my_info_img" src="${artist.imgPath}" alt="윤라희jpg">
                       </div>
                     </td>
@@ -118,7 +118,7 @@
       <div class="btn2_group">
         <a href="/arang/mypage/mypage_artist_modify"><button class="btn2 first">내 정보 수정</button></a>
         <c:if test="${infoCheck == 0}">
-      	<a href="/arang/mypage/add_artist_info"><button class="btn2 first" style="width: 160px;">아티스트 페이지 등록</button></a>
+      	<a href="/arang/mypage/add_artist_info"><button class="btn2 first" style="width: 160px;">내 페이지 등록</button></a>
       	</c:if>
       	<a href="#"><button class="btn2 first">내 페이지 수정</button></a>
       	<!-- 
@@ -249,7 +249,7 @@
    </div>
    <script>
    $("#alert1").on("click", function(){
-		alert("내 상세 페이지를 먼저 등록해주세요.");
+		alert("아티스트 페이지를 먼저 등록해주세요.");
 	});
    </script>
 </body>

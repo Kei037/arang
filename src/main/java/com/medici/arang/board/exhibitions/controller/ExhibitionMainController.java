@@ -32,9 +32,7 @@ public class ExhibitionMainController {
 	
 	@GetMapping("/exhibitions/exhibition_focus")
 	public String exhibitionFocusForm(Model model) {
-		
-		
-		
+
 		return "exhibitions/exhibition_focus";
 	}
 	

@@ -14,6 +14,9 @@
   <link rel="stylesheet" type="text/css" href="/fake_resources/css/mypage/artwork_upload.css">
   <link rel="stylesheet" type="text/css" href="/fake_resources/css/mypage/gallery_upload.css">
 </head>
+<style>
+  .ck-editor__editable { height: 300px; width: 815px; }
+</style>
 <script>
 cnt = 0;
 const add_textbox = () => {
@@ -65,7 +68,7 @@ const remove = (obj) => {
             </div>
             <div class="content_block">
               <div class="review">
-                <p><textarea class="textarea_box" placeholder="갤러리 소개" cols="43" rows="7" name="description"></textarea></p>
+                <p><textarea id="editor" class="textarea_box" placeholder="갤러리 소개" cols="43" rows="7" name="description"></textarea></p>
                 <p><br></p>
                 <p>
                 <div id="box2">
@@ -108,9 +111,15 @@ const remove = (obj) => {
                           <div class="info_block">
                             <div class="first">전화번호(Phone)</div>
                             <input type="text" placeholder="전화번호" name="galleryPhone">
+                           </div>
                             <br>
+                           <div class="info_block">
+                            <div class="first">사업주명</div>
                             <input type="text" placeholder="사업자명" name="representer">
+                           </div>
                             <br>
+                           <div class="info_block">
+                            <div class="first">사업자등록번호</div>
                             <input type="text" placeholder="사업자등록번호(ex)123-45-67890)" name="representerNum">
                           </div>
                         </div>
@@ -129,6 +138,10 @@ const remove = (obj) => {
     </div>
     </form>
   </div>
+<script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
+<script>
+	ClassicEditor.create( document.querySelector( '#editor' ) );
+</script>
 </body>
 
 </html>

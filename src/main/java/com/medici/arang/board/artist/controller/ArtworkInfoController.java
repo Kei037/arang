@@ -50,14 +50,17 @@ public class ArtworkInfoController {
 	
 	@GetMapping("/artwork_board/artwork_info")
 	public String artworkForm(@RequestParam("id") long id, 
-								@RequestParam("wid") long wid, Model model) {
-		System.out.println(id);
-		System.out.println(wid);
+								@RequestParam("wid") long wid, Model model,
+								HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		String email = (String)session.getAttribute("email");
+		
 		FindArtistInfoCommand artistInfo = artistInfoService.findArtistInfo(id);
 		List<ArtworkCommand> artworkList = artworkService.allfindArtwork(id);
 		FindArtworkInfoCommand artworkInfo = artworkInfoService.findArtworkInfo(wid);
 		
-		LikeVo findLike = likeService.findLikeByTargetId(wid);
+		LikeVo findLike = likeService.findLike(email, wid);
 
 		if(findLike != null) {
 			model.addAttribute("likeNum", 0);
@@ -69,7 +72,7 @@ public class ArtworkInfoController {
 		model.addAttribute("artistInfo", artistInfo);
 		model.addAttribute("artworkList", artworkList);
 		model.addAttribute("artworkInfo", artworkInfo);
-	//	artistId
+		
 		return "artwork_board/artwork_info";
 	}
 	
@@ -87,8 +90,6 @@ public class ArtworkInfoController {
 		contactcommend.setGalleryCode(gallery.getCode());
 		long id = Long.parseLong(request.getParameter("artistId"));
 		contactcommend.setArtistId(id);
-		System.out.println("테스트 아티스트 id = " + contactcommend.getArtistId());
-		System.out.println("테스트 갤러리 code = " + contactcommend.getGalleryCode());
 		session.setAttribute("contact", contactcommend);
 		
 		return "artwork_board/contact_artist";
@@ -103,10 +104,6 @@ public class ArtworkInfoController {
 		contactCommand.setArtistId(getCon.getArtistId());
 		contactCommand.setGalleryCode(getCon.getGalleryCode());
 		contactCommand.setSendingType("G");
-		System.out.println(contactCommand.getExhibitionTitle());
-		System.out.println(contactCommand.getComment());
-		System.out.println(contactCommand.getStartDate());
-		System.out.println(contactCommand.getEndDate());
 		
 		contactService.contactArtist(contactCommand);
 		

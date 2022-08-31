@@ -40,15 +40,14 @@
       </table>
       <div class="review">
         <p class="sub_txt inner">제목</p>
-        <input class="findOne_title" type="text" value="${findOne.title}">
+			${findOne.title}
         <input type="hidden" value="${noticeCommand.writer}">
         <p class="sub_txt inner">내용</p>
-        <textarea id="content" name="content" cols="72" rows="20">${findOne.content}</textarea>
-        <p><br></p>
+        	${findOne.content}
       </div>
       </c:forEach>
       <div class="btn_group2">
-        <button type="submit" onclick="goupdate()" class="btn2">저장</button>
+        <button type="button" onclick="gomain()" class="btn2">메인으로</button>
         <button type="button" onclick="godelete()" class="btn2">삭제</button>
       </div>
     </div>

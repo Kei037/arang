@@ -12,7 +12,6 @@
   <link rel="stylesheet" type="text/css" href="/fake_resources/css/artist/artist_focus.css"/>
   <link rel="stylesheet" type="text/css" href="/fake_resources/css/notice/notice_CreateUpdate.css">
 <script type="text/javascript" src="/fake_resources/js/jquery.js"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
 <script type="text/javascript">function gomain() { location.href="notice"}</script>
 <script>
 cnt = 0;
@@ -51,7 +50,7 @@ const remove = (obj) => {
               <div class="review">
                 <p class="sub_txt title">제목</p>
                 <form:input path="title" class="title" type="text" size="100" maxlength="100" />
-                <input type="hidden" value="${noticeCommand.writer}">
+                <input type="hidden" value="${email}">
                 <p class="sub_txt inner">내용</p>
                 <form:textarea id="editor" path="content" class="content" cols="100" rows="100" />
               </div>

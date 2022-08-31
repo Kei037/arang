@@ -44,3 +44,31 @@ figcaption h5 {
     margin-bottom: 8px;
     margin-top: 12px;
 }
+
+figcaption p {
+	color: gray;
+	font-size: 11px;
+}
+.like img {
+	width : 19px;
+}
+
+.item .artwork_wrap.like {
+  width: 218px;
+  height: 218px;
+  position: relative;
+}
+
+.item .artwork_wrap.like img {
+  padding: 0px;
+}
+
+button.like.artwork_like {
+  position: absolute;
+  top: 17px;
+  right: 15px;
+}
+
+.like.artist {
+  float: right;
+}

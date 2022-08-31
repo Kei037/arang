@@ -58,7 +58,7 @@ public class LikeDao {
 		return jdbcTemplate.queryForObject(sql, int.class, userId, targetValue);
 	}
 	
-	//FIND by 아이디, 대상아이디
+	//FIND by 아이디, 대상아이디(Ajax)
 	public LikeVo findLike(String userId, String targetValue) {
 		String sql = "SELECT * FROM LikeTable"
 				+ " WHERE userId = ? AND targetValue = ?";
@@ -68,7 +68,18 @@ public class LikeDao {
 			return null;
 		}
 	}
-
+	
+	//FIND by 아이디, 대상아이디
+	public LikeVo findLike(String userId, long targetValue) {
+		String sql = "SELECT * FROM LikeTable"
+				+ " WHERE userId = ? AND targetValue = ?";
+		try {
+			return jdbcTemplate.queryForObject(sql, new LikeRowMapper(), userId, targetValue);			
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
 	//FIND ALL
 	public List<LikeVo> findLike() {
 		String sql = "SELECT * FROM LikeTable";

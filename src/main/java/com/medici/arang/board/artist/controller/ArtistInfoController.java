@@ -70,27 +70,6 @@ public class ArtistInfoController {
 		return "mypage/add_artist_info";
 	}
 	
-	
-	/*
-	
-	// 카테고리 Select FORM
-	@ModelAttribute("categoryProvicerList")
-	public List<String> getCategoryList(){
-		List<String> list = new ArrayList<String>();
-		list.add("Sulptor");
-		list.add("Painter");
-		list.add("OrientalPainter");
-		list.add("DrawingArtist");
-		list.add("Illustator");
-		list.add("DigitalArtist");
-		list.add("Photographer");
-		
-		return list;
-	}
-	*/
-	
-	
-	
 	private static final String SAVE_DIR = "C:\\PSH\\my-workSpace\\arang\\src\\main\\webapp\\resources\\img\\";
 	private static final String PATH_DIR = "/upload_img/";
 	
@@ -153,12 +132,16 @@ public class ArtistInfoController {
 	
 	
 	@GetMapping("/artist_board/artist_depth")
-	public String findArtistDepthForm(@RequestParam("id") long id, Model model) {
+	public String findArtistDepthForm(@RequestParam("id") long id, Model model,
+				HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String email = (String)session.getAttribute("email");
+		
 		FindArtistInfoCommand artistInfo = artistInfoService.findArtistInfo(id);
 		List<ArtworkCommand> artworkList = artworkService.allfindArtwork(id);
 		
 		///작가id aid로 찾기
-		LikeVo findLike = likeService.findLikeByTargetId(id);
+		LikeVo findLike = likeService.findLike(email, id);
 
 		if(findLike != null) {
 			model.addAttribute("likeNum", 2);
@@ -173,10 +156,7 @@ public class ArtistInfoController {
 		return "artist_board/artist_depth";
 	}
 	
-	
-	
-	
-//	아티스트 page Form
+	//	아티스트 page Form
 	@GetMapping("/artist_board/artist_main")
 	public String findArtistForm(Model model, HttpServletRequest request) {
 		//page 요청 검사
@@ -233,8 +213,6 @@ public class ArtistInfoController {
 		Page<ArtistPageCommand> artistPagingList = 
 				artistservice.findAllPageByGenre(pageable, genre);
 		
-		// ajax, 컨트롤러 처리 해야함
-		
 		//현재페이지
 		int pageNumber = artistPagingList.getPageable().getPageNumber();
 		//총 페이지수
@@ -246,7 +224,6 @@ public class ArtistInfoController {
 		//6+5-1=10. 6,7,8,9,10해서 10.
 		int endBlockPage = startBlockPage+pageBlock-1;
 		endBlockPage= totalPages<endBlockPage? totalPages:endBlockPage;
-		
 		
 		List<ArtworkCommand> arkworkList = artworkService.allFindArtwork();
 		List<ArtistPageCommand> artworkPageList = artistservice.findAllArtistkByEmail();
@@ -282,64 +259,5 @@ public class ArtistInfoController {
 		
 		return ctgValue;
 	}
-	
-	
-	
-	/*
-	// 작품수정 Form
-	@GetMapping("/pages/update_artwork")
-	public String updateArtworkForm(@RequestParam("id") long id,Model model) {
-		model.addAttribute("artwork", new ArtworkCommand());
-		String email = "test@naver.com";
-		
-		ArtworkCommand artworkCommand = artworkService.findArtwork(id);
-		
-		model.addAttribute("artworkCommand", artworkCommand);
-		return "pages/update_artwork";
-	}
-	
-	// 작품수정 기능
-	@PostMapping("/pages/update_artwork")
-	public String updateMenu(@ModelAttribute("artwork") ArtworkCommand artwork,
-					Model model, @RequestParam("imgFile") MultipartFile file) {
-		String email = "test@naver.com";
-		
-		System.out.println("-----------");
-		String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드
-		long size = file.getSize(); //파일 사이즈
-		
-		System.out.println("파일명 : "  + fileRealName);
-		System.out.println("용량크기(byte) : " + size);
-		
-		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
-		
-		UUID uuid = UUID.randomUUID();
-		System.out.println(uuid.toString());
-		String[] uuids = uuid.toString().split("-");
-		
-		String uniqueName = uuids[0];
-		System.out.println("생성된 고유문자열" + uniqueName);
-		System.out.println("확장자명" + fileExtension);
-		
-		File saveFile = new File(SAVE_DIR+"\\"+uniqueName + fileExtension);  // 적용 후
-		try {
-			file.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		artwork.setArtworkImgPath(PATH_DIR+uniqueName+fileExtension);
-		String imgName = artwork.getArtworkImgPath();
-		System.out.println(imgName);
-		model.addAttribute("imgName", imgName);
-		
-		artwork.setArtistId(1001);
-		artworkService.updateArtwork(artwork);
-		
-		return "pages/update_artwork";
-	}
-	*/
 	
 }

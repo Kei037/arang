@@ -25,7 +25,7 @@
               <label>검색어</label>
               <input type="text">
               <a href="#"><button class="board_btn" type="button">검색</button></a>
-              <a href="/arang/storage_page/storage_main"><button class="board_btn service"  type="button">작품보관신청</button></a>
+              <a href="/arang/storage_page/storage_main"><button class="board_btn service"  type="button">메인으로</button></a>
             </div>
           </fieldset>
         </form>

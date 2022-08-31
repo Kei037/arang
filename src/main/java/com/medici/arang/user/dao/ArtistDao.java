@@ -165,8 +165,6 @@ public class ArtistDao {
 				pageable, getCount());
 		}
 	
-	
-	
 	public List<ArtistPageCommand> findAllArtistkByGenre(String ctg) {
 		String sql = "SELECT a.name_kor, a.name_eng, a.genre, a.imgPath, "
 				+ "b.artworkImgPath, a.aid, b.wid, c.title "
@@ -209,8 +207,6 @@ public class ArtistDao {
 		});
 	}
 	
-	
-	
 	public Page<ArtistPageCommand> findPageByGenre(Pageable pageable, String ctg){
 		Order order = pageable.getSort().isEmpty()
 				? Order.by("aid")
@@ -239,7 +235,6 @@ public class ArtistDao {
 				pageable,
 				getCount());
 		}
-	
 	
 	public long getCount() {
 		String sql = "SELECT count(*) FROM Artist";

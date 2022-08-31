@@ -47,7 +47,7 @@ public class PageController {
 		
 		List<GalleryPageCommand> galleryList = galleryInfoService.allFindGallery();
 		model.addAttribute("galleryList", galleryList);
-		return "main";				
+		return "main";
 	}
 	
 	@GetMapping("/login")

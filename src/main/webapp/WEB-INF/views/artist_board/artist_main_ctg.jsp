@@ -40,7 +40,9 @@
                     <div class="artist_text">
                       <div class="first">
                         <span>${artworkPage.name_kor}</span>
-                        <span class="genre_tag">${artworkPage.genre}</span>
+                        <c:forTokens var="genre" items="${artworkPage.genre}" delims=";">
+                        <span class="genre_tag">${genre}</span>
+                        </c:forTokens>
                       </div>
                       <div class="second d-flex flex-row">
                         <div>날 것 그대로의 본질에 우연적 효과를 불어넣다.</div>

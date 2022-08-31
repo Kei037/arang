@@ -28,8 +28,8 @@
         <div id="carousel">
           <!--화면에 보여지는 영역-->
           <div  class="swiper mySwiper2">
-            <!-- li*4>a[href="#"]>img[src=./img/photo$_thum.jpg] -->
             <ul class=" swiper-wrapper">
+            <c:forEach var="artistL" items="${artistList1}">
               <c:forEach var="artworkL" items="${artworkList}" begin="1">
                   <li class="swiper-slide">
                     <a href="/arang/artwork_board/artwork_info?id=${artistL.aid}&wid=${artworkL.wid}">
@@ -37,6 +37,7 @@
                     </a>
                   </li>
   				</c:forEach>
+  			</c:forEach>
             </ul>
           </div>
         </div>
@@ -101,21 +102,21 @@
       <div class="exhibition_wrapper">
         <div class="exhibition_view">
           <div class="img_wrapper">
-            <a href="../html_exhibition/exhibition.html"><img src="/fake_resources/img/exhibition/exhibition2.jpg" alt="exhibition2"></a>
+            <a href="/arang/main"><img src="/fake_resources/img/exhibition/exhibition2.jpg" alt="exhibition2"></a>
           </div>
           <p>김보희 개인전</p>
           <p class="date">2022.08.20~09.20</p>
         </div>
         <div class="exhibition_view">
           <div class="img_wrapper">
-            <a href="../html_exhibition/exhibition.html"><img src="/fake_resources/img/exhibition/exhibition1.jpg" alt="exhibition1"></a>
+            <a href="/arang/main"><img src="/fake_resources/img/exhibition/exhibition1.jpg" alt="exhibition1"></a>
           </div>
           <p>He was Just a funny Boy</p>
           <p class="date">2022.08.20~09.20</p>
         </div>
         <div class="exhibition_view">
           <div class="img_wrapper">
-            <a href="../html_exhibition/exhibition.html"><img src="/fake_resources/img/exhibition/exhibition3.jpg" alt="exhibition3"></a>
+            <a href="/arang/main"><img src="/fake_resources/img/exhibition/exhibition3.jpg" alt="exhibition3"></a>
           </div>
           <p>유영국 개인전</p>
           <p class="date">2022.08.20~09.20</p>

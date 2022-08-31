@@ -39,9 +39,10 @@
                       <div class="first">
                         <span>${artworkPage.name_kor}</span>
                         <span class="genre_tag">${artworkPage.genre}</span>
+                        <button class="like artist likeButton" value="${artworkPage.aid}"><img id="img" src="../resources/img/icon/like_2.png" alt="like"></button>
                       </div>
                       <div class="second d-flex flex-row">
-                        <div>날 것 그대로의 본질에 우연적 효과를 불어넣다.</div>
+                        <div>${artworkPage.title}</div>
                       </div>
                     </div>
                   </div>
@@ -62,9 +63,10 @@
             <div class="slick_trak mypage" style="display: flex;">
             <c:forEach var="artwork" items="${artworkList}" begin="0" end="4">
               <div class="item">
-                  <div class="artwork_wrap">
+                  <div class="artwork_wrap like">
                     <a href="/arang/artwork_board/artwork_info?id=${artwork.artistId}&wid=${artwork.wid}">
                     <img class="artwork" src="${artwork.artworkImgPath}" onload="JavaScript:artwork_small_middle(this)"></a>
+                    <button class="like artwork_like likeButton" value="${artwork.wid}"><img id="img" src="../resources/img/icon/like_2.png" alt="like"></button>
                   </div>
                 <figcaption>
                   <h5>${artwork.name}</h5>
@@ -72,6 +74,7 @@
 				</figcaption>
 			</div>			
 		</c:forEach>
+				</div>
 				</div>
             </div>
           </div>
@@ -89,6 +92,7 @@
                     <div class="artist_text">
                       <div class="first">
                         <span>${gallery.galleryName_eng}</span>
+                        <button class="like artist likeButton" value="${gallery.code}"><img id="img" src="../resources/img/icon/like_2.png" alt="like"></button>
                       </div>
                       <div class="second d-flex flex-row">
                         <div>${gallery.address}</div>
@@ -107,8 +111,45 @@
                 </div>
               </c:forEach>
                 </div>   
-    </div>
-  </div>
+    		</div>
+  		</div>
+	 <script>
+     	$(".likeButton").click(function() {
+    		//해당 Value값 가져와서 할당
+    		let userId = '<c:out value="${email}"/>';
+    		let targetValue = $(this).attr('value');
+    		console.log(userId);
+    		console.log(targetValue);
+    		$.ajax({
+    			type :'post',
+    			url : '<c:url value ="/likeUp"/>',
+    			contentType: 'application/json',
+    			data : JSON.stringify(
+    					{
+    						"userId" : userId,
+    						"targetValue" : targetValue,
+    						"likeNum" : 1
+    					}
+    				),
+    			context: this, 
+    			success : function(data) {
+    				alert(data.msg);
+    				let likeCheck = data.likeCheck;
+    				if(likeCheck == 1){
+    					$(this).children("img").attr('src','../resources/img/icon/like_2.png');
+    					console.log($(this));
+    				}else{
+    					$(this).children("img").attr('src','../resources/img/icon/like.png');
+    					console.log($(this));
+    				}
+    			},
+    			error : function(error) {
+    				alert(error);
+    			}
+    		})
+
+    	});//like
+    </script>
 </body>
 
 </html>
