@@ -44,7 +44,7 @@ const remove = (obj) => {
 </script>
 </head>
 <body>
-<form action="mypage_artist_modify" method="post" enctype="multipart/form-data">
+
 <div id="wrap">
 
 <jsp:include page="/WEB-INF/views/header/header_main.jsp"/>
@@ -58,14 +58,12 @@ const remove = (obj) => {
                   <tr>
                     <td>
                       <div class="artist_avatar">
-                        <img src="${artist.imgPath}">
+                        <form action="uploadAjaxAction2" method="post" enctype="multipart/form-data">
+                        <img id="changeImg" src="${artist.imgPath}" class="click">
+                        <input id="uploadFile" type="file" name="uploadFile" style="display: none;" onchange="imgchange(this)">
+                        <button id="uploadBtn" style="display: none;"></button>
+                      </form>
                       </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input class="profile_up" type="file" name="imgFile" placeholder="이미지등록"/>
-                      <input type="hidden" value="${artist.imgPath}" name="oriImg"/>
                     </td>
                   </tr>
                   <tr>
@@ -79,6 +77,7 @@ const remove = (obj) => {
                 </table>
             </div>
           </div>
+          <form action="mypage_artist_modify" method="post">
           <div class="info_center">
             <div class="my_info">
                 <table class="table_a">
@@ -146,6 +145,7 @@ const remove = (obj) => {
                 </table>
             </div>
           </div>
+          </form>
         </div>
       </div>
       <div class="btn2_group">
@@ -154,6 +154,46 @@ const remove = (obj) => {
       </div>
     </div>
 </div>
-</form>
+
+
+<script>
+$('#uploadBtn').click(function(event) {
+	   console.log(this.innerText);
+	   let clickCategory = this.innerText;
+	   $.ajax({
+	       type:"post",
+	       url : '/uploadAjaxAction',
+	       contentType: false,
+	       dataType: "file",
+	       data : JSON.stringify(
+	             {
+	             <!-- 보내지는 데이터 영역 -->
+	             "categoryValue" : clickCategory
+	             }
+	             ),
+	       success: function(data){
+	          if(data == "error"){
+	                alert("데이터 전송 실패!!");
+	          }else{                 
+	             console.log("데이터 전송 성공!!");
+	             console.log(data);
+	             alert(data);
+	             }
+	          }
+	   })
+	});
+
+	let click = document.querySelector(".click");
+	let clickTarget = document.querySelector("#uploadFile");
+	let btnTarget = document.querySelector("#uploadBtn");
+	click.addEventListener("click", function() {
+	   alert("이미지를 선택해주세요.");
+	   clickTarget.click();
+	});
+
+	function imgchange(e) {
+	   btnTarget.click();
+	}
+</script>
 </body>
 </html>
